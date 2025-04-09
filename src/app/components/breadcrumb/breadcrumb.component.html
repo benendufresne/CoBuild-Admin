@@ -1,0 +1,11 @@
+@if(data.length == 1){
+<h3 class="page-name">{{ data[0].label }}</h3>
+} @if(data.length > 1){
+<div class="breadcrumb">
+  <span [routerLink]="['/']"> </span>
+  @for (link of data; track data) {
+  <span (click)="breadCrumbNavigationHandler(link)"> {{ link?.label }} </span>
+  <mat-icon>keyboard_arrow_right</mat-icon>
+  }
+</div>
+}

@@ -1,0 +1,51 @@
+<div>
+    <ul>
+        <li>
+            <div class="left_wrap">
+                <div class="details">
+                    <h3> {{userDetails?.name}}</h3>
+                    <p>{{userDetails?.lastMessage[0]?.message.length>30?userDetails?.lastMessage[0]?.message.slice(0,30)
+                        + '......':userDetails?.lastMessage[0]?.message}}</p>
+                </div>
+            </div>
+            <div class="right_wrap">
+                <div>
+                    <p class="time"> {{userDetails?.lastMessage[0]?.created | date:'d MMM y, hh:mm a'}}</p>
+                    @if(userDetails?.request){
+                    <div class="id_area">
+                        <span>{{userDetails?.request?.serviceType}}</span>
+                        <span>{{userDetails?.request?.requestIdString}}</span>
+                    </div>
+                    }
+                    @if(userDetails?.job){
+                        <div class="id_area">
+                            <span>{{userDetails?.job?.title}}</span>
+                            <span>{{userDetails?.job?.jobIdString}}</span>
+                        </div>  
+                    }
+                    @if(userDetails?.report?.type){
+                    <span>{{userDetails?.report?.type}}</span>
+                    }
+                    @if(userDetails?.chatMode === 'REQUEST'){
+                    <span class="list_status"
+                        [ngClass]="userDetails?.inboxStatus ==='REJECTED'?'red':'primary'">{{userDetails?.inboxStatus
+                        ==='REJECTED'?'Rejected':'Active'}}</span>
+                    }
+                    @if(userDetails?.chatMode === 'JOB'){
+                        @if(userDetails?.job?.jobId === jobStatus?.jobId){
+                            <span class="list_status"
+                            [ngClass]="jobStatus?.status ==='CANCELED'?'red':'primary'">{{jobStatus?.status  | titlecase}}</span>
+                        }@else {
+                        <span class="list_status"
+                        [ngClass]="userDetails?.inboxStatus ==='CANCELED'?'red':'primary'">{{userDetails?.inboxStatus  | titlecase}}</span>
+                        }
+                    }  
+                    
+                </div>
+                @if(userDetails?.unreadMessages>0){
+                <p class="msg-count">{{userDetails?.unreadMessages}}</p>
+                }
+            </div>
+        </li>
+    </ul>
+</div>

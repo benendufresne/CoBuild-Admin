@@ -1,0 +1,10 @@
+@import "../add-role/add-role.component.scss";
+
+
+::ng-deep {
+    .mdc-checkbox {
+        input:disabled {
+            opacity: 0 !important;
+        }
+    }
+}

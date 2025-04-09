@@ -1,0 +1,39 @@
+// .page-cms{
+//     ::ng-deep{
+//         .tab-section .mat-mdc-tab-nav-bar .mat-mdc-tab-header-pagination-before.mat-mdc-tab-header-pagination-disabled, .tab-section .mat-mdc-tab-nav-bar .mat-mdc-tab-header-pagination-after.mat-mdc-tab-header-pagination-disabled{
+//             display: none !important;
+//         }
+//         .tabbing_chat{
+//             width: auto !important;
+//         }
+//         .tab-section {
+//             padding: 0px 0 20px;
+//         }
+//     }
+// }
+// :host ::ng-deep{
+//     .mat-mdc-menu-panel{
+//         .mat-mdc-menu-content {
+//             &.mdc-list{
+//                 padding:0!important;
+//             }
+//         }
+//     }
+//     .tab-section{
+//         .mat-mdc-tab-header {
+//             .mdc-tab{
+//                 min-width:120px;
+//                 height: 48px;
+//                 &.mdc-tab--active{
+//                     background: var(--primaryLight);
+//                     .mdc-tab__text-label{
+//                         color:#fff!important;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+//     .tab-section .mat-mdc-tab-nav-bar .mdc-tab.mat-mdc-tab-link .mdc-tab-indicator__content--underline{
+//         display: none;
+//     }
+// }

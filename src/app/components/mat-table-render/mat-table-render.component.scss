@@ -1,0 +1,785 @@
+@import "../../../scss/var";
+@import "../../../scss/mix";
+@import "../../../scss/common";
+@import "../../../scss/page-cms";
+
+.page-table {
+  background-color: $white;
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  @include radius(8px);
+  margin: 0 0 10px;
+
+  .export_btn_wrap {
+    padding-bottom: 15px;
+    @include flexbox();
+    justify-content: flex-end;
+  }
+
+  .tab-search-filter {
+    width: 100%;
+    @include flex(flex-start, space-between);
+  }
+
+  .mat-mdc-header-row,
+  .mat-mdc-row {
+    @media screen and (max-width: 1600px) {
+      height: 42px;
+    }
+
+    @media screen and (max-width: 568px) {
+      height: 40px;
+    }
+
+    .mat-mdc-header-cell {
+      @media screen and (max-width: 1600px) {
+        text-transform: capitalize;
+
+        &:first-child {
+          // padding-left: 15px;
+        }
+
+        &:last-child {
+          // padding-right: 15px;
+        }
+      }
+
+      .mat-sort-header-content {
+        font-family: $fontBold;
+      }
+    }
+  }
+
+  .mat-mdc-row {
+
+    th {
+      font-family: "Mulish",
+        sans-serif;
+      font-weight: 700;
+    }
+
+    td {
+      border-top: 1px solid #D6DBDE;
+      font-family: "Montserrat", sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      word-break: break-all;
+      max-width: 300px;
+      padding: 0 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-align: center;
+      text-overflow: ellipsis;
+      color: #000;
+      vertical-align: middle;
+
+      @media screen and (max-width: 1600px) {
+        font-size: 12px;
+      }
+
+      @media screen and (max-width: 568px) {
+        padding: 5px;
+        max-width: 200px;
+      }
+
+      &:first-child {
+        @media screen and (max-width: 1600px) {
+          padding-left: 15px;
+        }
+      }
+
+      &:last-child {
+        // padding-right: 24px;
+
+        @media screen and (max-width: 1600px) {
+          padding-right: 15px;
+        }
+      }
+    }
+  }
+
+  .search-clear {
+    font-size: 22px;
+    height: 22px;
+    width: 22px;
+    cursor: pointer;
+    transform: translateY(5px);
+    color: $darkGray;
+  }
+
+  .merge {
+    display: block;
+    margin-bottom: 5px;
+    width: max-content;
+  }
+
+  .search-clear--disabled {
+    pointer-events: none;
+    //color: $input-border;
+    cursor: default;
+  }
+
+  .table-container {
+    width: 100%;
+    // @include radius(8px);
+    overflow: auto;
+    max-height: calc(100vh - 324px);
+    // box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+    border: 1px solid $disableBg;
+
+    .red {
+      color: $error;
+    }
+
+    .pending {
+      color: #DE8636;
+    }
+  }
+  table {
+    width: 100%;
+    overflow: auto;
+
+    a {
+      font-size: 14px;
+      text-transform: capitalize;
+      color: $primary;
+      font-weight: 600;
+
+      @media screen and (max-width: 1600px) {
+        font-size: 12px;
+      }
+
+      &::before {
+        height: 1px;
+        background: $primary;
+      }
+    }
+  }
+
+  .btn1 {
+    background: $primaryLight;
+    border-color: $primaryLight;
+    color: $white;
+  }
+
+  .table-header {
+    padding-top: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: "Mulish",
+      sans-serif !important;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300px;
+    vertical-align: middle;
+    border-top: 1px solid #D6DBDE;
+
+    @media screen and (max-width: 1600px) {
+      font-size: 12px;
+    }
+
+    @media screen and (max-width: 568px) {
+      font-size: 14px;
+    }
+
+    &:not(:last-child) {
+      // padding-right: 10px;
+
+      @media screen and (max-width: 568px) {
+        padding-right: 5px;
+      }
+    }
+
+    &:not(:first-child) {
+      padding-left: 10px;
+
+      @media screen and (max-width: 568px) {
+        padding-left: 5px;
+      }
+    }
+  }
+
+  .align--center {
+    text-align: center;
+  }
+
+  .no-data-cover,
+  .loading-cover {
+    height: 300px;
+    @include fpos(center, center);
+    background-color: $white;
+
+    span {
+      font-size: 36px;
+      color: rgba($black, 0.3);
+
+      @media screen and (max-width: 568px) {
+        font-size: 18px;
+        color: rgba($black, 0.4);
+      }
+    }
+
+    img {
+      width: 300px;
+      max-width: 80%;
+    }
+  }
+}
+
+.receipt {
+  text-decoration: underline;
+}
+
+.sort-btn-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: -30px;
+
+  .mat-icon {
+    color: #d9d9d9;
+    width: 18px;
+    height: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+
+    &.active-arrow {
+      color: $primary;
+    }
+  }
+}
+
+.action-icon-cover {
+  @include fpos(center, center);
+  user-select: none;
+
+  button {
+    width: 36px;
+    height: 36px;
+    padding: 5px;
+  }
+
+  i {
+    cursor: pointer;
+    margin: 0px 5px;
+
+    &.active-icon {
+      img {
+        margin-left: 2px;
+        width: 20px;
+      }
+    }
+
+    &:not(:last-child) {
+      // margin-right: 10px;
+    }
+
+    &.icon-primary {
+      color: $primary;
+    }
+
+    &.icon-check-mark {
+      color: $green;
+    }
+
+    &.icon-cancel {
+      color: $warn;
+    }
+
+    &.icon-delete {
+      color: $error;
+    }
+
+    &.icon-edit {
+      color: $success;
+      font-size: 27px;
+      padding-top: 2px;
+      width: 25px;
+      height: 25px;
+    }
+
+    &.icon-unblock {
+      color: $success;
+      width: 21px;
+      font-size: 21px;
+    }
+
+    &.icon-block {
+      color: $error;
+      width: 21px;
+      font-size: 21px;
+    }
+
+    &.disabled-icon {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    font-size: 22px;
+    width: 22px;
+
+    @media screen and (max-width: 568px) {
+      font-size: 16px;
+    }
+  }
+}
+.disabledAdmin{
+  pointer-events: none;
+  ::ng-deep .mat-mdc-text-field-wrapper {
+      background-color: #F1EDEE;
+  }
+}
+.tabs-section {
+  padding-top: 25px;
+}
+
+:host {
+
+  .mdc-data-table__cell {
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .mdc-button.btn {
+    border-radius: 8px !important;
+  }
+
+  .listing-filter {
+    @include fpos(center, space-between);
+    flex-wrap: wrap;
+    margin-bottom: 5px;
+    margin-top: -14px;
+
+    .header-wrap {
+      width: 100%;
+      // padding: 10px 0;
+      padding: 20px 20px 0px 20px;
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .left-side-filters {
+        width: 50%;
+
+        .tableHeader {
+          font-size: 16px;
+          font-weight: 700;
+          margin: 10px 0px;
+        }
+
+        app-search-render {
+          width: 100% !important;
+
+          .mat-mdc-form-field {
+            width: 100% !important;
+          }
+        }
+
+        a {
+          &.link-text {
+            color: $primary;
+            text-transform: capitalize;
+            text-decoration: underline;
+            text-underline-offset: 6px;
+          }
+        }
+
+      }
+    }
+
+    .left-side-filters {
+      width: 50%;
+      @include fpos(center, flex-start);
+      flex-wrap: wrap;
+
+      app-button {
+        margin-right: 20px;
+
+        button {
+          text-transform: capitalize !important;
+        }
+      }
+    }
+
+    .right-side-filters {
+      width: 50%;
+      @include fpos(center, flex-end);
+      flex-wrap: wrap;
+
+      .add-btn-wrap {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        button {
+          width: 89px;
+          height: 48px;
+          padding: 0 15px;
+        }
+      }
+
+      .search-filter-wrap {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+
+        button {
+          width: 40px;
+          height: 40px;
+          padding: 0;
+          border-radius: 8px;
+          border: 1px solid transparent;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: 0.3s ease-in;
+
+          &:hover {
+            border: solid 1px #00796B;
+          }
+
+          img {
+            height: 48px;
+            border-radius: 8px;
+          }
+
+          ;
+        }
+        .templateButton{
+          width: 100px;
+          display: flex;
+          align-items: center;
+          .buttonLabel{
+            font-size: 15px;
+            font-weight: 500;
+          }
+        }
+  
+
+      }
+   
+      .filter_applied {
+        position: relative;
+
+        &::before {
+          height: 8px;
+          right: 0px;
+          top: -4px;
+          width: 8px;
+          background: $error;
+          position: absolute;
+          border-radius: 50%;
+          content: '';
+          display: block;
+        }
+      }
+
+      .filter-button {
+        position: relative;
+        background: $white;
+        border: none;
+        border-radius: 50%;
+        color: $primary;
+        @include fpos(center, center);
+        width: 40px;
+        cursor: pointer;
+        height: 40px;
+        box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.4);
+        transition: 0.3s;
+
+        &:hover {
+          .filter-button-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(323deg, $purple 14%, blue 98%);
+            color: $white;
+            animation: rotate 1s linear infinite;
+          }
+
+          mat-icon {
+            position: absolute;
+            color: $white;
+            z-index: 1;
+          }
+        }
+      }
+
+      button {
+        &:not(:first-child) {
+          margin-left: 15px;
+        }
+      }
+    }
+  }
+}
+
+:host ::ng-deep {
+  .left-side-filters {
+    app-button {
+      button {
+        text-transform: capitalize !important;
+      }
+    }
+  }
+
+  .mat-mdc-paginator {
+    &.table-pagination {
+      padding-bottom: 10px;
+    }
+
+    .mdc-text-field--outlined .mat-mdc-form-field-infix,
+    .mdc-text-field--no-label .mat-mdc-form-field-infix {
+      padding-top: 6px !important;
+      padding-bottom: 6px !important;
+      min-height: 36px;
+    }
+  }
+
+  .mat-sort-header-content {
+    justify-content: center;
+    position: relative;
+  }
+
+  .mat-sort-header-container {
+    justify-content: center;
+    padding: 0 20px;
+  }
+
+  app-filter {
+    padding: 0px;
+  }
+
+  .header-wrap {
+    .mat-mdc-text-field-wrapper.mdc-text-field--outlined {
+      .mat-mdc-form-field-infix {
+        width: 260px;
+        padding-top: 15px !important;
+        padding-bottom: 12px !important;
+        min-height: 48px !important;
+      }
+
+      .mat-mdc-form-field-icon-suffix {
+        margin-left: 10px;
+        position: relative;
+        right: 10px;
+      }
+    }
+
+    .filter-body {
+      .body-inner {
+        .mat-mdc-text-field-wrapper.mdc-text-field--outlined {
+          .mat-mdc-form-field-infix {
+            padding-top: 13px !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+.viewMore {
+  letter-spacing: 1px;
+  color: $primaryLight;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-decoration: underline;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  cursor: pointer;
+}
+
+// Filter-Blink
+button {
+  &.filter-button {
+    position: relative;
+
+    .button-indicator {
+      height: 8px;
+      right: -2px;
+      top: -5px;
+      width: 8px;
+      background: $primary;
+      position: absolute;
+      border-radius: 50%;
+    }
+  }
+
+  // Pulse effect
+  .pulse_effect {
+    border-radius: 50%;
+    position: absolute;
+    height: 14px;
+    width: 14px;
+    left: -10px;
+    top: -3px;
+    right: 0;
+    bottom: 0;
+    transform: rotateX(0deg);
+
+    &:after {
+      content: "";
+      border-radius: 50%;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      animation: pulse 0.65s ease-out;
+      animation-iteration-count: infinite;
+      box-shadow: 0 0px 4px 3px rgba($black, 0.3);
+      animation-delay: 0s;
+    }
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(0.5, 0.5);
+      opacity: 0;
+    }
+
+    50% {
+      opacity: 1;
+    }
+
+    100% {
+      transform: scale(1, 1);
+      opacity: 0;
+    }
+  }
+}
+
+.removeSearch {
+  app-search-renderer {
+    display: none !important;
+  }
+}
+
+.status {
+  height: 30px;
+  font-weight: 600;
+  padding: 7px 10px;
+  border-radius: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 12px;
+}
+
+.active-status {
+  background: #00796B1F;
+  color: $primary;
+}
+
+.inactive-status {
+  color: $inactive;
+  background: #FBE9E6;
+}
+
+.banned-status {
+  color: $white;
+  background: $inactiveLight;
+}
+
+.pending-status {
+  color: $white;
+  background-color: #c7b941
+}
+
+.completed-status {
+  background: $primary;
+  color: $white;
+}
+
+.remove-pom {
+  color: $inactive;
+}
+
+.addBtn {
+  padding: 0 30px !important;
+}
+
+.removeAddButton {
+  .addBtn {
+    display: none !important;
+  }
+}
+
+.removeExportBtn {
+  display: none !important;
+}
+
+.removePagination {
+  mat-paginator {
+    visibility: hidden !important;
+  }
+}
+
+.pagination-sec {
+  padding-top: 0;
+}
+
+:host ::ng-deep {
+  .pagination-sec {
+    .mat-mdc-icon-button.mat-mdc-button-base {
+      width: 40px;
+      height: 40px;
+      padding: 8px;
+    }
+  }
+
+  .left-side-filters {
+    // max-width: 400px;
+
+    app-search-render {
+      width: 100% !important;
+
+      .mat-mdc-form-field {
+        width: 100% !important;
+      }
+    }
+  }
+}
+
+.shared-info {
+  .name {
+    margin-bottom: 5px;
+  }
+
+  .email {
+    color: $primaryLightGray;
+    margin-bottom: 0;
+  }
+}
+
+.default-type {
+  cursor: default;
+}
+
+.red_action {
+  color: $error !important;
+}
+
+.status-wrap {
+  padding: 10px 0;
+
+  ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+  }
+
+}

@@ -1,0 +1,8 @@
+<div class="no_data_found_wrap">
+  @if (isShowImage) {
+    <figure>
+      <img src="assets/images/svg/no-data-found.svg" aria-label="No Data Image" />
+    </figure>
+  }
+  <span class="no_data">{{ msg ? msg : "Data not found" }}</span>
+</div>

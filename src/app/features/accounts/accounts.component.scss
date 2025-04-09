@@ -1,0 +1,143 @@
+@import "../../../scss/mix";
+@import "../../../scss/var";
+@import "../../../scss/material-styling";
+
+.accounts-wrapper {
+  padding: 0px;
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background-color: $white;
+
+  .left-side {
+    flex: 0 0 50%;
+    min-height: 100vh;
+    @include fpos(center, center);
+    background: $white;
+  }
+
+  .right-side {
+    flex: 0 0 50%;
+    background: $primary;
+    min-height: 100vh;
+    @include fpos(center, center);
+    position: relative;
+
+    .onboarding-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      img {
+        &:first-child {
+          width: 111px;
+          height: 111px;
+        }
+      }
+    }
+  }
+}
+
+.on-boarding-page {
+  width: 492px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+  @include radius(1.5em);
+  background-color: $white;
+}
+
+.page-login {
+  .form-field {
+    padding-top: 10px;
+  }
+}
+
+.forget-wrapper {
+  position: relative;
+
+  .passwordFormField {
+    .mat-icon {
+      img {
+        width: 100%;
+      }
+    }
+
+    .mat-form-field-suffix {
+      top: 8px !important;
+    }
+
+    .actions {
+      position: absolute;
+      right: 0;
+      bottom: 75px;
+    }
+  }
+}
+.actions {
+  @include fpos(center, flex-start);
+
+  .forget-btn {
+    font-weight: 600;
+    font-size: 13px;
+    color: $regentGray;
+
+    &:focus,
+    &:hover {
+      color: $textColor;
+    }
+  }
+}
+
+.link {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0;
+    height: 1.5px;
+    background: #00796B;
+    transition: all 0.3s ease-in;
+  }
+
+  &:hover {
+    color: #00796B;
+
+    &::before {
+      width: 100%;
+    }
+  }
+}
+
+.successfully-image-wrap {
+
+  figure {
+    width: 85px;
+    margin: 0px auto 25px;
+    display: flex;
+    justify-content: center;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+}
+
+::ng-deep {
+  .page-login {
+    .btn-primary {
+      height: 48px;
+      background: #00796B;
+      border: solid 1px #00796B;
+      color: #fff;
+    }
+  }
+  .mdc-checkbox__ripple{
+    display: none;
+  }
+}

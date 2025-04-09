@@ -1,0 +1,164 @@
+@if(isRoleApiCallInProgress){
+<app-data-loader [cssClasses]="'h500'"></app-data-loader>
+
+}@else {
+<div class="pd-20">
+    <form [formGroup]="roleForm" #n="ngForm">
+        <div class="add-role-page bg_wrap">
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-in md">
+                        <mat-label class="form-label">Role <span>*</span></mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput type="text" formControlName="roleName" placeholder="Enter Role Name"
+                                maxlength="50" />
+
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-in md" *ngIf="this.adminId">
+                        <div class="status-wrap">
+                            <ul>
+                                <li><span>Status: {{this.adminData?.status | formatStatus : listType }}</span></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="info-wrap">
+                <p class="details_head"><mat-icon aria-hidden="false" aria-label="Example info icon"
+                        fontIcon="info"></mat-icon>Atleast one
+                    permission must be given while creating a sub-admin.</p>
+            </div>
+            <h4>Select Permissions</h4>
+            <div class="permission-section">
+                <div class="row">
+                    <div class="col-4">
+                        <mat-label class="details_para">Module</mat-label>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="editAll">Select All</mat-checkbox>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="viewAll">Select All</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <mat-label class="label  details_para">Dashboard</mat-label>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="editDashboard">Edit</mat-checkbox>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="viewDashboard">View</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <mat-label class="label details_para">User Management</mat-label>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="editUserMgmt">Edit</mat-checkbox>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="viewUserMgmt">View</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <mat-label class="label  details_para">Sub-admin Management</mat-label>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="editSubAdminMgmt">Edit</mat-checkbox>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="viewSubAdminMgmt">View</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <mat-label class="label  details_para">Job Management</mat-label>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="editJobMgmt">Edit</mat-checkbox>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="viewJobMgmt">View</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <mat-label class="label  details_para">Request Management</mat-label>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="editRequestMgmt">Edit</mat-checkbox>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="viewRequestMgmt">View</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <mat-label class="label  details_para">Incidents/Damage</mat-label>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="editDamageReport">Edit</mat-checkbox>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="viewDamageReport">View</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <mat-label class="label  details_para">Support</mat-label>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="editSupport">Edit</mat-checkbox>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="viewSupport">View</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <mat-label class="label  details_para">Notification Management</mat-label>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="editNotificationMgmt">Edit</mat-checkbox>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="viewNotificationMgmt">View</mat-checkbox>
+                    </div>
+                </div>
+                <!-- <div class="row">
+                <div class="col-4">
+                    <mat-label class="label">Version Management</mat-label>
+                </div>
+                <div class="col-4">
+                    <mat-checkbox class="example-margin" formControlName="editVersionMgmt"
+                    >Edit</mat-checkbox>
+                </div>
+                <div class="col-4">
+                    <mat-checkbox class="example-margin"  formControlName="viewVersionMgmt">View</mat-checkbox>
+                </div>
+            </div> -->
+                <div class="row">
+                    <div class="col-4">
+                        <mat-label class="label details_para">CMS Management</mat-label>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="editCMSMgmt">Edit</mat-checkbox>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="viewCMSMgmt">View</mat-checkbox>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+}

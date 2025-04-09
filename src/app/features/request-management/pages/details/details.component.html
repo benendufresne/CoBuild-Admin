@@ -1,0 +1,186 @@
+@if (isLoading && requestLoading) {
+<app-data-loader [cssClasses]="'h500'"></app-data-loader>
+
+} @else {
+<div class="pd-20">
+    <form [formGroup]="requestForm">
+        <div class="bg_wrap">
+            <div class="row">
+                <div class="col-4">
+                    <mat-label class="form-label">Service Type*</mat-label>
+                    @if(requestDetails?.serviceType===checkServiceType.CUSTOM_SERVICE){
+                    <p class="details_para">{{requestDetails?.serviceType}}</p>
+                    }@else {
+                    <mat-form-field appearance="outline" class="w-100" [ngClass]="{'disabled':!isAddEditAccess}">
+                        <mat-select placeholder="Select Service Type" formControlName="serviceType"
+                            (selectionChange)="onSelectionChange($event, 'serviceType')">
+                            @for (item of type; track $index) {
+                            <mat-option [value]="item?.label">{{item?.label}}</mat-option>
+                            }
+                        </mat-select>
+                        <mat-error>{{
+                            requestForm | errorMessage : "serviceType" : "Service Type":true
+                            }}</mat-error>
+                    </mat-form-field>
+                    }
+                </div>
+                <div class="col-4">
+                    <mat-label class="form-label">Service Category</mat-label>
+                    @if(requestDetails?.serviceType===checkServiceType.CUSTOM_SERVICE){
+                    <p class="details_para">{{requestDetails?.categoryName}}</p>
+                    }@else {
+                    <mat-form-field appearance="outline" class="w-100" [ngClass]="{'disabled':!isAddEditAccess}">
+                        <mat-select placeholder="Select Category" formControlName="categoryObj"
+                            (selectionChange)="onSelectionChange($event, 'categoryObj')">
+                            @if(!category?.length){
+                            <mat-option disabled>No Result Found</mat-option>
+                            }@else {
+                            @for (item of category; track $index) {
+                            <mat-option [value]="item">{{item?.categoryName}}</mat-option>
+                            }
+                            }
+                        </mat-select>
+                        <mat-error>{{
+                            requestForm | errorMessage : "categoryObj" : "Service Category":true
+                            }}</mat-error>
+                    </mat-form-field>
+                    }
+                </div>
+                @if(frmCtrl['serviceType'].value === checkServiceType.CABLE_CONSULTING_SERVICE){
+                <div class="col-4">
+                    <mat-label class="form-label">Issue Type Name</mat-label>
+                    <mat-form-field appearance="outline" class="w-100" [ngClass]="{'disabled':!isAddEditAccess}">
+                        <mat-select placeholder="Select Issue Type Name" formControlName="issueTypeObj"
+                            (selectionChange)="onSelectionChange($event, 'issueTypeObj')">
+                            @if(!issueTypeNames?.length){
+                            <mat-option disabled>No Result Found</mat-option>
+                            }@else {
+                            @for (item of issueTypeNames; track $index) {
+                            <mat-option [value]="item">{{item?.issueTypeName}}</mat-option>
+                            }
+                            }
+                        </mat-select>
+                        <mat-error>{{
+                            requestForm | errorMessage : "issueTypeObj" : "Issue Type Name":true
+                            }}</mat-error>
+                    </mat-form-field>
+                </div>
+                @if(subIssueNames?.length>0){
+                <div class="col-4">
+                    <mat-label class="form-label">Sub Issue Name</mat-label>
+                    <mat-form-field appearance="outline" class="w-100" [ngClass]="{'disabled':!isAddEditAccess}">
+                        <mat-select placeholder="Select Sub Issue Name" formControlName="subIssueObj">
+                            @if(!subIssueNames?.length){
+                            <mat-option disabled>No Result Found</mat-option>
+                            }@else {
+                            @for (item of subIssueNames; track $index) {
+                            <mat-option [value]="item">{{item}}</mat-option>
+                            }
+                            }
+                        </mat-select>
+                        <mat-error>{{
+                            requestForm | errorMessage : "subIssueObj" : "Select Sub Issue Name":true
+                            }}</mat-error>
+                    </mat-form-field>
+                </div>
+                }
+                }
+                <div class="col-4">
+                    <h3 class="details_head">Name</h3>
+                    <p class="details_para">{{requestDetails?.name}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <app-address-field [controlName]="frmCtrl['address']" [label]="'Address'"
+                        [longitude]="frmCtrl['lng']" [latitude]="frmCtrl['lat']"
+                        [ngClass]="{'disabled':!isAddEditAccess}"></app-address-field>
+                </div>
+                <div class="col-4">
+                    <h3 class="details_head">Scheduled Date & Time</h3>
+                    <p class="details_para">{{requestDetails?.created | date:dateType.DATE_TIME_WITH_COMMA}}</p>
+                </div>
+                @if(requestDetails?.rejectReason && requestDetails?.status === requestStatus.REJECTED){
+                <div class="col-4">
+                    <h3 class="details_head">Reason of Rejection</h3>
+                    <p class="details_para">{{requestDetails?.rejectReason}}</p>
+                </div>
+                }
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="details_head">Description</h3>
+                    <p class="details_para">{{requestDetails?.description}}</p>
+                    @if(requestDetails?.media){
+                    @if(showImage){
+                    <div class="img_wapper">
+                        <app-photos-videos-carasouel [videoAutoPlay]="false"
+                            [images]="requestDetails.imageArray || []"></app-photos-videos-carasouel>
+                    </div>
+                    }@else {
+                    <a [href]="'https://docs.google.com/gview?url=' + requestDetails?.media" class="view_document">View
+                        Document</a>
+                    }
+                    }
+                </div>
+
+            </div>
+            @if(isAddEditAccess){
+            <div class="row">
+                <div class="col-4">
+                    <label class="form-label">Estimated Days*</label>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <input required matInput appNoLeadingSpace autocomplete="off" placeholder="Enter Estimated Days"
+                            [maxlength]="limit.MAX_NAME_LENGTH" [formControlName]="'estimatedDays'" />
+                        <mat-error>{{
+                            requestForm | errorMessage : 'estimatedDays' : "Estimated Days"
+                            }}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-4">
+                    <label class="form-label">Amount*</label>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <input required matInput appNoLeadingSpace autocomplete="off" placeholder="Enter Estimated Days"
+                            [maxlength]="limit.MAX_NAME_LENGTH" [formControlName]="'amount'" />
+                        <span matTextPrefix>$&nbsp;</span>
+                        <span matTextSuffix>.00</span>
+                        <mat-error>{{
+                            requestForm | errorMessage : 'amount' : "Amount"
+                            }}</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <mat-label class="form-label">Notes*</mat-label>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <textarea matInput appNoLeadingSpace type="text" rows="4" [maxLength]="500"
+                            placeholder="Enter Notes" formControlName="notes"></textarea>
+                        <mat-hint align="end">
+                            ({{ frmCtrl["notes"].value.length }}/500)
+                        </mat-hint>
+                        <mat-error>{{
+                            requestForm
+                            | errorMessage : "notes" : "Notes"
+                            }}</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            @if(requestDetails?.status === requestStatus?.BID_AGAIN || requestDetails?.status === requestStatus?.PENDING){
+            <div class="popup-footer">
+                <div class="btn-cover">
+                    <app-button [cssClasses]="'active'" [buttonWidth]="'190px'" [buttonHeight]="'50px'"
+                        [btnLabel]="customButtonConst.SEND_QUOTATION" [isDisabled]="
+                          requestForm.invalid || !requestForm.dirty
+                        " (buttonClickEvent)="onSubmit()"></app-button>
+                    <app-button [btnLabel]="customButtonConst.REJECT" [buttonWidth]="'190px'" [buttonHeight]="'50px'"
+                        (buttonClickEvent)="onReject()"></app-button>
+                </div>
+            </div>
+            }
+            }
+        </div>
+
+    </form>
+</div>
+}

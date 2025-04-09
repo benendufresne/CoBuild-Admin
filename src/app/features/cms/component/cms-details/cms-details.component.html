@@ -1,0 +1,35 @@
+@if(!edit){
+<div class="cms_wrap">
+    @if(isApiCallInProgress){
+    <div class="loader_overlay">
+        <app-data-loader [cssClasses]="'h500'" />
+    </div>
+    }
+    @else {
+    <div class="cms_header">
+        @if(isAddEditAccess){
+        <app-button [btnLabel]="customButtonConst.edit" [cssClasses]="'active edit'" [buttonHeight]="'48px'"
+            [buttonWidth]="'248px'" [buttonRadius]="'6px'" (buttonClickEvent)="onEdit()"></app-button>
+        }
+    </div>
+
+    <div class="cms_body">
+        @if(!contentData || !contentData[keys.DATA]){
+        <div class="no_data_found">
+            <p>No record found!</p>
+        </div>
+        }
+        @else{
+        <div class="ql-container ql-snow" style="border-width: 0">
+            <div class="ql-editor" [innerHtml]="contentData[keys.DATA] | safe : 'html' | trimHTML"></div>
+        </div>
+        }
+    </div>
+    }
+</div>
+}
+@else{
+<div class="editor_wrap">
+    <app-cms-editor (edit)="ShowDetails($event)" [editorData]="contentData" />
+</div>
+}

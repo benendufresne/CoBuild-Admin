@@ -1,0 +1,447 @@
+@import "../scss/mix";
+@import "../scss/var";
+
+a:hover {
+    text-decoration: none;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    scrollbar-width: thin;
+    outline: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    font-family: "Montserrat", sans-serif;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: $bodyColor;
+    -webkit-tap-highlight-color: none;
+
+    @supports (-webkit-appearance: none) {
+        overflow: overlay;
+    }
+
+    &:has(.page_wrapper) {
+        background-color: $bgColor;
+    }
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+button {
+    cursor: pointer;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    background: transparent;
+    -webkit-text-fill-color: $inputColor;
+    -webkit-box-shadow: 0 0 0px 1000px $white inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px $white inset !important;
+    box-shadow: 0 0 0 30px $white inset !important;
+}
+
+// Chrome, Safari, Edge, Opera
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+// Firefox
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+// For Collapsed Sidebar
+body {
+    margin: 0;
+    text-align: left;
+    background-color: $white;
+    color: $black;
+
+    &.collapsed {
+        app-header {
+            .left-portion {
+                .hamburger-icon {
+                    @media screen and (max-width: 576px) {
+                        display: flex !important;
+                    }
+                }
+            }
+        }
+
+        app-sidebar {
+            transform: translateX(-300px);
+
+            @media screen and (max-width: 576px) {
+                transform: translateX(-102%);
+            }
+        }
+
+        .main-content {
+            width: 100% !important;
+            left: 0 !important;
+        }
+
+        // For showing icons on sidebar collapsed
+        &.showing-icons-on-collapse {
+            app-sidebar {
+                .page-sidebar {
+                    .mat-mdc-list {
+                        &.sidebar-list {
+                            padding: 15px 5px;
+                        }
+                    }
+                }
+            }
+
+            @media screen and (min-width: 993px) {
+                app-sidebar {
+                    transform: none !important;
+                    width: 70px !important;
+
+                    .page-sidebar {
+                        .mat-list-item {
+                            overflow: hidden;
+                        }
+
+                        .down-arrow {
+                            display: none;
+                        }
+
+                        .mat-accordion {
+                            &.accordion {
+                                .mat-expansion-panel {
+                                    .mdc-list-item__content {
+                                        padding: 0 0 0 5px !important;
+
+                                        .menu-name {
+                                            width: calc(100% - 34px);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .company-info {
+                            display: none;
+                        }
+                    }
+                }
+
+                .main-content {
+                    width: calc(100% - 70px) !important;
+                    left: 70px !important;
+                }
+            }
+        }
+    }
+}
+
+button:focus {
+    outline: none;
+}
+.mb-0{
+    margin-bottom: 0 !important;
+}
+.mb-5 {
+    margin-bottom: 5px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.mb-15 {
+    margin-bottom: 15px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.mb-30 {
+    margin-bottom: 30px;
+}
+
+.mb-40 {
+    margin-bottom: 30px;
+}
+
+.mt-5 {
+    margin-top: 5px;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+.ml-5 {
+    margin-left: 5px;
+}
+
+.ml-10 {
+    margin-left: 10px;
+}
+
+.ml-20 {
+    margin-left: 20px;
+}
+
+.ml-30 {
+    margin-left: 30px;
+}
+
+.mr-10 {
+    margin-right: 10px;
+}
+
+.mr-20 {
+    margin-right: 20px;
+}
+
+.mr-30 {
+    margin-right: 30px;
+}
+
+:root {
+    ::selection {
+        color: $white;
+        background: $scroller;
+    }
+
+    ::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: $white;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @include radius(10px);
+        background: $scroller;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: $scroller;
+    }
+
+    ::-webkit-scrollbar-corner {
+        background-color: transparent;
+        border-color: transparent;
+    }
+
+    ::-webkit-scrollbar-track-piece {
+        background-color: $white;
+    }
+
+    ::-webkit-scrollbar-thumb:vertical {
+        height: 8px;
+        @include radius(10px);
+        background-color: $scroller;
+    }
+
+    ::-moz-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: $white;
+    }
+
+    ::-moz-scrollbar-track {
+        background: $white;
+    }
+
+    ::-moz-scrollbar-thumb {
+        @include radius(10px);
+        background: $scroller;
+    }
+
+    ::-moz-scrollbar-thumb:hover {
+        background: $scroller;
+    }
+}
+
+.table-outer {
+    padding-top: 15px;
+    margin-top: 30px;
+}

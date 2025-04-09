@@ -1,0 +1,26 @@
+@import "../../../scss/var";
+@import "../../../scss/mix";
+
+.page-not-found {
+  text-align: center;
+  @include fpos(center, center);
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 50px 20px;
+  background-color: $lightGray;
+  h1 {
+    margin-bottom: 15px;
+    font-size: 100px;
+    letter-spacing: 7px;
+    color: $primaryLight;
+    line-height: normal;
+  }
+  h2 {
+    margin-bottom: 30px;
+    font-size: 40px;
+    color: $primaryLight;
+  }
+  .btn {
+    margin-top: 30px;
+  }
+}

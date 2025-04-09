@@ -1,0 +1,157 @@
+@import '../../../scss/var';
+
+button {
+  min-width: 140px;
+  width: auto;
+  height: 48px;
+}
+
+.btndisabled {
+  opacity: 40%;
+  cursor: no-drop;
+  background: $primaryLight;
+  color: $white;
+}
+
+.default {
+  background: $white;
+  color: $primary;
+  border: solid 1px $primary;
+  border-radius: 16px;
+  font-size: 14px;
+
+  &.cms {
+    z-index: 999;
+  }
+}
+
+.active {
+  background: $primary !important;
+  color: $white !important;
+  border: solid 1px $primary;
+  border-radius: 16px;
+
+  &.cms {
+    background: $primaryDark !important;
+    z-index: 999;
+  }
+}
+
+.inactive {
+  background: $red !important;
+  color: $white !important;
+  border: solid 1px $red;
+  border-radius: 16px;
+
+  &.cms {
+    background: $primaryDark !important;
+    z-index: 999;
+  }
+}
+
+.login {
+  background: $primary !important;
+  color: $white !important;
+  border: solid 1px $primary !important;
+  border-radius: 16px;
+  height: 48px !important;
+  width: 462px !important;
+}
+
+.profile-pic-upload {
+  width: 100%;
+  background: $primary !important;
+  color: $white !important;
+  border: solid 1px $primary !important;
+  border-radius: 16px;
+  height: 50px !important;
+
+  &.remove-photo {
+    background: $white !important;
+    color: $primary !important;
+    border: solid 1px $primary !important;
+  }
+
+  &.w-160 {
+    width: 160px !important;
+  }
+}
+
+.table-btn {
+  background: $white !important;
+  color: $black !important;
+  border: solid 1px $black !important;
+  height: 45px !important;
+  // width: 150px !important;
+  max-width: 180px !important;
+  border-radius: 10px !important;
+
+  &.selected {
+    color: $primary !important;
+    border: solid 1px $primary !important;
+  }
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner:before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border: 2px solid $white;
+  border-top-color: $primary;
+  animation: spinner .8s linear infinite;
+}
+
+a {
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 2px;
+  position: relative;
+  top: 0;
+  cursor: pointer;
+
+  &.icon_button {
+    width: 23px;
+    height: 19px;
+
+  }
+}
+
+.edit {
+  width: 80px;
+  min-width: auto;
+}
+
+.export {
+  margin-left: 0 !important;
+}
+
+.tabs_button {
+  min-width: 130px;
+  height: 44px;
+  position: relative;
+
+
+  @media screen and (max-width:1600px) {
+    min-width: 110px;
+    height: 38px;
+  }
+}
+
+.red-dot {
+  color: red !important;
+}

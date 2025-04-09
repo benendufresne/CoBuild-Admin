@@ -1,0 +1,67 @@
+<div class="edit-modal popup-ui">
+  <div class="popup-header">
+    <h4>{{ data.base64Url ? "Add" : "Update" }} profile image</h4>
+    <span
+      class="material-icons close-icon"
+      matTooltip="Close"
+      (click)="onNoClick()"
+      >close</span
+    >
+  </div>
+  <div class="popup-body">
+    <figure class="add-image">
+      @if(show){
+        <div class="loading-cover" >
+          <app-data-loader></app-data-loader>
+        </div>
+      }
+      @else {
+        <img
+        [src]="
+          data.base64Url
+            ? data.base64Url
+            : storage.profileDetail.profilePicture
+            ? storage.profileDetail.profilePicture
+            : 'assets/images/svg/user-image.svg'
+        "
+        (load)="onLoad()"
+        aria-label="Upload Image"
+      /> 
+      }
+
+  
+    </figure>
+    <ng-container *ngIf="data.base64Url; else profileImage">
+      <div class="btn-cover">
+        <app-button
+          [btnLabel]="'Add Photo'"
+          [cssClasses]="'profile-pic-upload w-160'"
+          (buttonClickEvent)="confirm()"
+        ></app-button>
+      </div>
+    </ng-container>
+
+    <ng-template #profileImage>
+      <div class="btn-cover d-flex">
+        <app-button
+          [btnLabel]="'Remove Photo'"
+          [cssClasses]="'profile-pic-upload remove-photo'"
+          (buttonClickEvent)="removeImage()"
+        ></app-button>
+        <app-upload-img
+          [isMultiSelection]="false"
+          [buttonText]="'Change Photo'"
+          [componentImageStyle]="'profile'"
+             [cropper]="false"
+             [showLoader]="show"
+          [selectedImageFile]="selectedFile"
+          [showButtonHandler]="selectedFile ? true : false"
+          [imageFormatPngOnly]="true"
+          (sendFiles)="getSelectedFile($event)"
+          (loaderStateChange)="onLoaderStateChange($event)" 
+          class="logo-image-upload"
+        ></app-upload-img>
+      </div>
+    </ng-template>
+  </div>
+</div>

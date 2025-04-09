@@ -1,0 +1,60 @@
+.notification-container {
+    max-width: 500px;
+    padding: 10px 15px;
+    border: 1px solid #9DA3A4;
+    border-radius: 10px;
+    box-shadow: 0px 1px 21px 0px #00000005;
+    font-family: Montserrat;
+    background: #FFFFFF;
+    position: relative;
+    cursor: pointer;
+    @media (max-width: 767px) {
+        max-width: 280px;
+    }
+
+    .n-subject {
+        color: #393B3D;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: left;
+
+        @media (max-width: 1024px) {
+            font-size: 15px;
+        }
+
+        @media (max-width: 767px) {
+            font-size: 14px;
+        }
+    }
+
+    .n-desc {
+        margin-top: 10px;
+        color: #6A6B6C;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 18px;
+        text-align: left;
+    }
+
+    .n-time {
+        margin-top: 5px;
+        font-size: 12px;
+        font-weight: 500;
+        text-align: right;
+        color: #6A6B6C;
+    }
+
+    .n-red-dot {
+        position: absolute;
+        top: -3px;
+        left: -5px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #D90429;
+    }
+
+    &.pointer {
+        cursor: pointer;
+    }
+}

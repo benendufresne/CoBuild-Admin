@@ -1,0 +1,87 @@
+<div class="btn-add">
+    @if (isAddEditAccess) {
+    <app-button [cssClasses]="'active'" [buttonWidth]="'100px'" [buttonHeight]="'48px'" [buttonRadius]="'6px'"
+        [btnLabel]="customButtonConst.IMPORT" (buttonClickEvent)="itemImage.click()"></app-button>
+    <input #itemImage type="file" (change)="handleFileInput($event)" style="display: none" [accept]="'.csv'" />
+    <app-button [cssClasses]="'active'" [buttonWidth]="'200px'" [buttonHeight]="'48px'" [buttonRadius]="'6px'"
+        [btnLabel]="customButtonConst.SCHEDULE_JOB" (buttonClickEvent)="openScheduleJob()"></app-button>
+    <app-button [cssClasses]="'active'" [buttonWidth]="'200px'" [buttonHeight]="'48px'" [buttonRadius]="'6px'"
+        [btnLabel]="customButtonConst.ADD_JOB" (buttonClickEvent)="navigateToAddJOB()"></app-button>
+    }
+</div>
+<div class="table-outer">
+    <mat-table-render class="mat_table" notFound="No Jobs Available" [listType]="'Job'" [heading]="heading"
+        [showSearch]="true" [showFilter]="true" [filterRedDot]="filterRedDot" [placeholder]="placeholderText"
+        [exportButton]="true" [getFilterValue]="checkFormValue" (export)="export()" (filter)="filterApply($event)"
+        [isAddEditAccess]="isAddEditAccess" (edit_route)="onView($event.element._id)" [ExportTemplate]="true"
+        (find)="paginationWithSearch($event, 0)" (page)="paginationWithSearch($event, 1)" (templateExport)="templateExport()"
+        (status)="changeStatus($event)" [dropDownStatus]="dropdownStatus">
+        <div role="filter">
+            <form [formGroup]="filterForm" class="filterForm">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <h4 class="date-label">
+                            <figure>
+                                <img alt="status" src="../../../../../assets/images/filter/done.svg" />
+                            </figure>
+                            <span> Priority Level </span>
+                        </h4>
+                    </mat-expansion-panel-header>
+                    <ng-template matExpansionPanelContent>
+                        @for (type of priorityLevel; track type) {
+                        <div>
+                            <mat-checkbox [value]="type.value" (change)="onCheckboxChange($event,'priority')">{{
+                                type.label }}</mat-checkbox>
+                        </div>
+                        }
+                    </ng-template>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <h4 class="date-label">
+                            <figure>
+                                <img alt="filter_logo" src="../../../../../assets/images/filter/calendar.svg" />
+                            </figure>
+                            <span> Added On </span>
+                        </h4>
+                    </mat-expansion-panel-header>
+                    <ng-template matExpansionPanelContent>
+                        <div class="date-wrap">
+                            <mat-form-field appearance="outline" class="date-field">
+                                <mat-date-range-input [rangePicker]="picker" [dateFilter]="unavailableDates">
+                                    <input readonly matStartDate autocomplete="off" placeholder="Select From"
+                                        formControlName="fromDate" (dateChange)="subscribeToFilterFormChanges()"
+                                        (keydown)="dateInput($event)" />
+                                    <input readonly matEndDate autocomplete="off" placeholder="To Date"
+                                        formControlName="toDate" (keydown)="dateInput($event)"
+                                        (dateChange)="subscribeToFilterFormChanges()" />
+                                </mat-date-range-input>
+                                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-date-range-picker #picker></mat-date-range-picker>
+                            </mat-form-field>
+                        </div>
+                    </ng-template>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <h4 class="date-label">
+                            <figure>
+                                <img alt="status" src="../../../../../assets/images/filter/type.svg" />
+                            </figure>
+                            <span> Status </span>
+                        </h4>
+                    </mat-expansion-panel-header>
+                    <ng-template matExpansionPanelContent>
+                        @for (type of jobStatus; track type) {
+                        <div>
+                            <mat-checkbox [value]="type.key" (change)="onCheckboxChange($event,'status')">{{ type.label
+                                }}</mat-checkbox>
+                        </div>
+                        }
+
+                    </ng-template>
+                </mat-expansion-panel>
+            </form>
+        </div>
+    </mat-table-render>
+</div>

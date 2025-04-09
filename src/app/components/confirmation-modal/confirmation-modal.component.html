@@ -1,0 +1,49 @@
+<div class="confirmation-modal popup-ui">
+  <div class="popup-header">
+    <h4>{{ data?.title }}</h4>
+    <!-- <span
+      class="material-icons close-icon"
+      matTooltip="Close"
+      (click)="onNoClick()"
+      >close</span
+    > -->
+  </div>
+  <div class="popup-body">
+    <!-- <div class="popup-logo">
+      <figure>
+        <img src="assets/images/svg/pop-up-logo.svg" aria-label="Popup Logo" />
+      </figure>
+    </div> -->
+    <h3>{{ data?.message }}</h3>
+
+    <div class="note-sec" *ngIf="data?.note">
+      <p>
+        <strong>Note :</strong> The user has upcoming appointments scheduled.
+        Deleting the user will lead to refund generation for all upcoming
+        appointments.
+      </p>
+    </div>
+  </div>
+  <div class="popup-footer">
+    <div class="btn-cover">
+      <button
+        type="button"
+        class="submit-btn"
+        mat-flat-button
+        color="primary"
+        (click)="confirm()"
+      >
+        {{ data?.btn1 ? data?.btn1 : "Yes" }}
+      </button>
+      <button
+        type="button"
+        class="cancel-btn"
+        mat-flat-button
+        color="primary"
+        (click)="onNoClick()"
+      >
+        {{ data?.btn2 ? data?.btn2 : "Cancel" }}
+      </button>
+    </div>
+  </div>
+</div>

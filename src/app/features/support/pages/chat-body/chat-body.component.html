@@ -1,0 +1,100 @@
+<div class="chat_wrap">
+  <div class="chat_body_header">
+    <div>
+      <h1>{{ userDetail?.name }}</h1>
+      @if(userDetail?.members?.includes(userId)){
+      <p>{{ status.isOnline ? 'Online' : 'Last seen at ' + (status.lastSeen|date:dateType.DATE_TIME_WITH_COMMA)}}</p>
+      }@else {
+      <p>{{ userDetail.isOnline ? 'Online' : 'Last seen at ' +
+        (userDetail?.lastSeen|date:dateType.DATE_TIME_WITH_COMMA)
+        }}</p>
+      }
+    </div>
+    @if(userDetail?.chatMode ==='REQUEST'){
+    <div class="request_cate">
+      <h3>Request Category:</h3>
+      <p>{{userDetail?.request?.categoryName}}</p>
+    </div>
+
+    }@else if(userDetail?.chatMode ==='REPORT') {
+    <div class="request_cate">
+      <h3>Damage Type:</h3>
+      <p>{{userDetail?.report?.type}}</p>
+    </div>
+
+    }
+  </div>
+
+  <div [ngClass]="{'class1':isLoadingMessages}" class="msg_body" infiniteScroll [infiniteScrollDistance]="1"
+    [infiniteScrollUpDistance]="2" [infiniteScrollThrottle]="150" (scrolledUp)="loadOlderMessages()"
+    [scrollWindow]="false" #scrollContainer>
+    @if(isLoadingMessages){
+    <div class="loader_overlay">
+      <app-data-loader [conditionalClass]="!chatMessages.length" />
+    </div>
+    }
+    @if(chatMessages.length){
+    <!-- <div > -->
+    @for (item of chatMessages; track item) {
+
+    @if(item.type){
+    @if(showDateHeader($index)){
+    <p class="date-header">{{ item?.created | chatDate }}</p>
+    }
+    <div class="msg_area">
+      @if(item?.messageType !=="TEXT"){
+      <app-request-card [quotationData]="item" [rejectRequestStatus]="passRejectRequestData"> </app-request-card>
+      }@else {
+      <p class="message" [ngClass]="item?.members?.[0]?.includes(item?.senderId)?'receiveMessage':'sendMessage'">
+        {{item.message}}</p>
+      }
+      <div class="time_wrap" [ngClass]="item?.members?.[0]?.includes(item?.senderId)?'receiveTime':'sendTime'">
+        <span class="message-time"> {{ item.created | date: 'shortTime' }}</span>
+        @if(item.senderId ===adminSenderId || !item?.members?.[0]?.includes(item?.senderId)){
+        @if(item.isRead?.length>1 || showDoubleTick){
+        <img class="tick_img" src="assets/images/svg/double-check.svg">
+        }@else {
+        <img class="tick_img" src="assets/images/svg/singleTick.svg">
+        }
+        }
+      </div>
+    </div>
+    }
+    }
+    <!-- </div> -->
+    }@else if(!chatMessages.length && !isLoadingMessages) {
+    <div class="no-data">
+      <p>No Message Found!</p>
+    </div>
+    }
+  </div>
+
+
+  @if(isAddEditAccess){
+  <form class="input-div">
+    <div class="message_box">
+      @if(userDetail?.chatMode ==='JOB' && (userDetail?.job?.jobId ===jobStatus?.jobId)){
+        <mat-form-field appearance="outline" class="w-100" [ngClass]="{'disabled':userDetail?.status ==='REJECTED' || jobStatus?.status ==='COMPLETED' ||jobStatus?.status ==='CANCELED'}">
+          <textarea type="text" appNoLeadingSpace [placeholder]="'Enter Your Message'" [formControl]="message"
+            class="inputMessage" matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="3"
+           (keydown.enter)="submitMessage($event)"></textarea>
+        </mat-form-field>
+      }@else{
+      <mat-form-field appearance="outline" class="w-100" [ngClass]="{'disabled':userDetail?.status ==='REJECTED' || userDetail?.status ==='COMPLETED' ||userDetail?.status ==='CANCELED'}">
+        <textarea type="text" appNoLeadingSpace [placeholder]="'Enter Your Message'" [formControl]="message"
+          class="inputMessage" matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="3"
+         (keydown.enter)="submitMessage($event)"></textarea>
+      </mat-form-field>
+    }
+      @if(userDetail?.status !=='REJECTED' && (jobStatus?.status !=='COMPLETED' && jobStatus?.status !=='CANCELED') && (userDetail?.status !=='COMPLETED' && userDetail?.status !=='CANCELED')){
+      <span class="sendIcon">
+        <mat-icon (click)="submitMessage()">send</mat-icon>
+      </span>
+
+
+      }
+    </div>
+  </form>
+  }
+
+</div>

@@ -1,0 +1,65 @@
+@import "../../../scss/var";
+@import "../../../scss/mix";
+
+.data_loader {
+  padding: 20px;
+  @include fpos(center, center);
+
+  // margin-bottom: 20px;
+  .loadersmall {
+    border: 2px solid #00796B;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+    border-top: 2px solid white;
+    @include radius(50%);
+    width: 30px;
+    height: 30px;
+  }
+
+  &.h500 {
+    height: 500px;
+  }
+
+  &.vh100 {
+    height: 100vh;
+  }
+
+  &.vh85 {
+    position: absolute;
+    height: 85vh;
+    background: transparent;
+    width: 85%;
+  }
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.loaderHeight {
+  // height: 500px;
+}

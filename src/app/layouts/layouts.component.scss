@@ -1,0 +1,85 @@
+@import "../../scss/mix";
+@import "../../scss/var";
+
+.page-layout-screen {
+  min-height: 100vh;
+
+  .header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    border-bottom: 1px solid var(--borderColor);
+  }
+
+  .content-cover {
+    @include flexbox;
+    width: 100%;
+    transition: 0.3s;
+
+    app-sidebar {
+      width: 265px;
+      transition: 0.3s;
+      z-index: 10;
+      position: fixed;
+      top: 64px;
+      bottom: 0px;
+      border-right: 1px solid var(--bordercolor);
+      background-color: var(--white);
+
+      @media screen and (max-width: 992px) {
+        width: 290px;
+      }
+
+      @media screen and (max-width: 576px) {
+        top: 65px;
+      }
+    }
+
+    .main-content {
+      width: calc(100% - 265px);
+      padding: 20px;
+      transition: 0.3s;
+      position: relative;
+      bottom: 0px;
+      top: 64px;
+      left: 265px;
+
+      background-color: #f2f2f2;
+      @include scroller;
+      height: calc(100vh - 65px);
+
+      @media screen and (max-width: 992px) {
+        width: calc(100% - 290px);
+        left: 290px;
+      }
+
+      @media screen and (max-width: 576px) {
+        top: 52px;
+      }
+
+      &>main {
+        //min-height: calc(100vh - 140px);
+        padding: 0;
+        background-color: $white;
+        // position: relative;
+        box-shadow: 0px 1px 0px 0px #DADBE4;
+        @include radius(5px);
+
+        &.grey-bg {
+          background-color: #f2f2f2;
+
+          .tabpanel {
+            background: #fff !important;
+            display: block !important;
+          }
+        }
+
+        &.hideBox {
+          box-shadow: none !important;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,89 @@
+<div class="add-job popup-ui">
+    <div class="popup-header">
+        <h1>Schedule Job</h1>
+        <div class="close-icon">
+            <span class="material-icons" matTooltip="Close" (click)="onNoClick()">close</span>
+        </div>
+    </div>
+    <div class="popup-body">
+        <form [formGroup]="scheduleJobForm">
+            <div class="date-time-wrap row">
+                <mat-label class="form-label col-12">Schedule Date & Time*</mat-label>
+                <div class="date-wrap col-6">
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <input matInput readonly [placeholder]="'select date'" [min]="currentDate"
+                            [matDatepicker]="picker" (click)="picker.open()" formControlName="scheduleDate" />
+                        <mat-datepicker-toggle matIconSuffix [for]="picker" class="pointer"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error>{{
+                            scheduleJobForm | errorMessage : "scheduleDate" : "Date"
+                            }}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="time-wrap col-6">
+                    <mat-form-field appearance="outline">
+                        <input matInput readonly [format]="24" formControlName="scheduleTime" [min]="currentTime"
+                            [ngxMatTimepicker]="timepickerEnd" [placeholder]="'Select time'" />
+                        <mat-icon matSuffix (click)="timepickerEnd.open()">schedule</mat-icon>
+                        <mat-error>{{
+                            scheduleJobForm | errorMessage : "scheduleTime" : "Time"
+                            }}</mat-error>
+                    </mat-form-field>
+                    <ngx-mat-timepicker #timepickerEnd [timepickerClass]="'custome-class'" [cancelBtnTmpl]="cancelBtn"
+                        [confirmBtnTmpl]="confirmBtn">
+                    </ngx-mat-timepicker>
+                    <ng-template #cancelBtn>
+                        <button class="time_btn cancel"> {{ 'Cancel' }} </button>
+                    </ng-template>
+                    <ng-template #confirmBtn>
+                        <button class="time_btn confirm">{{ 'Confirm' }}</button>
+                    </ng-template>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <mat-label class="form-label">Job ID & title*</mat-label>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-select placeholder="Select Job" formControlName="jobId">
+                            <div class="search-container">
+                                <input matInput type="text" placeholder="Search jobs..." #jobSearch
+                                    (input)="filterJobs()" />
+                                @if(jobSearch?.value){
+                                <button mat-icon-button class="clear-button" (click)="clearSearch()"
+                                    aria-label="Clear search">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                                }
+                            </div>
+
+                            @if(!filteredJobs?.length){
+                            <mat-option disabled>
+                                No results found
+                            </mat-option>
+                            }@else {
+                            @for (item of filteredJobs; track $index) {
+                            <mat-option [value]="item?._id">{{item?.title}} {{item?.jobIdString}}</mat-option>
+                            }
+                            }
+                        </mat-select>
+                        <mat-error>{{
+                            scheduleJobForm | errorMessage : "jobId" : "job id & title"
+                            }}</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="popup-footer">
+        <div class="btn-cover">
+            <app-button [btnLabel]="customButtonConst.CANCEL" [buttonWidth]="'190px'" [buttonHeight]="'55px'"
+                (buttonClickEvent)="onNoClick()"></app-button>
+            <app-button [btnLabel]="customButtonConst.SUBMIT" [isDisabled]="scheduleJobForm.invalid"
+                [cssClasses]="customButtonConst.active" [buttonWidth]="'190px'" [buttonHeight]="'55px'"
+                (buttonClickEvent)="onSubmit()"></app-button>
+        </div>
+    </div>
+
+
+</div>

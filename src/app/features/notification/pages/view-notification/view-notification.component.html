@@ -1,0 +1,35 @@
+@if (isLoaderShow) {
+<app-data-loader [cssClasses]="'h500'"></app-data-loader>
+}@else{
+<div class="view-notification bg_wrap">
+  <div class="header">
+    <h1>View Notification</h1>
+  </div>
+  <div class="form-wrap">
+    <div class="flex-row">
+      <div class="flex-col">
+        <label class="form-label">User Type</label>
+        <mat-form-field appearance="outline">
+          <input matInput disabled [placeholder]="
+              notificationDetails?.users === '1'
+                ? 'Android'
+                :  notificationDetails?.users === '2'?'iOS': 'All'
+            " />
+        </mat-form-field>
+      </div>
+      <div class="flex-col">
+        <label class="form-label">Subject (English)</label>
+        <mat-form-field appearance="outline">
+          <input matInput disabled [placeholder]="notificationDetails?.title" />
+        </mat-form-field>
+      </div>
+      <div class="flex-col">
+        <label class="form-label">Description (English)</label>
+        <mat-form-field appearance="outline">
+          <textarea cdkTextareaAutosize matInput disabled [placeholder]="notificationDetails?.description"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</div>
+}

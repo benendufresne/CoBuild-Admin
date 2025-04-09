@@ -1,0 +1,14 @@
+<div class="page-layout-screen">
+  <div class="header">
+    <app-header></app-header>
+  </div>
+  <div class="content-cover">
+    <app-sidebar></app-sidebar>
+    <div class="main-content">
+      <app-breadcrumb />
+      <main [class.grey-bg]="isCmsActive" id="main-content" [class.hideBox]="isHideBox">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="cms_wrapper">
+  @if(apiHit){
+  <app-data-loader />
+  } @else { @if(isFaq){
+  <div class="faq_wrapper">
+    @if(faqList.data.length === 0){
+    <div class="no_data_found">
+      <p>No records found!</p>
+    </div>
+    } @else{
+    <div class="ques_ans_section">
+      <div class="header-wrap">
+        <h1>FAQ - Frequently Asked Questions</h1>
+      </div>
+      <mat-accordion class="accordion">
+        @for (faq of faqList.data; track faqList) {
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="question_text">
+              <div class="faq-qus">
+                <div
+                class="ql-editor"
+                [innerHtml]="faq.question | safe : 'html'"
+              ></div>
+              </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="faq-ans">
+            <div
+            class="ql-editor"
+            [innerHtml]="faq.answer | safe : 'html'"
+          ></div>
+          </div>
+        </mat-expansion-panel>
+        }
+      </mat-accordion>
+    </div>
+    }
+  </div>
+  } @else{
+  <div class="cms_inner">
+    @if(contentData && contentData[stringConst.DATA]){
+    <div class="ql-container ql-snow" style="border-width: 0">
+      <div
+        class="ql-editor"
+        [innerHtml]="contentData[stringConst.DATA] | safe : 'html'"
+      ></div>
+    </div>
+    } @else {
+    <div class="no_data_found">
+      <p>No records found!</p>
+    </div>
+    }
+  </div>
+  } }
+</div>

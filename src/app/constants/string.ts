@@ -1,0 +1,62 @@
+export const STRING_CONST = {
+    ID: '_id',
+    EMAIL: 'email',
+    NAME: 'name',
+    COUNTRY_CODE: 'countryCode',
+    MOBILE_NUMBER: 'mobileNo',
+    PASSWORD: 'password',
+    NEW_PASSWORD: 'newPassword',
+    CONFIRM_PASSWORD: 'confirmPassword',
+    DESCRIPTION: 'description',
+    ADDRESS:'address',
+    CREATED: 'created',
+    QUESTION: 'question',
+    ANSWER: 'answer',
+    ROLE: 'role',
+    SUB_ADMIN_ID: 'adminId',
+    USER_ID:'userId',
+    VIEW_ONLY: 'viewOnly',
+    TYPE:"type",
+    ADD:'add',
+    MESSAGE:"message",
+    DATA:'data',
+    CONTENT_TYPE: "contentType",
+   FAQ_ID:'faqId',
+    NOTIFICATION_ID:'notificationId',
+    JOB_ID:'jobId',
+    REQUEST_ID:'requestId',
+    DAMAGE_ID:'damageId'
+
+}
+
+export const PLACEHOLDERS_CONST = {
+    SEARCH_THROUGHT_HOTEL_NAME: 'Search through hotel name',
+    NO_RECORD_FOUND: 'No record found!',
+    SEARCH_VIA_NAME_EMAIL_MEMBER_ID: 'Serach via full name, email address and loyality member id',
+    DATE_OF_REGISTRATION:'Date of Registration',
+    SEARCH_THROUGH_ITEM_NAME:'Search through Item Name',
+    SEARCH_THROUGH_HOTEL_NAME_EVENT_NAME: 'Search through hotel name, event name',
+    SEARCH_THROUGH_TITLE: 'Search through title',
+    ADDED_ON:'Added On',
+    EVENT_DATE: 'Event date',
+    SENT_ON: 'Sent On'
+}
+
+export const SOCKET_EVENTS = {
+    CONNECT: 'connected',
+    RECONNECT: 'reconnect',
+    DISCONNECT: 'disconnect',
+    NEW_CALL: 'Event:NewCall',
+    ERROR: 'authorization-error',
+    TEST_EVENT: 'Event:Connect',
+    USER_LIST:'__inbox_chat',
+    JOIN_ROOM:'__one_to_one',
+    INBOX_MESSAGE:'__inbox_message',
+    SEND_MESSAGE:'__one_to_one_chat_message',
+    REJECT_STATUS:'__reject_request',
+    LEAVE_ROOM:'__chat_room_left',
+    USER_STATUS:'__user_status',
+    READ_STATUS:'__chat_read_status',
+    UNREAD_NOTIFY:'__unread_notify',
+    REFRESH_INBOX:'__refresh_inbox',
+}

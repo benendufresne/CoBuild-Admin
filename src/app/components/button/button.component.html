@@ -1,0 +1,23 @@
+@switch (componentType) {
+@case (buttonTypeConst.ONLY_BUTTON) {
+<button mat-flat-button [type]="btnType" [class]="'default '+cssClasses" [ngClass]="conditionClass"
+    [class.spinner]="isActionInProgress && isLoaderAvl" [class.btndisabled]="isDisabled || isActionInProgress"
+    [disabled]="isDisabled || isActionInProgress" (keydown)="onClick()" (click)="onClick()">{{ btnLabel }}</button>
+<ng-content></ng-content>
+
+}
+@case (buttonTypeConst.ONLY_ICON) {
+<a (click)="onClick()" class="icon_button" [class.spinner]="isActionInProgress && isLoaderAvl">
+    <img [src]="iconURL" [alt]="iconALT" />
+</a>
+}
+@case (buttonTypeConst.BUTTON_WITH_ICON) {
+<button mat-flat-button [type]="btnType" [class]="'button_with_icon '+cssClasses"
+    [class.spinner]="isActionInProgress && isLoaderAvl" [class.btndisabled]="isDisabled || isActionInProgress"
+    [style.width]="buttonWidth" [style.height]="buttonHeight" [style.border-radius]="buttonRadius"
+    [disabled]="isDisabled || isActionInProgress" (click)="onClick()">{{ btnLabel
+    }}
+    <img [src]="iconURL" [alt]="iconALT" />
+</button>
+}
+}

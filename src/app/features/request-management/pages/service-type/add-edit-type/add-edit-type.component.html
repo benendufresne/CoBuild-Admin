@@ -1,0 +1,54 @@
+<div class="confirmation-modal popup-ui">
+    <div class="popup-header">
+        <h4>{{serviceTypeId && data?.action ==='edit' ? 'Edit' : data?.action ==='view'?'View':'Add'}} Service Type</h4>
+        <span class="material-icons close-icon" matTooltip="Close" (click)="onNoClick()">close</span>
+    </div>
+    @if (isLoading && serviceTypeId && catLoading) {
+    <app-data-loader></app-data-loader>
+    }@else{
+    <form [formGroup]="serviceTypeForm">
+        <div class="popup-body">
+            <div class="row">
+                <div class="col-12">
+                    <mat-label class="form-label">Category Name*</mat-label>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-select placeholder="Select Category" formControlName="categoryId">
+                            @for (item of category; track $index) {
+                            <mat-option [value]="item?._id">{{item?.name}}</mat-option>
+
+                            }
+                        </mat-select>
+                        <mat-error>{{
+                            serviceTypeForm | errorMessage : "categoryId" : "Service Category":true
+                            }}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Service Type Name*</label>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <input required matInput appNoLeadingSpace autocomplete="off"
+                            placeholder="Enter Service Type Name" [maxlength]="limit.MAX_NAME_LENGTH"
+                            [formControlName]="stringConst.NAME" />
+                        <mat-error>{{
+                            serviceTypeForm | errorMessage : stringConst.NAME : "Service Type Name"
+                            }}</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        @if(data.action !='view'){
+        <div class="popup-footer">
+            <div class="btn-cover">
+                <app-button [cssClasses]="'active'" [buttonWidth]="'190px'" [buttonHeight]="'50px'"
+                    [btnLabel]="customButtonConst.SUBMIT" [isDisabled]="
+                          serviceTypeForm.invalid || !serviceTypeForm.dirty
+                        " (buttonClickEvent)="onSubmit()"></app-button>
+
+                <app-button [btnLabel]="customButtonConst.CANCEL" [buttonWidth]="'190px'" [buttonHeight]="'50px'"
+                    (buttonClickEvent)="onNoClick()"></app-button>
+            </div>
+        </div>
+        }
+    </form>
+    }
+</div>

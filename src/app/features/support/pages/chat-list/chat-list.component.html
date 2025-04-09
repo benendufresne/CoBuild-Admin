@@ -1,0 +1,54 @@
+@if(isLoading){
+<div class="loader_overlay">
+    <app-data-loader [cssClasses]="'h500'" />
+</div>
+}@else {
+<div class="chat_container">
+    <div class="chat_list">
+        <app-search-render [placeholder]="'Search users'" [cssClass]="'Service Type'"
+            (renderSearch)="onSearchChange($event)" class="chat_search">
+        </app-search-render>
+        <div class="btn-group">
+            @for(item of chatType; track trackByUserId){
+            <app-button [cssClasses]="'tabs_button'" [conditionClass]="{'active':chatMode ===item.value}"
+                [btnLabel]="item.label" (buttonClickEvent)="getType(item.value)">
+                @if(item.showRedDot){
+                <span class="red_dot_span"></span>
+                }
+
+            </app-button>
+            }
+        </div>
+        @if(isUserLoading){
+        <div class="loader_overlay">
+            <app-data-loader />
+        </div>
+        }@else{
+        <div class="user-list" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="150"
+            (scrolled)="loadMoreUsers()" [scrollWindow]="false">
+            <div class="chat_wrap">
+                @if(filteredUserList.length){
+                @for (item of filteredUserList; track trackByUserId) {
+                <app-user-card [userDetails]="item" (click)="openChat(item)" [jobStatus]="jobStatus"></app-user-card>
+                }
+                }@else {
+                <div class="no-found">
+                    <p>No users found!</p>
+                </div>
+                }
+            </div>
+        </div>
+        }
+    </div>
+    <div class="chat_box">
+        @if(selectedUser){
+        <app-chat-body [userDetail]="selectedUser" [jobStatus]="jobStatus"></app-chat-body>
+        }@else {
+        <div class="empty-chat">
+            <img src="assets/images/svg/chat-placeholder.svg" alt="Chat Placeholder" />
+            <p>Choose a person from the left menu to initiate your conversation.</p>
+        </div>
+        }
+    </div>
+</div>
+}

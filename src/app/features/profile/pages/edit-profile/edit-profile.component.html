@@ -1,0 +1,99 @@
+<div class="page-profile-detail">
+  <div class="heading-sec padding-title">
+    <h2>Profile Detail</h2>
+  </div>
+  <div class="flex-row">
+    <label class="form-label">Profile Image</label>
+    <div class="col-left">
+      <div class="profile_image_wrapper">
+        <app-lazy-image
+          class="profile-img"
+          [img]="imagePreview || 'assets/images/user_placeholder.jpg'"
+        >
+        </app-lazy-image>
+        @if (!storage.profileDetail?.profilePicture) {
+        <div class="edit-icon">
+          <app-upload-img
+            [textInfo]="
+              'Select profile picture(Optional), Max 2 MB size and supported JPEG, PNG, JPG only'
+            "
+            [isMultiSelection]="false"
+            [cropper]="false"
+            [selectedImageFile]="selectedFile"
+            [imageFormatPngOnly]="true"
+            (sendFiles)="getSelectedFile($event)"
+            [buttonText]="'Upload'"
+            [componentImageStyle]="'profile'"
+            class="edit-icon"
+          >
+          </app-upload-img>
+        </div>
+        } @else {
+        <div class="edit-icon">
+          <app-button
+            [btnLabel]="'Upload'"
+            [cssClasses]="'profile-pic-upload'"
+            [isActionInProgress]="profileImageUploadInProgress"
+            (buttonClickEvent)="imageUpload('')"
+          ></app-button>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+  <div class="col-right">
+    <form [formGroup]="profileForm">
+      <div class="form-in">
+        <label class="form-label"
+          >{{
+            storage.profileDetail.userType === adminTypes.ADMIN
+              ? "Super Admin"
+              : "Sub-Admin"
+          }}
+          Name*</label
+        >
+        <mat-form-field appearance="outline">
+          <input
+            required
+            matInput
+            appNoLeadingSpace
+            autocomplete="off"
+            placeholder="Enter Full Name"
+            formControlName="name"
+            [maxlength]="limit.MAX_NAME_LENGTH"
+          />
+          <mat-error>{{
+            profileForm | errorMessage : "name" : "name"
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-in" [ngClass]="{ _disabled: true }">
+        <label class="form-label">Email Address</label>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            required
+            placeholder="Email "
+            formControlName="email"
+          />
+        </mat-form-field>
+      </div>
+      <div class="btn-cover">
+        <app-button
+          [btnLabel]="'Cancel'"
+          [buttonWidth]="'190px'"
+          [buttonHeight]="'50px'"
+          (buttonClickEvent)="navigateToProfile()"
+        ></app-button>
+        <app-button
+          [btnLabel]="'Update'"
+          [cssClasses]="'active'"
+          [buttonWidth]="'190px'"
+          [buttonHeight]="'50px'"
+          [isDisabled]="!profileForm?.dirty || profileForm.invalid"
+          (buttonClickEvent)="profileHandler()"
+        ></app-button>
+      </div>
+    </form>
+  </div>
+</div>

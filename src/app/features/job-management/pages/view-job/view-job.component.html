@@ -1,0 +1,75 @@
+@if (dataLoading) {
+<app-data-loader [cssClasses]="'h500'"></app-data-loader>
+
+} @else {
+<div class="job_management pd-20">
+    <div class="bg_wrap">
+        <div class="row">
+            <div class="col-4">
+                <h3 class="details_head">Job Title</h3>
+                <p class="details_para">{{jobDetails?.title}}</p>
+            </div>
+            <div class="col-4">
+                <h3 class="details_head">Service Category</h3>
+                <p class="details_para">{{jobDetails?.categoryName}}</p>
+            </div>
+            <div class="col-4">
+                <h3 class="details_head">Priority</h3>
+                <p class="details_para">{{jobDetails?.priority | formatStatus}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <h3 class="details_head">Job Location</h3>
+                <p class="details_para">{{jobDetails?.location?.address}}</p>
+            </div>
+            <div class="col-4">
+                <h3 class="details_head">Company Address</h3>
+                <p class="details_para">{{jobDetails?.companyLocation?.address}}</p>
+            </div>
+            <div class="col-4">
+                <h3 class="details_head">Scheduled Date & Time</h3>
+                <p class="details_para">{{jobDetails?.created |date:dateType.DATE_TIME_WITH_COMMA}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <h3 class="details_head">Assigned Personnel Name</h3>
+                <p class="details_para">{{jobDetails?.personalName}}</p>
+            </div>
+            <div class="col-4">
+                <h3 class="details_head">Mobile Number</h3>
+                <p class="details_para">{{jobDetails?.fullMobileNo}}</p>
+            </div>
+            <div class="col-4">
+                <h3 class="details_head">Email Address</h3>
+                <p class="details_para">{{jobDetails?.email || 'N/A'}}</p>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <h3 class="details_head">About Company</h3>
+                <p class="details_para">{{jobDetails?.aboutCompany || 'N/A'}}</p>
+            </div>
+            <div class="col-4">
+                <h3 class="details_head">Job Procedure</h3>
+                <p class="details_para">{{jobDetails?.procedure || 'N/A'}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <h3 class="details_head">Door Tag</h3>
+                <div>
+                    <app-lazy-image [img]="jobDetails.doorTag"
+                        [cssClasses]="'scanner-preview job-scanner'"></app-lazy-image>
+                </div>
+                @if(isAddEditAccess){
+                <a [href]="jobDetails.doorTag" download>Download</a>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+}

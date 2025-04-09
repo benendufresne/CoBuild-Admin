@@ -1,0 +1,347 @@
+<div class="page-table" [ngClass]="cls">
+  <div class="detail-filter">
+    <div class="search-filter-wrap">
+      @if (removeId != 1) {
+      <div class="listing-filter">
+        <div class="header-wrap">
+          <div class="left-side-filters">
+            <h3 class="tableHeader">{{ tableHeaderLabel }}</h3>
+            @if (isUserManagementList) {
+            <app-button cssClasses="{{
+                  'table-btn' +
+                    (selectedTableType === userTypes.USERS ? ' selected' : '')
+                }}" [btnType]="customButtonConst.btnSubmit" [btnLabel]="userTypes.USERS"
+              (buttonClickEvent)="onUserListChangeEvent(userTypes.USERS)"></app-button>
+            }
+            @if(isRequestManagementList){
+            <div class="btn-wrap">
+              <app-button cssClasses="{{
+                    'table-btn' +
+                      (selectedTableType === userTypes.CATEGORY ? ' selected' : '')
+                  }}" [btnType]="customButtonConst.btnSubmit" [btnLabel]="requestTab.CATEGORY"
+                (buttonClickEvent)="navigateToCategoryType(1)"></app-button>
+            </div>
+
+            }
+            @if(isSubAdmin){
+            <div class="page-cms">
+              <app-scroll-tabs [ptabs]="tabs"></app-scroll-tabs>
+            </div>
+          }
+          
+          </div>
+          <div class="right-side-filters">
+            <div class="outer-wrap">
+              <div class="search-filter-wrap">
+                @if (showSearch) {
+                <app-search-render [placeholder]="placeholder" [prefillSearch]="prefillSearchData" (renderSearch)="searchTable($event)"
+                  class="search-render-wrap" [cssClass]="listType">
+                </app-search-render>
+                }@if (showFilter) {
+                <button [ngClass]="{ filter_applied: filterRedDot }" title="Filter" (click)="tableFilter(!isOpen)"
+                  class="filter-btn pointer">
+                  <img src="assets/images/filter/filter.svg" alt="filter" />
+                </button>
+                <app-filter [@openClose]="isOpen ? 'open' : 'closed'" (apply)="applyFilter($event)"
+                  [isFilterFormFilled]="getFilterValues" class="filter-area-section">
+                  <ng-content select="[role=filter]"></ng-content>
+                </app-filter>
+                }
+                @if (exportButton) {
+                <button class="btn1 btn" title="Export" [ngClass]="{'removeExportBtn':!isAddEditAccess}" (click)="exportList()" download>
+                  <div class="filter-button-bg"><mat-icon>save_alt</mat-icon></div>
+                </button>
+                }
+                @if (ExportTemplate) {
+                  <button class="btn1 btn templateButton" title="Template Download" [ngClass]="{'removeExportBtn':!isAddEditAccess}" (click)="exportTemplateList()" download>
+                    <div class="filter-button-bg"> <span class="buttonLabel">Template</span></div>
+                  </button>
+                  }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+  <div class="table-container cst-scroll">
+    <!-- class="mat-elevation-z1" -->
+    <table mat-table [dataSource]="dataSource" matSort matSortStart="desc" matSortDisableClear>
+      <!-- Position Column -->
+      <ng-container *ngFor="let row of heading" [matColumnDef]="row?.heading">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="!row?.sort" class="table-header" [ngClass]="{
+            noshort: !row.sort,
+            'table-action': row?.type == 'action',
+            'table-center': row?.align == 'center',
+            'table-content': row?.content == true,
+            'table-faq': row?.faqContent == true
+          }">
+          {{ row.heading }}
+          @if (row.sort) {
+          <button type="button" class="sort-btn-wrap" (click)="sortingData(row?.key)">
+            <mat-icon class="mat-18 sorting-icon arrow-up"
+              [ngClass]="{ 'active-arrow': row?.sortOrder === 1 }">keyboard_arrow_up</mat-icon>
+            <mat-icon class="mat-18 sorting-icon arrow-down"
+              [ngClass]="{ 'active-arrow': row?.sortOrder === -1 }">keyboard_arrow_down</mat-icon>
+          </button>
+          }
+        </th>
+        <td mat-cell *matCellDef="let element; let i = index" [ngClass]="{
+            'table-action': row?.type == 'action',
+            'table-center': row?.align == 'center',
+            'table-content': row?.content == true,
+            'table-faq': row?.faqContent == true
+          }">
+          @switch (row?.type) { @case ('img') {
+          <div class="table-image">
+            <app-lazy-image [img]="element[row?.key]"> </app-lazy-image>
+          </div>
+          } }
+          <ng-container [ngSwitch]="row?.type">
+            <ng-container *ngSwitchCase="'img'">
+              <div class="table-image">
+                <app-lazy-image [img]="element[row?.key]"> </app-lazy-image>
+              </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'dropdownStatus'">
+              <div class="status-wrap">
+                <mat-form-field appearance="outline" [ngClass]="{'disabledAdmin':!isAddEditAccess}" (click)="storeOldValue(row?.key, element[row?.key])">
+                  <mat-select [(ngModel)]="element[row?.key]" (selectionChange)="statusChange($event,element?._id,row?.key)" >
+                    <mat-option [value]="item.value" *ngFor="let item of dropDownStatus">{{item.label}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'link'">
+              <ng-container *ngIf="row?.faqContent == true; else notForFaq">
+                <a class="table-link" matTooltip="{{ element[row?.key] ? element[row?.key] : '' }}"
+                  (click)="detailInPopup.emit(element)">
+                  {{ element[row?.key] | emptyValue }}
+                </a>
+              </ng-container>
+
+              <ng-template #notForFaq>
+                <a [class.table-link]="element[row?.key]?.length" matTooltip="{{
+                    element[row?.key]?.length > 25 ? element[row?.key] : ''
+                  }}" (click)="
+                    onNaviagateDetailsPage(
+                      row?.link,
+                      element?.userId ? element?.userId : element?._id
+                    )
+                  ">
+                  {{
+                  (element[row?.key]?.length < 25 ? element[row?.key] : element[row?.key].slice(0, 25) + "..." ) |
+                    emptyValue }} </a>
+              </ng-template>
+            </ng-container>
+            <ng-container *ngSwitchCase="'formatLink'">
+              <a [class.table-link]="element[row?.key]?.length" matTooltip="{{
+                  element[row?.key]?.length > 25 ? element[row?.key] : ''
+                }}" (click)="onNaviagateDetailsPage(row?.link, element?._id)">
+                {{
+                (element[row?.key]?.length < 25 ? element[row?.key] : element[row?.key].slice(0, 25) + "..." ) |
+                  emptyValue }} </a>
+            </ng-container>
+            <ng-container *ngSwitchCase="'imageShow'">
+              <a class="table-link" (click)="imageShow(element)">
+                {{ element[row?.key] | emptyValue }}
+              </a>
+            </ng-container>
+            <ng-container *ngSwitchCase="'dialog'">
+              <a class="table-link" title="{{ element[row?.key] ? element[row?.key] : '' }}"
+                (click)="detailInPopup.emit(element)">
+                {{ element[row?.key] | emptyValue }}
+              </a>
+            </ng-container>
+            <ng-container *ngSwitchCase="'viewMore'">
+              <span>
+                {{
+                (element[row?.key]?.length < 25 ? element[row?.key] : element[row?.key]?.slice(0, 25) + "..." ) |
+                  emptyValue }} <ng-container *ngIf="element[row?.key]?.length >= 25">
+                  <span class="viewMore" (click)="handleViewMoreClick(element[row?.key], heading)">View More</span>
+            </ng-container>
+            </span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'mobileNumber'">
+            <span>
+              @if (element[row?.key1] && element[row?.key]) {
+              {{ element[row?.key1] + " " + element[row?.key] }}
+              }@else if (element[row?.key]) {
+              {{ element[row?.key] }}
+              }@else {
+              {{ " - " }}
+              }
+            </span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'id'">
+            <span *ngIf="element[row?.key]; else key1">
+              {{ element[row?.key] | emptyValue }}
+            </span>
+            <ng-template #key1>
+              <span> {{ element[row?.key1] | emptyValue }} </span>
+            </ng-template>
+          </ng-container>
+          <ng-container *ngSwitchCase="'formatUserType'">
+            <span>
+              {{ element[row?.key] | userType }}
+            </span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'notificationType'">
+            <span>{{
+              element[row?.key] == "IN_APP" ? "In-App": "Push"
+              }}</span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'formatServiceType'">
+            <span>{{
+              element[row?.key] |serviceType
+              }}</span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'notificationUserType'">
+            <span title="{{ element[row?.key] ? (element[row?.key] | notificationType) : '-' }}">{{
+              element[row?.key] | notificationType
+              }}</span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'transformData'">
+            <span>{{
+              element[row?.key] | emptyValue | titlecase
+              }}</span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'formatDateTime'">
+            <span>{{
+              element[row?.key] | date : dateType.MEDIUM_DATE | emptyValue
+              }}</span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'formatShortDateTime'">
+            <span>{{
+              element[row?.key] | date : dateType.SHORT_DATE | emptyValue
+              }}</span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'formatShortDateWithTime'">
+            <span>{{
+              element[row?.key] | date : dateType.DATE_WITH_TIME | emptyValue
+              }}</span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'formatAddress'">
+            <span>{{
+              element[row?.key]?.address | emptyValue
+              }}</span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'formatDateWithTime'">
+            <span>{{
+              element[row?.key]
+              | date : dateType.DATE_TIME_WITH_COMMA_SEP
+              | emptyValue
+              }}</span>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="'formatStatus'">
+            <span class="status active-status" [ngClass]="{
+                  'banned-status': element[row?.key] === API_EVENT.ban,
+                  'completed-status': element[row?.key] === API_EVENT.approve,
+                  'pending-status': (element[row?.key] === API_EVENT.pending || element[row?.key] === API_EVENT.bidAgain), 
+                  'inactive-status': (element[row?.key] === API_EVENT.inactive || element[row?.key] === API_EVENT.reject || element[row?.key] ===API_EVENT.paymentFailed)
+              }">
+              {{ element[row?.key] | formatStatus : listType }}
+            </span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'status'">
+            <span>
+              {{ element[row?.key] | formatStatus : listType }}
+            </span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'notificationStatus'">
+            <span>
+              {{ element[row?.key] ==='SENT'?'Send':'Unsend' }}
+            </span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'merge'">
+            <span>
+              {{ element[row?.key]}}
+
+            </span>
+            <br />
+            <span>
+              {{ element[row?.key1]}}
+
+            </span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'route'">
+            <div class="action-icon-cover">
+              <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>more_horiz</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" xPosition="before" class="custom-menu text-center">
+                <ng-container *ngFor="let sta of row.action">
+                  <button mat-menu-item *ngIf="sta == 2" (click)="
+                        edit_route.emit({ element: element, action: 'view' })
+                      ">
+                    <span>View</span>
+                  </button>
+                  <button mat-menu-item *ngIf="sta == 3" (click)="
+                        edit_route.emit({ element: element, action: 'edit' })
+                      ">
+                    <span>Edit</span>
+                  </button>
+                  <button mat-menu-item *ngIf="sta == 4" (click)="changeStatus(sta, element, i, listType)">
+                    <span>{{
+                      element.status === API_EVENT.inactive
+                      ? "Active"
+                      : "Inactive"
+                      }}</span>
+                  </button>
+
+                  <button mat-menu-item *ngIf="sta == 5" (click)="changeStatus(sta, element, i, listType)">
+                    <span [class.red_action]="listType === 'Badge'">Delete</span>
+                  </button>
+
+                  <button mat-menu-item *ngIf="sta == 7" (click)="changeStatus(sta, element, i, listType)">
+                    <span>Resend</span>
+                  </button>
+                  <button mat-menu-item *ngIf="sta == 8" (click)="changeStatus(sta, element, i, listType)">
+                    <span>Remove</span>
+                  </button>
+                  <button mat-menu-item *ngIf="sta == 9" (click)="changeStatus(sta, element, i, listType)">
+                    <span [class.red_action]="listType === 'Badge'">Unblock</span>
+                  </button>
+                </ng-container>
+              </mat-menu>
+            </div>
+          </ng-container>
+
+          <ng-container *ngSwitchDefault>
+            <span class="default-type" [title]="
+                element[row?.key]?.length > 35 ? element[row?.key] : ''
+              ">
+              {{
+              element[row?.key]
+              ? element[row?.key]
+              : element[row?.key] === 0
+              ? 0
+              : "-"
+              }}
+            </span>
+          </ng-container>
+      </ng-container>
+      </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="matHeaderRow"></tr>
+      <tr mat-row *matRowDef="let row; columns: matHeaderRow"></tr>
+    </table>
+    @if (showLoader) {
+    <div class="loading-cover">
+      <app-data-loader></app-data-loader>
+    </div>
+    } @if (notData) {
+    <div class="no-data-cover">
+      <app-result-not-found [msg]="notFound"></app-result-not-found>
+    </div>
+    }
+  </div>
+</div>
+<div class="pagination-sec">
+  @if (length>10) {
+  <mat-paginator #paginator class="table-pagination" [length]="length" [pageSize]="pageSize"
+    [pageSizeOptions]="[10, 20, 50, 100]" (page)="onPageHandler($event)"></mat-paginator>
+  }
+</div>

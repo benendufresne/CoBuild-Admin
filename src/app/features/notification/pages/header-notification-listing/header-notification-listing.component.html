@@ -1,0 +1,27 @@
+<div class="nofications pd-20">
+  <div class="header-wrap">
+    <div class="heading-sec">
+      <img src="assets/images/icons/notification-ic-active.svg" alt="Bell Icon" />
+      <h1>Notifications</h1>
+    </div>
+  </div>
+  <div class="notification-listing" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300"
+    (scrolled)="onScroll()" [scrollWindow]="false">
+    <div class="n-list-view-container">
+      @if (notificationList.length) { @for (notification of notificationList;
+      track $index) {
+      <div class="n-card-container">
+        <app-notification-card [notificationDetails]="notification"></app-notification-card>
+      </div>
+      } } @else if (!apiInProgess && !notificationList.length) {
+      <div class="n-not-found">
+        <app-result-not-found [msg]="'NOTIFICATIONS.NOTIFICATIONS_NOT_FOUND' | translate"></app-result-not-found>
+      </div>
+      } @if(apiInProgess){
+      <div class="n-loading">
+        <app-data-loader></app-data-loader>
+      </div>
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<div class="page-login">
+  <h1 class="page-name">Welcome to CoBuild!</h1>
+  <form class="form-field" [formGroup]="loginForm" (ngSubmit)="loginHandler()">
+    <div class="form-in">
+      <mat-label class="form-label">Email Address*</mat-label>
+      <mat-form-field appearance="outline">
+        <input
+          #email
+          matInput
+          required
+          type="email"
+          autocomplete="on"
+          placeholder="Enter Email Address"
+          (blur)="removeSpace(this.loginForm.value, this.frmCtrl)"
+          [prevent-keys]="[numberConst.THIRTY_TWO]"
+          [maxlength]="limit.MAX_EMAIL_LENGTH"
+          [formControlName]="stringConst.EMAIL"
+        />
+        <mat-error>
+          {{ loginForm | errorMessage : stringConst.EMAIL : "email address" }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-in">
+      <mat-label class="form-label">Password*</mat-label>
+      <mat-form-field appearance="outline" class="passwordFormField">
+        <input
+          #password
+          matInput
+          required
+          autocomplete="on"
+          placeholder="Enter Password"
+          [formControlName]="stringConst.PASSWORD"
+          (blur)="removeSpace(this.loginForm.value, this.frmCtrl)"
+          (keydown.space)="$event.preventDefault()"
+          [maxlength]="limit.MAX_PASSWORD_LENGTH"
+          [type]="isPasswordHidden ? 'password' : 'text'"
+        />
+        <mat-icon
+          class="pointer"
+          matSuffix
+          (click)="isPasswordHidden = !isPasswordHidden"
+        >
+          <img
+            [src]="
+              isPasswordHidden
+                ? 'assets/images/svg/password-hide.svg'
+                : 'assets/images/svg/password-show.svg'
+            "
+            alt="eye icon"
+          />
+        </mat-icon>
+        <mat-error>{{
+          loginForm | errorMessage : stringConst.PASSWORD : "Password"
+        }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="actions">
+      <mat-checkbox [formControl]="rememberMe" class="remember">Remember me</mat-checkbox>
+    </div>
+    <div class="btn-cover">
+      <app-button
+        [btnType]="customButtonConst.btnSubmit"
+        [btnLabel]="customButtonConst.login"
+        [cssClasses]="'login'"
+        (buttonClickEvent)="loginHandler()"
+        [isDisabled]="actionInProgress || loginForm.invalid"
+        [isActionInProgress]="actionInProgress"
+        [buttonHeight]="'64px'"
+        [buttonWidth]="'462px'"
+        [buttonRadius]="'16px'"
+      ></app-button>
+    </div>
+    <div class="forgot-password-link">
+      <a
+        class="simple_btn link"
+        [routerLink]="['FORGOT_PASSWORD' | absoluteRoute]"
+        >Forgot Password?</a
+      >
+    </div>
+  </form>
+</div>

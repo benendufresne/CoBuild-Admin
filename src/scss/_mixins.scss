@@ -1,0 +1,276 @@
+@mixin scroller($brodness: 6px,
+	$bg: $darkGray,
+	$bgcolor: $primary) {
+	overflow-y: auto;
+	overflow-x: auto;
+
+	&::-webkit-scrollbar {
+		width: $brodness;
+		height: $brodness;
+	}
+
+	&::-webkit-scrollbar-track {
+		width: $brodness;
+		height: $brodness;
+		background: $bg;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		border-radius: 0;
+		background-color: $bgcolor;
+		opacity: 0.5;
+		width: $brodness;
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+}
+
+@mixin flexbox {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+@mixin inline-flexbox {
+	display: -webkit-inline-box;
+	display: -moz-inline-box;
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+}
+
+@mixin flex($align, $justify) {
+	@include flexbox;
+	align-items: $align;
+	justify-content: $justify;
+}
+
+@mixin textTruncate($line, $height: "") {
+	display: block !important;
+	display: -webkit-box !important;
+	@include line-clamp($line);
+	@include box-orient();
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: normal;
+	height: $height;
+	min-height: $height;
+}
+
+@mixin line-clamp($line) {
+	-webkit-line-clamp: $line;
+	-moz-line-clamp: $line;
+	-ms-line-clamp: $line;
+	-o-line-clamp: $line;
+	line-clamp: $line;
+}
+
+@mixin box-orient($value: vertical) {
+	-webkit-box-orient: $value;
+	-moz-box-orient: $value;
+	-ms-box-orient: $value;
+	-o-box-orient: $value;
+	box-orient: $value;
+}
+
+@mixin box-shadow($params...) {
+	-webkit-box-shadow: $params;
+	-moz-box-shadow: $params;
+	box-shadow: $params;
+}
+
+// transform
+@mixin transform($property) {
+	transform: $property;
+	-webkit-transform: $property;
+	-moz-transform: $property;
+	-ms-transform: $property;
+	-o-transform: $property;
+}
+
+// origin
+@mixin origin($property) {
+	transform-origin: $property;
+	-webkit-transform-origin: $property;
+	-moz-transform-origin: $property;
+	-ms-transform-origin: $property;
+	-o-transform-origin: $property;
+}
+
+// transition
+@mixin transt($property) {
+	transition: $property;
+	-webkit-transition: $property;
+	-moz-transition: $property;
+	-ms-transition: $property;
+	-o-transition: $property;
+}
+
+// rotate
+@mixin rotate($deg) {
+	@include transform(rotate(#{$deg}deg));
+}
+
+// scale
+@mixin scale($scale) {
+	@include transform(scale($scale));
+}
+
+// translate
+@mixin translateX($x) {
+	@include transform(translateX($x));
+}
+
+@mixin translateY($y) {
+	@include transform(translateY($y));
+}
+
+@mixin translate($x, $y) {
+	@include transform(translate($x, $y));
+}
+
+@mixin radius($radius) {
+	border-radius: $radius;
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	-ms-border-radius: $radius;
+	-o-border-radius: $radius;
+}
+
+@mixin imgCover {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+@mixin imgContain {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+@mixin placeholder {
+    ::-webkit-input-placeholder {
+        @content;
+    }
+
+    :-moz-placeholder {
+        @content;
+    }
+
+    ::-moz-placeholder {
+        @content;
+    }
+
+    :-ms-input-placeholder {
+        @content;
+    }
+}
+
+// Media Queries
+@mixin desktop-xl {
+	@media screen and (max-width: 1920px) {
+		@content;
+	}
+}
+
+@mixin desktop-lg {
+	@media screen and (max-width: 1600px) {
+		@content;
+	}
+}
+
+@mixin desktop {
+	@media screen and (max-width: 1440px) {
+		@content;
+	}
+}
+
+@mixin desktop-sm {
+	@media screen and (max-width: 1366px) {
+		@content;
+	}
+}
+
+@mixin desktop-xs {
+	@media screen and (max-width: 1280px) {
+		@content;
+	}
+}
+
+@mixin desktop-breakpoint {
+	@media screen and (max-width: 1200px) {
+		@content;
+	}
+}
+
+
+@mixin tab {
+	@media screen and (max-width: 1024px) {
+		@content;
+	}
+}
+
+@mixin tab-md {
+	@media screen and (max-width: 992px) {
+		@content;
+	}
+}
+
+@mixin tab-sm {
+	@media screen and (max-width: 820px) {
+		@content;
+	}
+}
+
+@mixin tab-xs {
+	@media screen and (max-width: 768px) {
+		@content;
+	}
+}
+
+@mixin tab-breakpoint {
+	@media screen and (max-width: 767px) {
+		@content;
+	}
+}
+
+@mixin mobile {
+	@media screen and (max-width: 576px) {
+		@content;
+	}
+}
+
+@mixin mobile-md {
+	@media screen and (max-width: 480px) {
+		@content;
+	}
+}
+
+@mixin mobile-sm {
+	@media screen and (max-width: 400px) {
+		@content;
+	}
+}
+
+@mixin mobile-xs {
+	@media screen and (max-width: 360px) {
+		@content;
+	}
+}
+
+@mixin mobile-300 {
+	@media screen and (max-width: 300px) {
+		@content;
+	}
+}
+
+@mixin h-800 {
+	@media screen and (max-height: 800px) {
+		@content;
+	}
+}

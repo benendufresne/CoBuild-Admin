@@ -1,0 +1,30 @@
+<div class="n-quick-view-container popup-ui">
+    <div class="n-popup-header">
+          <h4>Notifications</h4>
+          <span
+            class="material-icons close-icon"
+            matTooltip="Close"
+            (click)="onClose()"
+          >close</span>
+      </div>
+      @if (!apiInProgess && notificationList.length) {
+        @for (notification of notificationList; track $index) {
+            <div class="n-card-container">
+                <app-notification-card [notificationDetails]="notification"></app-notification-card>
+            </div>
+        }
+        @if (totalNotificationCount > numberConst.TWO) {
+            <div class="n-view-all">
+                <a (click)="onViewAllNotifications()">{{ "View all notifications"}}</a>
+            </div>
+        }
+      } @else if (!apiInProgess && !notificationList.length) {
+        <div class="n-not-found">
+            <app-result-not-found [msg]="'Notifications not found!'"></app-result-not-found>
+        </div>
+      } @else {
+        <div class="n-loading">
+            <app-data-loader></app-data-loader>
+        </div>
+      }
+</div>

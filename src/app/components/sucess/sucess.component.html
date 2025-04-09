@@ -1,0 +1,32 @@
+<div class="confirmation-modal popup-ui">
+    <div class="popup-body">
+      <div class="popup-logo">
+        <ng-container *ngIf="!data?.action;else action">
+          <figure>
+            <img [src]="data?.icon?data.icon:'assets/images/svg/ic_done.svg'" alt="Popup Logo" />
+          </figure>
+        </ng-container>
+        <ng-template #action>
+          <figure class="active">
+            <img src="assets/images/svg/ic_done.svg" alt="Active Icon" />
+          </figure>
+        </ng-template>
+      </div>
+      <h4>{{ data?.title || 'Congratulations!' }}</h4>
+      <p>{{ data?.message || 'An email has been sent to your registered email ID. Please follow the instructions to reset your password.' }}</p>
+      <ng-container *ngIf="data?.note">
+        <div class="note-sec">
+          <p>
+            <strong>Note :</strong> An email has been sent to your registered email ID. Please follow the instructions to reset your password
+          </p>
+        </div>
+      </ng-container>
+    </div>
+    <div class="popup-footer">
+      <div class="btn-cover">
+        <button mat-raised-button class="btn btn-primary" (click)="onClose()">
+          {{ data?.btn1 ? data?.btn1 : "Done" }}
+        </button>
+      </div>
+    </div>
+  </div>

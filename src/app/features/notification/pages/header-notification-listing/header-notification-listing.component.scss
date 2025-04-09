@@ -1,0 +1,55 @@
+@import "../../../../../scss/mix";
+@import "../../../../../scss/var";
+
+
+.header-wrap {
+    padding: 0 10px;
+
+    .heading-sec {
+        padding-bottom: 15px;
+        border-bottom: 1px solid #989898;
+        margin-bottom: 20px;
+        @include flex(center, flex-start);
+        gap: 15px;
+
+        h1 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+    }
+}
+
+.notification-listing {
+    padding: 10px;
+    height: calc(100vh - 242px);
+    overflow-y: auto;
+}
+
+.n-list-view-container {
+
+    .n-card-container {
+        margin-bottom: 15px;
+    }
+
+    .n-not-found {
+        margin-top: 25vh;
+    }
+
+    .n-loading {
+        position: absolute;
+        top: 35vh;
+        left: 35vw;
+    }
+}
+
+:host ::ng-deep {
+    .n-list-view-container {
+        .n-card-container {
+            app-notification-card {
+                .notification-container {
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,66 @@
+<div class="page-sidebar">
+  <mat-list class="sidebar-list">
+    @if (checkpermission(moduleId.DASHBOARD)) {
+    <mat-list-item color="primary" [routerLink]="['DASHBOARD' | absoluteRoute]" (click)="clickTab('dashboardTab')"
+      routerLinkActive="active">
+      <mat-icon class="ic dashboard-ic"></mat-icon>
+      <span class="menu-name">Dashboard</span>
+    </mat-list-item>
+    } @if (checkpermission(moduleId.USER_MANAGEMENT)) {
+    <mat-list-item color="primary" [routerLink]="['USER_MANAGEMENT' | absoluteRoute]" (click)="clickTab('userTab')"
+      routerLinkActive="active">
+      <mat-icon class="ic users-ic"></mat-icon>
+      <span class="menu-name">User Management</span>
+    </mat-list-item>
+    } @if (checkpermission(moduleId.STATIC_CONTENT_MANAGEMENT)) {
+
+    <mat-list-item color="primary" [routerLink]="['STATIC_CONTENT_CUSTOMER' | absoluteRoute]"
+      (click)="clickTab('cmsTab')" routerLinkActive="active">
+      <mat-icon class="ic cms-ic"></mat-icon>
+      <span class="menu-name">CMS Management</span>
+    </mat-list-item>
+    } @if (checkpermission(moduleId.JOB_MANAGEMENT)) {
+    <mat-list-item color="primary" [routerLink]="['JOB_MANAGEMENT' | absoluteRoute]" (click)="clickTab('jobTab')"
+      routerLinkActive="active">
+      <mat-icon class="ic job-ic"></mat-icon>
+      <span class="menu-name">Job Management</span>
+    </mat-list-item>
+    } @if (checkpermission(moduleId.REQUEST_MANAGEMENT)) {
+
+    <mat-list-item color="primary" [routerLink]="['REQUEST_MANAGEMENT' | absoluteRoute]"
+      (click)="clickTab('requestTab')" routerLinkActive="active">
+      <mat-icon class="ic rm-ic"></mat-icon>
+      <span class="menu-name">Request Management</span>
+    </mat-list-item>
+    }
+    @if (checkpermission(moduleId.REPORT_DAMAGE_MANAGEMENT)) {
+    <mat-list-item color="primary" [routerLink]="['INCIDENTS_DAMAGE' | absoluteRoute]" routerLinkActive="active"
+      class="sub-admin" (click)="clickTab('damageTab')">
+      <mat-icon class="ic rc-ic"></mat-icon>
+      <span class="menu-name">Incidents/Damage</span>
+    </mat-list-item>
+    }
+    @if (checkpermission(moduleId.SUB_ADMIN_MANAGEMENT)) {
+
+    <mat-list-item color="primary" [routerLink]="['ROLES_ACCESS' | absoluteRoute]" routerLinkActive="active"
+      class="sub-admin" (click)="clickTab('subAdminTab')">
+      <mat-icon class="ic sub-admin-ic"></mat-icon>
+      <span class="menu-name">Sub Admin</span>
+    </mat-list-item>
+    }
+    @if (checkpermission(moduleId.NOTIFICATION_MANAGEMENT)) {
+    <mat-list-item color="primary" [routerLink]="['NOTIFICATION_MANAGEMENT' | absoluteRoute]"
+      (click)="clickTab('notificationTab')" routerLinkActive="active" >
+      <mat-icon class="ic notification-ic"></mat-icon>
+      <span class="menu-name">Notification Management</span>
+    </mat-list-item>
+    }
+    @if (checkpermission(moduleId.SUPPORT)) {
+      <mat-list-item color="primary" [routerLink]="['SUPPORT' | absoluteRoute]"
+        (click)="clickTab('supportTab')" routerLinkActive="active" >
+        <mat-icon class="ic support-ic"></mat-icon>
+        <span class="menu-name">Support</span>
+      </mat-list-item>
+      }
+  </mat-list>
+</div>

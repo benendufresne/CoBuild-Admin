@@ -1,0 +1,13 @@
+
+    <label class="form-label">{{label || 'Address'}}*</label>
+    <mat-form-field appearance="outline">
+        <input #search matInput type="text" [prevent-keys]="[numberConst.THIRTY_TWO]" spellcheck="off"
+            autocorrect="off" appNoLeadingSpace autocapitalize="off" class="form-control"
+            [formControl]="$any(inputFormControl)" [placeholder]="'Select your '+ label" (blur)="onAddressBlur()"
+            (input)="onInput()" />
+            @if(!this.inputFormControl || !this.formattedAddress){
+                <mat-error>
+               {{errMessage}}
+                </mat-error>
+            }
+    </mat-form-field>

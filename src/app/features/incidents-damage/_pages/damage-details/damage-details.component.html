@@ -1,0 +1,79 @@
+@if (isLoading) {
+<app-data-loader [cssClasses]="'h500'"></app-data-loader>
+
+} @else {
+<div class="pd-20">
+    <div class="bg_wrap">
+        <div class="row">
+            <div class="col-4">
+                <h3 class="details_head">Damage Type</h3>
+                <p class="details_para">{{reportDetails?.type || 'N/A'}}</p>
+            </div>
+            <div class="col-4">
+                <h3 class="details_head">Reported By</h3>
+                <p class="details_para">{{reportDetails?.userName || 'N/A'}}</p>
+            </div>
+            <div class="col-4">
+                <h3 class="details_head">Email</h3>
+                <p class="details_para">{{reportDetails?.userEmail || 'N/A'}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <h3 class="details_head">Mobile Number</h3>
+                <p class="details_para">{{reportDetails?.userMobile || 'N/A'}}</p>
+            </div>
+            <div class="col-4">
+                <h3 class="details_head">Address</h3>
+                <p class="details_para">{{reportDetails?.userLocation?.address || 'N/A'}}</p>
+            </div>
+            <div class="col-4">
+                <h3 class="details_head">Reported On</h3>
+                <p class="details_para">{{reportDetails?.created | date:dateType.DATE_TIME_WITH_COMMA}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <h3 class="details_head">Damage Location</h3>
+                <p class="details_para">{{reportDetails?.location?.address || 'N/A'}}</p>
+            </div>
+            <div class="col-4">
+                <h3 class="details_head">Status</h3>
+                <div class="status-wrap">
+                    <mat-form-field appearance="outline" [ngClass]="{'disabled':!isAddEditAccess}">
+                        <mat-select [formControl]="selectedStatusControl" (selectionChange)="onSelectionChange($event)">
+                            @for (item of damageStatus; track item) {
+                            <mat-option [value]="item.value">{{item.label}}</mat-option>
+
+                            }
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h3 class="details_head">Description</h3>
+                <p class="details_para">{{reportDetails?.description}}</p>
+                @if(reportDetails?.media.length){
+                <div class="img_wapper">
+                    <app-photos-videos-carasouel [videoAutoPlay]="false"
+                        [images]="reportDetails.imageArray || []"></app-photos-videos-carasouel>
+                </div>
+                }
+            </div>
+
+        </div>
+        @if(reportDetails?.chatId){
+        <div class="popup-footer">
+            <div class="btn-cover">
+                @if(isAddEditAccess){
+                <app-button [cssClasses]="'active'" [buttonWidth]="'190px'" [buttonHeight]="'50px'"
+                    [btnLabel]="customButtonConst.CHAT" (buttonClickEvent)="navigateToChat()"></app-button>
+                }
+            </div>
+        </div>
+        }
+    </div>
+</div>
+}

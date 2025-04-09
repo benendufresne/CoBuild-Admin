@@ -1,0 +1,137 @@
+@import "../../../../../scss/mix";
+@import "../../../../../scss/var";
+@import "../../../../../scss/grid";
+@import "../../../../../scss/material-styling";
+
+.page-profile-detail {
+  padding: 20px;
+
+  .heading-sec {
+    padding-bottom: 15px;
+    border-bottom: 1px solid $borderLight;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    @include flex(center, space-between);
+
+    h2 {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    button {
+      &.btn-primary-outline {
+        width: 80px;
+        border: 1px solid $primary;
+        font-weight: 600;
+        color: $primary;
+      }
+    }
+  }
+
+  .col-left {
+    width: 150px;
+    height: 150px;
+    @include radius(50%);
+
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+  }
+
+  .col-right {
+    margin-top: 30px;
+
+    .form-in {
+      display: flex;
+      flex-direction: column;
+
+      .mat-mdc-form-field {
+        width: 35%;
+      }
+    }
+  }
+
+  .btn-cover {
+    margin: 10px -10px 0;
+
+    button {
+      margin-right: 15px;
+      font-weight: 600;
+    }
+  }
+}
+
+.profile_image_wrapper {
+  width: 160px;
+  height: 160px;
+  position: relative;
+
+  &.border-img {
+    padding: 2px;
+    // background: url("../../../../../assets/images/svg/outline-bg.svg") no-repeat;
+    background-size: 100%;
+    @include radius(5px);
+
+    ::ng-deep .profile-img {
+      ._shadowImage {
+        border-radius: 10px;
+      }
+    }
+  }
+
+  ::ng-deep .profile-img {
+
+    // @include radius(50%);
+    ._shadowImage {
+      border-radius: none !important;
+    }
+
+    img {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.change-password-wrap {
+  .btn-wrap {
+    padding-top: 15px;
+    @include flex(center, center);
+  }
+}
+
+// info-text-css
+.info-text {
+  margin-top: -12px;
+  @include flex(flex-start, inherit);
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--labelColor);
+
+  &.error {
+    color: var(--error);
+
+    img {
+      filter: invert(53%) sepia(98%) saturate(7491%) hue-rotate(352deg) brightness(99%) contrast(86%);
+    }
+  }
+
+  span {
+    margin-left: 8px;
+  }
+}
+
+
+:host ::ng-deep {
+  .form-in .passwordFormField.md.ng-invalid .mat-mdc-floating-label {
+    top: 24px !important;
+  }
+}
+
+:host ::ng-deep {
+  .btn-cover {
+    button {
+      margin-right: 15px;
+      font-weight: 600;
+    }
+  }
+}

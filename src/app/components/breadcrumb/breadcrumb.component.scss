@@ -1,0 +1,62 @@
+@import "../../../scss/var";
+@import "../../../scss/mix";
+
+.page-name {
+  margin: 0 0 15px;
+  font-size: 20px;
+  font-weight: 600;
+
+  @media screen and (max-width:1600px) {
+    font-size: 16px;
+  }
+
+}
+
+.breadcrumb {
+  padding: 0;
+  margin-bottom: 15px;
+  @include falign(center);
+  font-size: 14px;
+  background-color: transparent;
+
+  span {
+    cursor: pointer;
+    outline: none;
+    transition: 0.3s ease all;
+    font-size: 14px;
+    font-weight: 600;
+    color: #9DA3A4;
+
+    @include tab-breakpoint {
+      font-size: 14px;
+    }
+
+    &:hover {
+      color: $primaryLight;
+    }
+
+    &:nth-last-child(2) {
+      color: #272727;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      pointer-events: none;
+    }
+  }
+
+  .color {
+    color: #272727;
+  }
+
+  .mat-icon {
+    width: 16px;
+    height: 14px;
+    font-size: 16px;
+    color: #9DA3A4;
+    text-align: center;
+  }
+
+  .mat-icon:last-child {
+    display: none;
+  }
+}

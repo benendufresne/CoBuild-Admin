@@ -1,0 +1,68 @@
+@import "../../../scss/grid";
+
+.dashboard_wrap {
+    min-height: calc(100vh - 144px);
+
+    h1.heading {
+        margin: 15px 0;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 42.67px;
+
+        @media screen and (max-width:1600px) {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+    }
+
+    .button_wrap {
+        display: flex;
+        gap: 20px;
+
+        .export_btn {
+            margin-left: auto;
+        }
+
+    }
+
+    .dashbaord_btn {
+        ::ng-deep button {
+            min-width: 106px;
+            width: auto;
+            height: 40px;
+        }
+    }
+
+    .date_filter {
+        margin-top: 30px;
+        display: flex;
+        gap: 20px;
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+        }
+    }
+    .row{
+        gap: 15px 0px !important;
+    }
+
+    .cutom_filter {
+        height: calc(100vh - 333px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+
+        p {
+            font-size: 20px;
+            font-weight: 400;
+            margin-top: 34px;
+
+            @media screen and (max-width:1600px) {
+                font-size: 15px;
+            }
+        }
+    }
+}

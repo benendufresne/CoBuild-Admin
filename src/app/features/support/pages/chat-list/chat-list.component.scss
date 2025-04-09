@@ -1,0 +1,108 @@
+@import "../../../../../scss/mix";
+
+.chat_container {
+    @include flexbox;
+    height: 100%;
+    // padding: 20px;
+
+    .chat_list {
+        width: 30%;
+        padding: 20px 5px 20px 20px;
+        border-right: 1px solid rgba(0, 0, 0, 0.18);
+
+        @media screen and (max-width:1600px) {
+            width: 35%;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .user-list {
+            overflow-y: auto;
+            // height: calc(100vh - 209px);
+            height: calc(100vh - 300px);
+
+            .chat_wrap {
+                height: 100%;
+                padding-right: 11px;
+                @include flexbox;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+        }
+    }
+
+    .chat_box {
+        width: 70%;
+        padding: 20px;
+
+        @media screen and (max-width:1600px) {
+            width: 65%;
+        }
+
+        .empty-chat {
+            height: 100%;
+            @include flex(center, center);
+            flex-direction: column;
+            gap: 30px;
+
+            p {
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+
+::ng-deep .chat_search {
+    mat-form-field {
+        width: 100%;
+        min-width: auto !important;
+    }
+
+    .mat-mdc-form-field-icon-suffix {
+        margin-left: 10px;
+        position: relative;
+        right: 10px;
+    }
+}
+
+.no-found {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+}
+
+.loader_overlay {
+    height: calc(100% - 60px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+::ng-deep #main-content {
+    height: calc(100vh - 145px);
+}
+
+
+app-button {
+    position: relative;
+}
+
+.red_dot_span {
+    width: 12px;
+    height: 12px;
+    background: red;
+    display: block;
+    border-radius: 50%;
+    position: absolute;
+    top: -2px;
+    right: -1px;
+    border: 2px solid #fff;
+}

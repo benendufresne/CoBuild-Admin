@@ -1,0 +1,109 @@
+@import "../../../../../scss/popup-ui";
+@import "../../../../../scss/var";
+
+::ng-deep {
+    .mat-mdc-dialog-container .mdc-dialog__surface {
+        border-radius: 15px !important;
+        overflow-y: visible;
+    }
+}
+
+.n-quick-view-container {
+    background: #F6F7EE;
+    box-shadow: 0px 4px 25px 0px #00000005;
+    padding: 20px 15px 20px 20px;
+    position: relative;
+    border-radius: 10px;
+
+    &::before {
+        width: 38px;
+        height: 36px;
+        background: url("../../../../../assets/images/icons/arrow-top.svg") no-repeat;
+        background-size: contain;
+        position: absolute;
+        content: "";
+        right: 18px;
+        top: -18px;
+
+        @media (max-width: 767px) {
+            right: 5px;
+        }
+    }
+
+    .n-popup-header {
+        font-family: Montserrat;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 29.26px;
+        text-align: left;
+        color: #272727;
+        margin-bottom: 20px;
+        height: unset;
+        padding: unset;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+
+        h4 {
+            padding-right: 45px;
+            margin: unset;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        @media (max-width: 1024px) {
+            font-size: 22px;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 767px) {
+            font-size: 20px;
+        }
+
+        .close-icon {
+            right: 0;
+            color: #fff;
+            background: $primary;
+            border-radius: 50%;
+            padding: 3px;
+            cursor: pointer;
+        }
+    }
+
+    .n-card-container {
+        margin-bottom: 10px;
+    }
+
+    .n-view-all {
+        text-align: right;
+
+        a {
+            color: $primary;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+    }
+
+    .n-not-found {
+        width: 500px;
+        height: 200px;
+
+        @media screen and (max-width: 767px) {
+            width: 100%;
+        }
+    }
+
+    .n-loading {
+        height: 140px;
+        width: 500px;
+        background: #FFFFFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @media (max-width: 767px) {
+            width: 100%;
+        }
+    }
+}

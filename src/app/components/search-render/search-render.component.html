@@ -1,0 +1,15 @@
+<mat-form-field appearance="outline" [ngClass]="cssClass =='Service Type'?'search-field':'search_filter'">
+  <input
+    type="text"
+    matInput
+    placeholder="{{ placeholder ? placeholder : 'Search' }}"
+    [prevent-keys]="[219, 221]"
+    maxlength="50"
+    [formControl]="searchForm"
+    autocomplete="off"
+  />
+
+  <span matSuffix (click)="clearValue()" class="icon-wrap">
+    <mat-icon>{{ searchForm.value ? "close" : "search" }}</mat-icon>
+  </span>
+</mat-form-field>

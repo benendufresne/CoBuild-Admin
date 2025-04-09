@@ -1,0 +1,173 @@
+.mdc-button {
+  &.btn {
+    text-transform: capitalize;
+    @include flex(center, center);
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    letter-spacing: normal;
+    font-weight: normal;
+    padding: 0 30px;
+    overflow: hidden;
+    width: 100%;
+    @include radius(4px);
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    border: 1px solid transparent;
+    box-shadow: none;
+    transition: all 220ms ease-in;
+    font-size: 15px;
+    background: transparent;
+
+    .mdc-button__label {
+      @include flex(center, center);
+    }
+
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled).active {
+      color: $white;
+      background-color: $primaryLight;
+      border-color: $primaryLight;
+    }
+
+    &.btn-primary {
+      margin: 0;
+      height: 48px;
+      color: $white;
+      border-color: $fontSemiBold;
+      background: $primaryLight;
+
+      &.w-auto {
+        width: fit-content;
+      }
+
+      &.w-fit {
+        width: 150px;
+      }
+    }
+
+    &.btn-primary-green {
+      margin: 0;
+      height: 50px;
+      color: $white;
+      border-color: $fontSemiBold;
+      background: $primaryGreenGray;
+      color: $white;
+    }
+
+    &.btn-primary-red {
+      margin: 0;
+      height: 50px;
+      color: $white;
+      border-color: $fontSemiBold;
+      background: $failureErrorBg;
+      color: $white;
+    }
+
+    &.btn-sm {
+      min-width: 98px;
+      height: 38px;
+      padding: 11px 24px;
+    }
+
+    &.btn-md {
+      min-width: 98px;
+      height: 45px;
+      padding: 11px 24px;
+    }
+
+    &.btn-red {
+      margin: 0;
+      color: $white;
+      border-color: $error;
+      background: $error;
+
+      &.w-auto {
+        width: fit-content;
+      }
+    }
+
+    &.btn-outline {
+      background: transparent;
+      border-color: $primaryLight;
+      color: $primaryLight;
+
+      .mat-mdc-raised-button,
+      .mat-mdc-unelevated-button {
+        --mat-mdc-button-persistent-ripple-color: transparent;
+      }
+
+      &:hover {
+        background: $primaryLight;
+        color: $white;
+      }
+
+      &:not(:disabled):not(.disabled):active,
+      &:not(:disabled):not(.disabled).active {
+        background: transparent;
+        color: $primaryLight;
+      }
+
+      &.w-auto {
+        width: fit-content;
+      }
+
+      &.w-fit {
+        width: 150px;
+      }
+    }
+
+    &.btn-primary-white {
+      color: $fontSemiBold;
+      border-color: $white;
+      background: $white;
+    }
+
+    &.btn-outline-white {
+      background: transparent;
+      border-color: $white;
+      color: $white;
+    }
+
+    &:disabled,
+    &.disabled {
+      cursor: not-allowed;
+      // background: $disableBg;
+      // border: 1px solid $disableBg;
+      // color: $disableTextColor;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      box-shadow: none !important;
+    }
+
+    @include tab-breakpoint {
+      padding: 10px 12px;
+      font-size: 14px;
+    }
+  }
+}
+
+.simple_btn {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  font-size: 17px;
+}
+
+.btn-wrap {
+  @include flexbox();
+
+  .btn+.btn {
+    margin-left: 15px;
+  }
+}
+
+.btn-cover {
+  @include fpos(center, center);
+  flex-wrap: wrap;
+}

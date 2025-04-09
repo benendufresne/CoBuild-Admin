@@ -1,0 +1,29 @@
+<div class="page-editor">
+  <form [formGroup]="cmsForm" (ngSubmit)="updateContent()">
+    @if(isApiCallInProgress){
+    <app-data-loader />
+    }
+    @else {
+    <quill-editor [ngClass]="{ 'disabled-input': !showBtn }" [formControlName]="stringConst.DATA" [readOnly]="!showBtn"
+      class="content-editor" #quillEditor>
+    </quill-editor>
+    <div id="ql-editor1" hidden [innerHTML]="f[stringConst.DATA].value | safe : 'html'"></div>
+    @if(!f[stringConst.DATA].valid){
+    <mat-error class="mat-error">
+      {{ f[stringConst.DATA] | errorMessage : "Description" }}
+    </mat-error>
+    }
+
+    }
+    @if(showBtn){
+    <div class="btn-wrap d-flex">
+      <app-button [buttonHeight]="'48px'" [buttonWidth]="'247px'" [buttonRadius]="'6px'"
+        [btnLabel]="customButtonConst.CANCEL" (buttonClickEvent)="onCancel()"></app-button>
+
+      <app-button [buttonHeight]="'48px'" [buttonWidth]="'247px'" [buttonRadius]="'6px'"
+        [cssClasses]="customButtonConst.active" [isDisabled]="!cmsForm?.dirty" [btnType]="customButtonConst.btnSubmit"
+        [btnLabel]="contentData?.data!==''?customButtonConst.UPDATE:customButtonConst.btnSubmit | titlecase"></app-button>
+    </div>
+    }
+  </form>
+</div>

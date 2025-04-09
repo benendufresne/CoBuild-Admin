@@ -1,0 +1,41 @@
+<div class="quotation_wrap" [ngClass]="{'sendMessage':quotationData?.messageType!=='REPLIED', 'cursor':clickAccess}"
+    (click)="navigateToRequest(quotationData?.request?.reqId)">
+    <div class="top_header">
+        <h3>{{quotationData?.messageType==='REPLIED' ?'Quotation':'Your Quote'}}</h3>
+        @if(quotationData?.amount){
+        <p>Amount: <span>${{quotationData?.amount}}/Day</span></p>
+        }
+    </div>
+    <div class="img_area">
+        <!-- <img [src]="quotationData?.request?.media?quotationData?.request?.media:'assets/images/svg/quotation.svg'"
+            alt="quotation"> -->
+            @if(quotationData?.request?.media){
+                <img [src]="quotationData?.request?.media"
+                alt="quotation">
+            }
+        <div>
+            <p class="head"> {{quotationData?.request?.categoryName}}</p>
+            @if(quotationData?.estimatedDays){
+
+            <p class="sub-text"><strong>Estimated Days:</strong> {{quotationData?.estimatedDays}}</p>
+            }
+        </div>
+    </div>
+    @if(quotationData?.notes){
+
+    <div class="q-msg">
+        <h3>Message</h3>
+        <p>{{quotationData?.notes.length>100?quotationData?.notes.slice(0,100):quotationData?.notes}}</p>
+    </div>
+    }
+
+    @if(quotationData?.messageType==='REPLIED'){
+    <h4 class="q_status" [ngClass]="quotationData?.message ==='Rejected'?'red':'primary'">
+        {{quotationData?.message}}
+    </h4>
+    }@else if(quotationData?.status !=='ACTIVE') {
+    <h4 class="q_status" [ngClass]="quotationData?.status ==='REJECTED'?'red':'primary'">
+        {{quotationData?.status | requestStatus}}
+    </h4>
+    }
+</div>

@@ -1,0 +1,106 @@
+<div class="confirmation-modal popup-ui">
+    <div class="popup-header">
+        <h4>{{categoryId && data?.action ==='edit' ? 'Edit' : data?.action ==='view'?'View':'Add New'}} Category</h4>
+        <span class="material-icons close-icon" matTooltip="Close" (click)="onNoClick()">close</span>
+    </div>
+    @if (isLoading && categoryId) {
+    <app-data-loader></app-data-loader>
+    }@else{
+    <form [formGroup]="categoryForm">
+        <div class="popup-body popup_category_body">
+            <div class=" row">
+                <div class="col-12">
+                    <label class="form-label">Service Type*</label>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-select placeholder="Select Service Type" formControlName="serviceType" (selectionChange)="onServiceTypeChange($event.value)">
+                            @for (item of serviceType; track $index) {
+                            <mat-option [value]="item?.label">{{item?.label}}</mat-option>
+
+                            }
+                        </mat-select>
+                        <mat-error>{{
+                            categoryForm | errorMessage : 'serviceType' : "Service Type":true
+                            }}</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <label class="form-label">Category Name*</label>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <input required matInput appNoLeadingSpace autocomplete="off" placeholder="Enter Category Name"
+                            [maxlength]="limit.MAX_NAME_LENGTH" [formControlName]="'categoryName'" />
+                        <mat-error>{{
+                            categoryForm | errorMessage : 'categoryName' : "Category Name"
+                            }}</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            @if(categoryControl['serviceType'].value ===type.CABLE_CONSULTING_SERVICE){
+            <div class="row">
+                <div class="col-12">
+                    <label class="form-label">Issue Type Name</label>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <input required matInput appNoLeadingSpace autocomplete="off"
+                            placeholder="Enter Issue Type Name" [maxlength]="limit.MAX_NAME_LENGTH"
+                            [formControlName]="'issueTypeName'" />
+                        <mat-error>{{
+                            categoryForm | errorMessage : 'issueTypeName' : "Issue Type Name"
+                            }}</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <ng-container formArrayName="subIssueName">
+                @for (control of subIssuesFormArray?.controls; let i=$index;track i) {
+                <div class="row align-center">
+                    <div [ngClass]="data.action ==='view'?'col-12':'col-10'">
+                        <label class="form-label">Sub Issue Name</label>
+                        <mat-form-field appearance="outline" class="w-100"
+                            [ngClass]="{'isDisabled':data.action==='view'}">
+                            <input required matInput appNoLeadingSpace autocomplete="off"
+                                placeholder="Enter Sub Issue Name" [maxlength]="limit.MAX_NAME_LENGTH"
+                                [formControl]="control" [ngClass]="{'isDisabled':data.action==='view'}" />
+                            <mat-error *ngIf="control.hasError('minlength')">
+                                Minimum {{ limit.MIN_NAME_LENGTH }} characters required.
+                            </mat-error>
+                            <mat-error *ngIf="control.hasError('pattern')">
+                                Sub Issue Name contains invalid characters.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    @if(subIssuesFormArray.length > 0 && data?.action !='view' ){
+                    <div class="col-2 text-end">
+                        <app-button [btnLabel]="'Remove'" [componentType]="buttonType.ONLY_ICON"
+                            [iconURL]="'assets/images/icons/Delete_detail_icon.svg'" [iconALT]="'Delete'"
+                            [cssClasses]="'primary home_btn'" (buttonClickEvent)="removeSubIssue(i)"></app-button>
+
+                        </div>
+                    }
+                </div>
+
+                }
+                @if((subIssuesFormArray.controls?.length<5 && data?.action !='view' )){ <div
+                    class="col-12 text-end mt-3">
+                    <app-button [cssClasses]="'active'" [btnLabel]="'Add Sub Issue'"
+                        (buttonClickEvent)="addSubIssue()"></app-button>
+        </div>
+        }
+        </ng-container>
+        }
+</div>
+@if(data.action !='view'){
+<div class="popup-footer">
+    <div class="btn-cover">
+        <app-button [cssClasses]="'active'" [buttonWidth]="'190px'" [buttonHeight]="'50px'"
+            [btnLabel]="customButtonConst.SUBMIT" [isDisabled]="
+                      categoryForm.invalid || !categoryForm.dirty
+                    " (buttonClickEvent)="onSubmit()"></app-button>
+
+        <app-button [btnLabel]="customButtonConst.CANCEL" [buttonWidth]="'190px'" [buttonHeight]="'50px'"
+            (buttonClickEvent)="onNoClick()"></app-button>
+    </div>
+</div>
+}
+</form>
+}
+</div>

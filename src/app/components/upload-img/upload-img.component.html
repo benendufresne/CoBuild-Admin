@@ -1,0 +1,35 @@
+@if(componentImageStyle == 'profile'){
+  <app-button
+  [btnLabel]="buttonText"
+  [cssClasses]="'profile-pic-upload'"
+  [isDisabled]="disabled"
+  (buttonClickEvent)="itemImage.click()"
+>
+</app-button>
+<input
+  #itemImage
+  type="file"
+  (change)="fileChangeEvent($event)"
+  style="display: none"
+  [accept]="accept"
+/>
+}@else {
+  @if(!getImageFromForm){
+    <app-lazy-image [img]="imagePreview"  [cssClasses]="cssClasses" (click)="itemImage.click()"></app-lazy-image>
+  }@else {
+    <app-lazy-image [img]="imagePreview"  [cssClasses]="cssClasses" ></app-lazy-image>
+    @if(onlyView){
+      <a class="edit-ic" (click)="itemImage.click()">
+        <mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"
+         ></mat-icon>
+      </a>
+    }
+  }
+  <input
+  #itemImage
+  type="file"
+  (change)="fileChangeEvent($event)"
+  style="display: none"
+  [accept]="accept"
+/>
+}

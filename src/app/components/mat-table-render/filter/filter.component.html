@@ -1,0 +1,27 @@
+<div class="filter_cover">
+  <div class="filter-header">
+    <h3 class="filter-title">Filter</h3>
+    <button
+      [ngClass]="!isFilterFormFilled ? 'reset' : 'enable'"
+      (click)="applyForm(false)"
+    >
+      <a>{{ isFilterFormFilled ? customButtonConst.RESET : customButtonConst.CLOSE }}</a>
+    </button>
+  </div>
+  <div class="filter-body">
+    <div class="body-inner">
+      <ng-content></ng-content>
+    </div>
+  </div>
+  <div class="filter-actions">
+    <app-button
+      [buttonRadius]="'6px'"
+      [buttonWidth]="'217px'"
+      [buttonHeight]="'48px'"
+      [btnLabel]="customButtonConst.APPLY"
+      [cssClasses]="customButtonConst.active"
+      [isDisabled]="!isFilterFormFilled"
+      (buttonClickEvent)="applyForm(true)"
+    ></app-button>
+  </div>
+</div>

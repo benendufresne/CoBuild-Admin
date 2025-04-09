@@ -1,0 +1,188 @@
+@if (dataLoading&&categoryLoading) {
+<app-data-loader [cssClasses]="'h500'"></app-data-loader>
+} @else {
+<div class="add-job">
+    <div class="heading-sec">
+        <h1>{{jobId?'Edit':'Add'}} Job</h1>
+    </div>
+    <form [formGroup]="newAddJobForm">
+        <div class="row">
+            <div class="col-md-6">
+                <mat-label class="form-label">Job Title*</mat-label>
+                <mat-form-field appearance="outline">
+                    <input matInput appNoLeadingSpace type="text" placeholder="Enter Job Title" formControlName="title"
+                        [maxLength]="100" />
+                    <mat-error>{{
+                        newAddJobForm | errorMessage : "title" : "Job Title"
+                        }}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-label class="form-label">Assigned Personal Name*</mat-label>
+                <mat-form-field appearance="outline">
+                    <input matInput appNoLeadingSpace type="text" placeholder="Enter name"
+                        formControlName="personalName" [maxLength]="50" />
+                    <mat-error>{{
+                        newAddJobForm | errorMessage : "personalName" : "name"
+                        }}</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <mat-label class="form-label">Service Category*</mat-label>
+                <mat-form-field appearance="outline">
+                    <mat-select placeholder="Select Category" formControlName="categoryObj"
+                    (selectionChange)="onSelectionChange($event)">
+
+                    @if(!category?.length){
+                    <mat-option disabled>No Result Found</mat-option>
+                    }@else {
+                    @for (item of category; track $index) {
+                    <mat-option [value]="item">{{item?.categoryName}}</mat-option>
+                    }
+                    }
+                </mat-select>
+                    <mat-error>{{
+                        newAddJobForm | errorMessage : "categoryObj" : "Service Category":true
+                        }}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-label class="form-label">Email</mat-label>
+                <mat-form-field appearance="outline">
+                    <input matInput appNoLeadingSpace type="email" placeholder="Enter email" formControlName="email"
+                        [maxLength]="50" />
+                    <mat-error>{{
+                        newAddJobForm | errorMessage : "email" : "email"
+                        }}</mat-error>
+                </mat-form-field>
+            </div>
+            <!-- <div class="col-md-6">
+                <mat-label class="form-label">Service Type*</mat-label>
+                <mat-form-field appearance="outline">
+                    <mat-select placeholder="Select Service Type" formControlName="typeObj">
+                        @if(!type?.length){
+                        <mat-option disabled>No service type found for the selected category.</mat-option>
+                        }@else {
+                        @for (item of type; track $index) {
+                        <mat-option [value]="item">{{item?.name}}</mat-option>
+                        }
+                        }
+                    </mat-select>
+                    <mat-error>{{
+                        newAddJobForm | errorMessage : "categoryObj" : "Service Category":true
+                        }}</mat-error>
+                </mat-form-field>
+            </div> -->
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <app-address-field [label]="'Job Location'" [controlName]="frmCtrl['address']" [longitude]="frmCtrl['lng']" [latitude]="frmCtrl['lat']"></app-address-field>
+            </div>
+            <div class="col-md-6">
+                <app-address-field [label]="'Company Address'" [controlName]="frmCtrl['addressCompany']" [longitude]="frmCtrl['lngCompany']" [latitude]="frmCtrl['latCompany']"></app-address-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label class="form-label">Mobile*</label>
+                <div class="phone-no-wrap">
+                    <div class="country-code">
+                        <mat-form-field appearance="fill">
+                            <mat-select placeholder="Select" class="country-dropdown"
+                                [formControlName]="stringConst.COUNTRY_CODE">
+                                <mat-select-trigger>
+                                    <div class="country-code-flag" [ngClass]="{'view-user':viewOnly}">
+                                        <figure>
+                                            <img src="assets/images/icons/country/usa.jpg" alt="Close Icon" />
+                                        </figure>
+                                        <span>{{ frmCtrl[stringConst.COUNTRY_CODE].value }}</span>
+                                    </div>
+                                </mat-select-trigger>
+                                <mat-option value="+1">
+                                    <div class="country-code-flag mat-option">
+                                        <figure>
+                                            <img src="assets/images/icons/country/usa.jpg" alt="Close Icon" />
+                                        </figure>
+                                        <span>+1</span>
+                                    </div>
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="input-wrap">
+                        <mat-form-field appearance="fill">
+                            <input matInput required type="text" appOnlyNumber appNoLeadingSpace
+                                autocomplete="new-number" placeholder="Enter Mobile"
+                                [prevent-keys]="[numberConst.THIRTY_TWO]" [maxlength]="limit.MAX_MOBILE_LENGTH"
+                                formControlName="fullMobileNo" />
+                            <mat-error>
+                                {{
+                                newAddJobForm
+                                | errorMessage : 'fullMobileNo' : "Mobile"
+                                }}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <mat-label class="form-label">Priority Level*</mat-label>
+                <mat-form-field appearance="outline">
+                    <mat-select placeholder="Select Priority Level" formControlName="priority">
+                        @for (level of priorityLevel; track $index) {
+                        <mat-option [value]="level.value">{{level.label}}</mat-option>
+                        }
+                    </mat-select>
+                    <mat-error>{{
+                        newAddJobForm | errorMessage : "priority" : "priority level":true
+                        }}</mat-error>
+                </mat-form-field>
+            </div>
+         
+        </div>
+
+        <div class="row">
+       
+            <div class="col-md-6">
+                <mat-label class="form-label">About Company</mat-label>
+                <mat-form-field appearance="outline">
+                    <textarea matInput appNoLeadingSpace type="text" [maxLength]="500" placeholder="Add About Company"
+                        formControlName="aboutCompany"></textarea>
+                    <mat-hint align="end">
+                        ({{ frmCtrl["aboutCompany"].value.length }}/500)
+                    </mat-hint>
+                    <mat-error>{{
+                        newAddJobForm
+                        | errorMessage : "aboutCompany" : "about company"
+                        }}</mat-error>
+                </mat-form-field>
+            </div>
+        <!-- </div>
+        <div class="row"> -->
+            <div class="col-md-6">
+                <mat-label class="form-label">Job Procedure</mat-label>
+                <mat-form-field appearance="outline">
+                    <textarea matInput appNoLeadingSpace type="text" [maxLength]="1000" placeholder="Add job procedure"
+                        formControlName="procedure"></textarea>
+                    <mat-hint align="end">
+                        ({{ frmCtrl["procedure"].value.length }}/1000)
+                    </mat-hint>
+                    <mat-error>{{
+                        newAddJobForm
+                        | errorMessage : "procedure" : "job procedure"
+                        }}</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="btn-cover">
+            <app-button [btnLabel]="'Cancel'" [buttonWidth]="'190px'" [buttonHeight]="'55px'"
+                (buttonClickEvent)="backNavigation()"></app-button>
+            <app-button [btnLabel]="customButtonConst.SUBMIT" [isDisabled]="newAddJobForm.invalid ||!newAddJobForm.dirty || actionInProgress"
+                [isActionInProgress]="actionInProgress" [cssClasses]="customButtonConst.active" [buttonWidth]="'190px'"
+                [buttonHeight]="'55px'" (buttonClickEvent)="onSubmit()"></app-button>
+        </div>
+    </form>
+</div>
+}

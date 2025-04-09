@@ -1,0 +1,9 @@
+@import "../../../../../scss/grid";
+@import "../../../request-management/pages/details/details.component.scss";
+
+.disabled{
+    pointer-events: none;
+    ::ng-deep .mat-mdc-text-field-wrapper {
+        background-color: #F1EDEE;
+    }
+}

@@ -1,0 +1,97 @@
+@import "../../../../../scss/mix";
+@import "../../../../../scss/var";
+@import "../../../../../scss/grid";
+
+.cms_wrap {
+  @include radius(8px);
+
+
+  .cms_header {
+    padding: 0 0 18px 0 !important;
+    @include flex(center, end);
+  }
+
+  .cms_body {
+    padding: 15px;
+
+    .no_data_found {
+      p {
+        text-align: center;
+        margin: 0;
+        line-height: normal;
+        font-size: 16px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+      }
+    }
+
+    p {
+      margin-bottom: 6px;
+      color: $black;
+      font-size: 15px;
+      line-height: 18px;
+    }
+  }
+}
+
+.btn-wrap {
+  padding-top: 25px;
+
+  &.d-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+:host ::ng-deep {
+  quill-editor {
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .ql-toolbar.ql-snow {
+    border: 1px solid #ccc !important;
+    border-bottom: 0 !important;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  .ql-container.ql-snow {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  .cms_body {
+    .ql-editor {
+      padding: 0 !important;
+      height: auto !important;
+    }
+  }
+
+  .loader-overlay {
+    position: static !important;
+    height: 300px;
+    @include fpos(center, center);
+    background-color: $white !important;
+
+    span {
+      font-size: 36px;
+      color: rgba($black, 0.3);
+
+      @media screen and (max-width: 568px) {
+        font-size: 18px;
+        color: rgba($black, 0.4);
+      }
+    }
+
+    img {
+      width: 300px;
+      max-width: 80%;
+    }
+  }
+}
+
+.mt-56 {
+  margin-top: 56px;
+}

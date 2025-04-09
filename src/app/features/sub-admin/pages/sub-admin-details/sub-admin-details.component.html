@@ -1,0 +1,30 @@
+@if(isApiCallInProgress){
+<app-data-loader [cssClasses]="'h500'" />
+}@else {
+<form [formGroup]="subAdminForm">
+    <div class="sub-admin-page pd-20">
+        <div class="sub-admin-form bg_wrap">
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-in md">
+                        <mat-label class="details_head">Name</mat-label>
+                        <p class="details_para">{{this.subAdminData?.name?this.subAdminData?.name:'N/A'}}</p>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-in md">
+                        <mat-label class="details_head">Email ID</mat-label>
+                        <p class="details_para">{{this.subAdminData?.email?this.subAdminData?.email:'N/A'}}</p>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-in md">
+                        <mat-label class="details_head">Role</mat-label>
+                        <p class="details_para">{{this.subAdminData.roleName?this.subAdminData.roleName:'N/A'}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+}

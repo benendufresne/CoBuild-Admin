@@ -1,0 +1,34 @@
+@import "../../../scss/popup-ui";
+.confirmation-modal{
+    .popup-body{
+        h4{
+            margin-bottom:15px;
+            font-family:'Poppins', sans-serif;
+            font-size:20px;
+            font-weight:600;
+        }
+        p{
+            margin-bottom:0;
+            font-size:16px;
+            line-height:1.4;
+        }
+        figure{
+            width:170px;
+            height:125px;
+            margin:0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            @media (max-width: 1024px) {
+                width:150px;
+                height:105px;
+            }
+            // &.active{
+            //     background:url("../../../assets/images/svg/default-background.svg") no-repeat;
+            // }
+            // &.warning{
+            //     background:url("../../../assets/images/svg/warning-background.svg") no-repeat;
+            // }
+        }
+    }
+}

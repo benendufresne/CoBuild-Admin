@@ -1,0 +1,42 @@
+@import "../../../../../scss/var";
+@import "../../../../../scss/mix";
+@import "../../../../../scss/material-styling";
+@import "../../../../../scss/reset";
+
+:host {
+    @import "../../accounts.component.scss";
+}
+
+.page-login {
+    h1 {
+        margin-bottom: 53px;
+
+        &.page-name {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 30.12px;
+            text-align: left;
+            color: $black;
+        }
+    }
+}
+
+.forgot-password-link {
+    margin-top: 20px;
+    text-align: center;
+
+    .simple_btn {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 17.57px;
+        color: $black;
+
+        &:hover {
+            color: $primary !important;
+        }
+    }
+}
+
+.btn-cover {
+    padding-top: 20px;
+}

@@ -1,0 +1,85 @@
+<div class="dashboard_wrap pd-20">
+    <div class="button_wrap">
+        @for (button of filterButton; track button) {
+
+        <app-button class='dashbaord_btn' [ngClass]="isAddEditAccess?'btnView':'dashbaord_btn'"
+            [btnLabel]="button.label" [conditionClass]="{
+        'active': !button.isCustom
+          ? duration === button.label && !showDateInputs
+          : showDateInputs
+      }"
+            (buttonClickEvent)="button.label===dashboardFilter.CUSTOM?toggleCustomDateInputs():getDashboardData(button.label)"></app-button>
+        }
+
+        @if(isAddEditAccess){
+        <app-button [btnLabel]="'Export'" [cssClasses]="'active  export'" class="export_btn dashbaord_btn"
+            (buttonClickEvent)="isExport()" [btnType]="'button'"></app-button>
+        }
+    </div>
+
+    @if (dataLoading) {
+    <app-data-loader [cssClasses]="'h500'" />
+    }@else {
+
+    @if(showDateInputs && isAddEditAccess){
+    <form [formGroup]="customForm">
+        <div class="date_filter">
+            <div class="date_group">
+                <mat-form-field appearance="outline" (click)="dp3.open()">
+                    <input matInput [matDatepicker]="dp3" placeholder="Select From Date" formControlName="fromDate"
+                        readonly [min]="dateValidation?.minFromDate" [max]="dateValidation?.maxFromDate"
+                        (keydown)="dateInput($event)" (dateChange)="selectFromFilter()" autocomplete="off" />
+                    <mat-datepicker-toggle matIconSuffix [for]="dp3"></mat-datepicker-toggle>
+                    <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="date_group">
+                <mat-form-field appearance="outline" (click)="dp2.open()">
+                    <input matInput [matDatepicker]="dp2" placeholder="Select To Date" formControlName="toDate" readonly
+                        [min]="dateValidation?.minToDate" [max]="dateValidation?.maxTodate"
+                        (keydown)="dateInput($event)" (dateChange)="selectToFilter()" autocomplete="off" />
+                    <mat-datepicker-toggle matIconSuffix [for]="dp2"></mat-datepicker-toggle>
+                    <mat-datepicker #dp2 disabled="false"></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <div class="btn-group">
+                <app-button [cssClasses]="'active'" class="dashbaord_btn" [isDisabled]="customForm.invalid"
+                    [btnLabel]="'Apply'" (buttonClickEvent)="onCustomSubmit('Custom')"></app-button>
+                <app-button [cssClasses]="'active'" class="dashbaord_btn" [isDisabled]="customForm.invalid"
+                    [btnLabel]="'Reset'" (buttonClickEvent)="reset()"></app-button>
+            </div>
+        </div>
+    </form>
+    }
+
+
+    @if(isCustomApplied){
+    <h1 class="heading">Users</h1>
+    <div class="row">
+        @for (statistics of userArray; track statistics) {
+        <div class="col-4">
+            <app-dashboard-card [data]="statistics"></app-dashboard-card>
+        </div>
+        }
+    </div>
+
+    <h1 class="heading">Jobs</h1>
+    <div class="row">
+        @for (statistics of jobArray; track statistics) {
+        <div class="col-4">
+            <app-dashboard-card [data]="statistics"></app-dashboard-card>
+        </div>
+        }
+    </div>
+
+    }
+
+    @else {
+    <div class="cutom_filter">
+        <app-lazy-image [img]="'assets/images/svg/no-data.svg'" [cssClasses]="'dahboard_no_data_img'"></app-lazy-image>
+        <p>To generate the custom results, please select From and To Date.</p>
+    </div>
+    }
+    }
+</div>

@@ -1,0 +1,22 @@
+<div class="tab-section tabbing_chat charitables">
+  <nav mat-tab-nav-bar [tabPanel]="tabPanel">
+    @for (link of ptabs; track link) {
+      <a
+      mat-tab-link
+      [routerLink]="link.path"
+      routerLinkActive
+      #rla="routerLinkActive"
+      [active]="rla.isActive"
+      [routerLinkActiveOptions]="{ exact: false }"
+    >
+      {{ link.label }}
+    </a>
+    }
+ 
+  </nav>
+  <mat-tab-nav-panel #tabPanel>
+    @if(ptabs?.length>2){
+      <router-outlet></router-outlet>
+    }
+  </mat-tab-nav-panel>
+</div>

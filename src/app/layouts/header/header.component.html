@@ -1,0 +1,63 @@
+<div class="page-header">
+  <div class="left-portion">
+    <span mat-stroked-button class="material-icons hamburger-icon" (click)="sidebarCollaped()">menu</span>
+    <span mat-stroked-button class="material-icons close-icon" (click)="sidebarCollaped()">close</span>
+
+    <a class="logo-cover">
+      <img src="assets/images/svg/cobuild-logo-horizontal.svg" alt="cobuild Logo" />
+    </a>
+  </div>
+  <div class="portion">
+    <div class="notification-icon">
+      @if (_storageService.profileDetail.notificationCount) {
+      <span class="n-red-dot"></span>
+      }
+      <a (click)="onNotification()"><img src="/assets/images/icons/notification-ic-active.svg" alt="Bell Icon" /></a>
+    </div>
+    <div class="btn-group" [matMenuTriggerFor]="menu">
+
+      <div class="profile-name-wrap">
+        <div class="profile-img">
+          <app-lazy-image class="img-wrapper" [img]="
+            _storageService.profileDetail?.profilePicture ||
+            'assets/images/user_placeholder.jpg'
+          "></app-lazy-image>
+        </div>
+        <ng-container>
+          <span class="profile-name">{{
+            _storageService.profileDetail.name || "Admin"
+            }}</span>
+        </ng-container>
+      </div>
+      <mat-menu #menu="matMenu" backdropClass="menuWrapper" xPosition="before" class="custom-menu">
+        <button mat-menu-item [routerLink]="['PROFILE_DETAILS' | absoluteRoute]">
+          <span>
+            <!-- <img
+            src="assets/images/svg/user-profile.svg"
+            aria-label="Profile Image"
+          /> -->
+            My Profile
+          </span>
+        </button>
+        <button mat-menu-item (click)="navigateToChangePassword()">
+          <span>
+            <!-- <img
+            src="assets/images/svg/user-profile.svg"
+            aria-label="Profile Image"
+          /> -->
+            Change Password
+          </span>
+        </button>
+        <button mat-menu-item (click)="logoutHandler()">
+          <span class="log-out">
+            <!-- <img
+            src="assets/images/svg/logout-icon.svg"
+            aria-label="Logout Image"
+          /> -->
+            Logout
+          </span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,83 @@
+@if (dataLoading) {
+<div class="data-loader">
+  <app-data-loader></app-data-loader>
+</div>
+} @else {
+<div class="add-notification">
+  <div class="heading-sec">
+    <h1>Create Notification</h1>
+  </div>
+  <form [formGroup]="notificationForm">
+    <div class="row">
+      <div class="col-md-6">
+        <mat-label class="form-label">Subject*</mat-label>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            appNoLeadingSpace
+            type="text"
+            placeholder="Add Subject"
+            formControlName="title"
+            [maxLength]="50"
+          />
+          <mat-error>{{
+            notificationForm | errorMessage : "title" : "subject"
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <mat-label class="form-label">Description*</mat-label>
+        <mat-form-field appearance="outline">
+          <textarea
+            matInput
+            appNoLeadingSpace
+            type="text"
+            [maxLength]="200"
+            placeholder="Add notification description"
+            formControlName="description"
+          ></textarea>
+          <mat-hint align="end">
+            ({{ frmCtrl["description"].value.length }}/200)
+          </mat-hint>
+          <mat-error>{{
+            notificationForm
+              | errorMessage : "description" : "description"
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <mat-label class="form-label">Users*</mat-label>
+        <div class="my-radio-group">
+          <mat-radio-group formControlName="users">
+          @for (item of userType; track item) {
+              <mat-radio-button [value]="item.value">{{ item.label }}</mat-radio-button>
+          }
+        </mat-radio-group>
+        </div>
+
+      </div>
+    </div>
+    <div class="btn-cover">
+      <app-button
+        [btnLabel]="'Cancel'"
+        [buttonWidth]="'190px'"
+        [buttonHeight]="'55px'"
+        (buttonClickEvent)="backNavigation()"
+      ></app-button>
+      <app-button
+        [btnLabel]="customButtonConst.SEND"
+        [isDisabled]="notificationForm.invalid || actionInProgress"
+        [isActionInProgress]="actionInProgress"
+        [cssClasses]="customButtonConst.active"
+        [buttonWidth]="'190px'"
+        [buttonHeight]="'55px'"
+        (buttonClickEvent)="onSubmit()"
+      ></app-button>
+    </div>
+  </form>
+</div>
+}

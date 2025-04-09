@@ -1,0 +1,150 @@
+@import "../../../../scss/var";
+@import "../../../../scss/mix";
+
+.filter_cover {
+  position: relative;
+
+  .filter-header {
+    width: 100%;
+    height: 40px;
+    @include falign(center);
+    padding: 10px 15px 10px;
+    position: relative;
+    justify-content: space-between;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 999;
+
+    mat-icon {
+      position: absolute;
+      cursor: pointer;
+      top: 8px;
+      right: 13px;
+    }
+
+    .filter-title {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .reset {
+      color: $black;
+      font-size: 14px;
+      font-weight: 400;
+      background: transparent;
+      border: none;
+    }
+
+    .enable {
+      color: $primary;
+      font-size: 14px;
+      font-weight: 400;
+      background: transparent;
+      border: none;
+    }
+  }
+
+  .filter-body {
+    height: 100%;
+    padding: 40px 0 56px;
+
+    .body-inner {
+      height: 240px;
+      padding: 0 15px 15px;
+      @include custom-scroller("y");
+    }
+
+    .mat-expansion-panel-body {
+      padding: 0;
+    }
+  }
+
+  .filter-actions {
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 999;
+    background-color: #fff;
+
+    button {
+      width: 100%;
+      height: 50px;
+    }
+  }
+}
+
+:host {
+  position: fixed;
+  left: auto;
+  top: 240px;
+  right: 37px;
+  width: 320px;
+  box-shadow: 0px 0px 25px 0 rgba(86, 90, 93, 0.3);
+  border-radius: 10px;
+  background-color: $white;
+  padding: 30px;
+  z-index: 1000;
+  overflow: auto;
+}
+
+// @media (max-height:795px) {
+//   :host {
+//     top: 240px;
+//   }
+// }
+@media (max-width: 767px) {
+  :host {
+    width: 90%;
+    right: 5%;
+  }
+}
+
+@media (max-width: 480px) {
+  :host {
+    padding: 15px;
+  }
+}
+
+::ng-deep .filterForm {
+  mat-label {
+    font-size: 14px;
+  }
+}
+
+:host ::ng-deep {
+  .filter-body {
+    .mat-expansion-panel-body {
+      padding: 0;
+    }
+
+    .mat-expansion-panel-spacing {
+      margin: 0;
+    }
+
+    .mat-mdc-form-field {
+      &.date-field {
+        width: 100% !important;
+      }
+    }
+
+    .date-label {
+      font-weight: 600;
+    }
+  }
+
+  .filter-actions {
+    app-button {
+      width: 100%;
+
+      button {
+        width: 100% !important;
+      }
+    }
+  }
+}

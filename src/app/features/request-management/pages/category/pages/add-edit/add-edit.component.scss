@@ -1,0 +1,11 @@
+@import "../../../../../../../scss/popup-ui";
+@import "../../../../../../../scss/grid";
+
+.isDisabled {
+    pointer-events: none;
+    color: black;
+
+    ::ng-deep .mat-mdc-text-field-wrapper {
+        background-color: #F1EDEE;
+    }
+}

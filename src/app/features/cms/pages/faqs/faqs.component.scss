@@ -1,0 +1,227 @@
+@import "../../component/cms-details/cms-details.component.scss";
+@import "../../../../../scss/mix";
+@import "../../../../../scss/var";
+@import "../../../../../scss/grid";
+
+.cms_wrap {
+  @include radius(8px);
+
+  .cms_header {
+    padding: 14px 15px;
+    @include flex(center, end);
+  }
+
+  .cms_body {
+    padding: 15px;
+    border: none !important;
+
+    .no_data_found {
+      p {
+        text-align: center;
+        margin: 0;
+        line-height: normal;
+        font-size: 16px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+      }
+    }
+
+    p {
+      margin-bottom: 6px;
+      color: $black;
+      font-size: 15px;
+      line-height: 18px;
+    }
+  }
+}
+
+.cms_wrap {
+  .cms_header {
+    .cms-icon {
+      &.primary_text {
+        color: #fff;
+        font-weight: 500;
+        font-size: 14px;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .cms_body {
+    .no_data_found {
+      p {
+        text-align: center;
+        margin: 0;
+        line-height: normal;
+        font-size: 16px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+      }
+    }
+
+    .faq_content_box {
+      border: 2px solid #7D7D4F;
+      @include radius(8px);
+
+      &:not(:last-child) {
+        margin-bottom: 15px;
+      }
+
+      .faq_content_head {
+        @include flex(start, space-between);
+        padding: 15px 15px 0;
+
+        .content_left {
+          h3 {
+            font-size: 16px;
+            font-family: "Montserrat", sans-serif;
+            font-weight: 600;
+            color: #000;
+          }
+        }
+
+        .content_right {
+          @include flexbox();
+          align-items: center;
+
+          .cms-icon {
+            outline: 0;
+            border: 0;
+            background-color: transparent;
+
+            .mat-icon {
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 16px;
+
+              img {
+                width: 20px;
+              }
+            }
+          }
+
+          button {
+            &:not(:last-child) {
+              padding: 0;
+            }
+          }
+
+          .label_sec {
+            p {
+              margin: 0;
+              font-size: 15px;
+              font-family: "Montserrat", sans-serif;
+              font-weight: 600;
+
+              &.active_text {
+                color: $success;
+              }
+
+              &.block_text {
+                color: $error;
+              }
+            }
+          }
+        }
+      }
+
+      .faq_body {
+        padding: 0 15px 8px;
+
+
+
+        .question_text {
+          margin-bottom: 12px;
+          font-size: 16px;
+          color: $black;
+          line-height: 20px;
+          font-family: "Montserrat", sans-serif;
+          font-weight: 600;
+
+          @media screen and (max-width:1600px) {
+            font-size: 14px;
+            margin: 0;
+          }
+        }
+
+        .answer_text {
+          color: $black;
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 25px;
+          font-family: "Montserrat", sans-serif;
+
+          @media screen and (max-width:1600px) {
+            font-size: 14px;
+          }
+
+          &.ql-editor {
+            min-height: auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+.no_data_found {
+  padding: 25px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  figure {
+    width: 200px;
+    margin: 0;
+  }
+
+  h3 {
+    font-weight: 600;
+    margin: 0;
+  }
+}
+
+:host ::ng-deep {
+  .cms_header {
+    app-button {
+      button {
+        width: max-content !important;
+      }
+    }
+  }
+
+  .cms_wrap {
+    .cms_body {
+      padding: 15px 0 !important;
+    }
+  }
+
+  .ql-container.ql-snow {
+    border: 0;
+  }
+
+  .ql-editor {
+    min-height: unset;
+  }
+}
+
+.mt-48 {
+  margin-top: 48px;
+}
+
+@media screen and (max-width:1600px) {
+  .add_text {
+    font-size: 14px;
+  }
+
+  .date_text {
+    font-size: 14px;
+  }
+
+  .answer_text {
+    font-size: 14px;
+  }
+}

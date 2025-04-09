@@ -1,0 +1,132 @@
+@import "../scss/mix";
+@import "../scss/var";
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 0px;
+}
+.mat-typography h1 {
+  font-family: inherit;
+}
+h1 {
+  font-size: 22px;
+
+  @media screen and (max-width: 576px) {
+    font-size: 20px;
+  }
+}
+
+h2 {
+  font-size: 20px;
+
+  @media screen and (max-width: 576px) {
+    font-size: 18px;
+  }
+}
+
+h3 {
+  font-size: 18px;
+
+  @media screen and (max-width: 576px) {
+    font-size: 16px;
+  }
+}
+
+h4 {
+  font-size: 16px;
+
+  @media screen and (max-width: 576px) {
+    font-size: 14px;
+  }
+}
+
+h5 {
+  font-size: 14px;
+
+  @media screen and (max-width: 576px) {
+    font-size: 12px;
+  }
+}
+
+h6 {
+  font-size: 12px;
+
+  @media screen and (max-width: 576px) {
+    font-size: 10px;
+  }
+}
+
+p {
+  font-size: 14px;
+  margin-top: 0;
+
+  @media screen and (max-width: 576px) {
+    font-size: 13px;
+  }
+  &.onboarding-para {
+    font-size: 16px;
+  }
+}
+
+body {
+  &.large-fonts {
+    h1 {
+      font-size: 24px;
+
+      @media screen and (max-width: 576px) {
+        font-size: 22px;
+      }
+    }
+
+    h2 {
+      font-size: 22px;
+
+      @media screen and (max-width: 576px) {
+        font-size: 20px;
+      }
+    }
+
+    h3 {
+      font-size: 20px;
+
+      @media screen and (max-width: 576px) {
+        font-size: 18px;
+      }
+    }
+
+    h4 {
+      font-size: 18px;
+
+      @media screen and (max-width: 576px) {
+        font-size: 16px;
+      }
+    }
+
+    h5 {
+      font-size: 16px;
+
+      @media screen and (max-width: 576px) {
+        font-size: 14px;
+      }
+    }
+
+    h6 {
+      font-size: 14px;
+
+      @media screen and (max-width: 576px) {
+        font-size: 12px;
+      }
+    }
+
+    p {
+      font-size: 17px;
+    }
+  }
+}

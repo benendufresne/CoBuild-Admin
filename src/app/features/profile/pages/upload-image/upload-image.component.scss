@@ -1,0 +1,50 @@
+@import "../../../../../scss/popup-ui";
+@import "../../../../../scss/grid";
+@import "../../../../../scss/mix";
+@import "../../../../../scss/var";
+
+.add-image {
+    margin: 10px auto 30px;
+    width: 150px;
+    height: 150px;
+    // @include radius(50%);
+    @include radius(10px);
+
+    .loading-cover {
+        height: 80px;
+        @include fpos(center, center);
+        background-color: var(--white);
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        // @include radius(50%);
+    @include radius(10px);
+
+    }
+}
+
+.btn-cover {
+    button {
+        width: 150px;
+
+        &.remove-photo {
+            margin-right: 12px;
+        }
+    }
+
+    &.d-flex {
+        @include flexbox();
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+    }
+}
+
+:host ::ng-deep {
+    .mat-mdc-raised-button .mat-mdc-button-persistent-ripple {
+        display: none;
+    }
+}

@@ -1,0 +1,12 @@
+:host ::ng-deep {
+    .mat-mdc-tab-link-container {
+        overflow-x: auto;
+        padding-bottom: 10px;
+    }
+
+    nav {
+        button {
+            display: none !important;
+        }
+    }
+}

@@ -1,0 +1,41 @@
+@import "../../../scss/mix";
+@import "../../../scss/var";
+
+.no_record {
+    text-align: center;
+    padding: 15px;
+    font-size: 18px;
+    background: url("/assets/images/warning.svg") no-repeat;
+    background-size: 60px !important;
+    padding-top: 80px;
+    background-color: $bgWhite;
+    background-position: center 10px !important;
+    background-repeat: no-repeat !important;
+    color: $lightGrey;
+    @include radius(3px);
+    white-space: pre-line;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.no_data_found_wrap {
+    @include fpos(center, center);
+    flex-flow: column;
+
+    figure {
+        height: 150px;
+
+        @media (max-width: 650px) {
+            height: 100px;
+        }
+
+        img {
+            height: 100%;
+        }
+    }
+
+    .no_data {
+        font-size: 18px;
+        font-weight: bold;
+    }
+}

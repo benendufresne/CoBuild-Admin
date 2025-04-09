@@ -1,0 +1,206 @@
+@if(isRoleApiCallInProgress){
+<app-data-loader></app-data-loader>
+}
+@else {
+<div class="pd-20">
+    <form [formGroup]="roleForm" #n="ngForm">
+        <div class="add-role-page bg_wrap">
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-in md">
+                        <label class="form-label">Role*</label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput type="text" formControlName="name" placeholder="Enter Role Name"
+                                maxlength="75" />
+                            <mat-error>{{
+                                roleForm | errorMessage : "name" : "Role"
+                                }}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-6">
+                    @if(adminId){
+                    <div class="form-in md">
+                        <div class="status-wrap">
+                            <ul>
+                                <li><span>Status: {{this?.status | formatStatus : listType }}</span></li>
+                                <li><a class="delete" (click)="deleteUser()" matTooltip="delete"><span
+                                            class="material-symbols-outlined">delete</span></a></li>
+                                @if(status== 'UN_BLOCKED'){
+                                <li matTooltip="Inactive"><a class="edit" (click)="updateStatus()"><span
+                                            class="material-symbols-outlined">block</span></a></li>
+                                }
+                                @if (status == 'BLOCKED') {
+
+                                <li matTooltip="active"><a class="edit" (click)="updateStatus()"><span
+                                            class="material-symbols-outlined">check</span></a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    }
+
+                </div>
+            </div>
+            <div class="info-wrap">
+                <p class="details_head"><mat-icon aria-hidden="false" aria-label="Example info icon"
+                        fontIcon="info"></mat-icon>Atleast one
+                    permission must be given while creating a sub-admin.</p>
+            </div>
+            <h4>Select Permissions</h4>
+            <div class="permission-section">
+                <div class="row">
+                    <div class="col-4">
+                        <mat-label class="details_head">Module</mat-label>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="details_para" formControlName="editAll"
+                            (change)="setPermission(viewPermissions.concat(editPermissions),'editAll','edit',true,['viewAll','editAll'])">Select
+                            All</mat-checkbox>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="viewAll"
+                            (change)="setPermission(viewPermissions,'viewAll', 'view',true)">Select All</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <mat-label class="details_para">Dashboard</mat-label>
+                    </div>
+                    <div class=" col-4">
+                        <mat-checkbox class="example-margin" formControlName="editDashboard"
+                            (change)="editSingleSelection('editDashboard','viewDashboard')">Edit</mat-checkbox>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="viewDashboard"
+                            (change)="viewSingleSelection('viewDashboard','editDashboard')">View</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <mat-label class="details_para">User Management</mat-label>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="editUserMgmt"
+                            (change)="editSingleSelection('editUserMgmt','viewUserMgmt')">Edit</mat-checkbox>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="viewUserMgmt"
+                            (change)="viewSingleSelection('viewUserMgmt','editUserMgmt')">View</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <mat-label class="details_para">Sub-admin Management</mat-label>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="editSubAdminMgmt"
+                            (change)="editSingleSelection('editSubAdminMgmt','viewSubAdminMgmt')">Edit</mat-checkbox>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="viewSubAdminMgmt"
+                            (change)="viewSingleSelection('viewSubAdminMgmt','editSubAdminMgmt')">View</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <mat-label class="details_para">Job Management</mat-label>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="editJobMgmt"
+                            (change)="editSingleSelection('editJobMgmt','viewJobMgmt')">Edit</mat-checkbox>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="viewJobMgmt"
+                            (change)="viewSingleSelection('viewJobMgmt','editJobMgmt')">View</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <mat-label class="details_para">Request Management</mat-label>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="editRequestMgmt"
+                            (change)="editSingleSelection('editRequestMgmt','viewRequestMgmt')">Edit</mat-checkbox>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="viewRequestMgmt"
+                            (change)="viewSingleSelection('viewRequestMgmt','editRequestMgmt')">View</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <mat-label class="details_para">Incidents/Damage</mat-label>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="editDamageReport"
+                            (change)="editSingleSelection('editDamageReport','viewDamageReport')">Edit</mat-checkbox>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="viewDamageReport"
+                            (change)="viewSingleSelection('viewDamageReport','editDamageReport')">View</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <mat-label class="details_para">Support</mat-label>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="editSupport"
+                            (change)="editSingleSelection('editSupport','viewSupport')">Edit</mat-checkbox>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="viewSupport"
+                            (change)="viewSingleSelection('viewSupport','editSupport')">View</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <mat-label class="details_para">Notification Management</mat-label>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="editNotificationMgmt"
+                            (change)="editSingleSelection('editNotificationMgmt','viewNotificationMgmt')">Edit</mat-checkbox>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="viewNotificationMgmt"
+                            (change)="viewSingleSelection('viewNotificationMgmt','editNotificationMgmt')">View</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <mat-label class="details_para">CMS Management</mat-label>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="editCMSMgmt"
+                            (change)="editSingleSelection('editCMSMgmt','viewCMSMgmt')">Edit</mat-checkbox>
+                    </div>
+                    <div class="col-4">
+                        <mat-checkbox class="example-margin" formControlName="viewCMSMgmt"
+                            (change)="viewSingleSelection('viewCMSMgmt','editCMSMgmt')">View</mat-checkbox>
+                    </div>
+                </div>
+                <!-- <div class="row">
+                <div class="col-4">
+                    <mat-label class="label">Version Management</mat-label>
+                </div>
+                <div class="col-4">
+                    <mat-checkbox class="example-margin" formControlName="editVersionMgmt"
+                        (change)="editSingleSelection('editVersionMgmt','viewVersionMgmt')">Edit</mat-checkbox>
+                </div>
+                <div class="col-4">
+                    <mat-checkbox class="example-margin" formControlName="viewVersionMgmt"
+                        (change)="viewSingleSelection('viewVersionMgmt','editVersionMgmt')">View</mat-checkbox>
+                </div>
+            </div> -->
+            </div>
+            <div class="btn-cover">
+                <app-button [btnLabel]="'Cancel'" (buttonClickEvent)="cancelHandler()"></app-button>
+                <app-button [btnLabel]="adminId? 'Update':'Add'" [isDisabled]="!roleForm?.valid || !roleForm.dirty"
+                    [isActionInProgress]="actionInprogress" (buttonClickEvent)="adminHandler()"></app-button>
+
+            </div>
+        </div>
+    </form>
+</div>
+}

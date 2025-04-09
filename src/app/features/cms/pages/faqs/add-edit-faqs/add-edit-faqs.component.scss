@@ -1,0 +1,262 @@
+@import "../../../../../../scss/var";
+@import "../../../../../../scss/mix";
+@import "../../../../../../scss/popup-ui";
+
+.faq-modal {
+  width: 800px;
+  max-width: 100%;
+  position: relative;
+
+  .popup-section {
+    padding: 24px 0 0;
+  }
+
+  .popup-inner {
+    padding: 0 20px;
+  }
+
+  .footer-wrap {
+    padding: 0 20px 20px;
+
+    button {
+      width: 143px;
+      height: 48px;
+    }
+  }
+}
+
+.header {
+  height: 59px;
+  max-width: 700px;
+  width: 100%;
+  padding-top: 7px;
+  background: #fff;
+}
+
+.popup-body {
+  max-width: 100%;
+
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.img {
+  width: 150px;
+  height: 160px;
+  position: relative;
+  margin: 0 auto 40px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  button {
+    position: absolute;
+    bottom: -15px;
+    right: -15px;
+
+    input {
+      position: absolute;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  .mat-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -20px;
+    margin-top: -20px;
+  }
+}
+
+.btn-wrap {
+  padding-top: 25px;
+
+  &.d-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.arabic-text {
+  font-weight: 600;
+  margin: 15px 0;
+  text-align: center;
+}
+
+.form-btn {
+  margin-top: 32px;
+  padding: 20px 0;
+  text-align: center;
+
+  button {
+    min-width: 120px;
+  }
+}
+
+.label {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.editor_header {
+  @include flexbox;
+}
+
+.editor_header1 {
+  @include flexbox;
+  padding-top: 10px;
+}
+
+.editor_wrap {
+  margin-bottom: 15px;
+}
+
+.form-label {
+  margin-bottom: 10px;
+  display: flex;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+}
+
+.popup-footer {
+  padding-right: 0 !important;
+}
+
+
+.mat-error {
+  color: red;
+  line-height: 18px;
+  font-size: 12px;
+  text-align: left;
+  margin-left: 18px;
+}
+
+.text-black {
+  &.bold {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+  }
+}
+
+:host ::ng-deep {
+
+  quill-editor {
+    width: 100%;
+    @include radius(8px);
+  }
+
+  .ql-toolbar.ql-snow {
+    border: 1px solid #ccc !important;
+    border-bottom: 0 !important;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  .ql-container.ql-snow {
+    border: 1px solid #ccc !important;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  .ql-snow.ql-toolbar button:hover,
+  .ql-snow .ql-toolbar button:hover,
+  .ql-snow.ql-toolbar button:focus,
+  .ql-snow .ql-toolbar button:focus,
+  .ql-snow.ql-toolbar button.ql-active,
+  .ql-snow .ql-toolbar button.ql-active,
+  .ql-snow.ql-toolbar .ql-picker-label:hover,
+  .ql-snow .ql-toolbar .ql-picker-label:hover,
+  .ql-snow.ql-toolbar .ql-picker-label.ql-active,
+  .ql-snow .ql-toolbar .ql-picker-label.ql-active,
+  .ql-snow.ql-toolbar .ql-picker-item:hover,
+  .ql-snow .ql-toolbar .ql-picker-item:hover,
+  .ql-snow.ql-toolbar .ql-picker-item.ql-selected,
+  .ql-snow .ql-toolbar .ql-picker-item.ql-selected {
+    color: $primaryLight !important;
+  }
+
+  .ql-snow.ql-toolbar button:hover svg,
+  .ql-snow .ql-toolbar button:hover svg,
+  .ql-snow .ql-toolbar button.ql-active svg,
+  .ql-snow.ql-toolbar .ql-picker-label:hover svg,
+  .ql-snow .ql-toolbar .ql-picker-label:hover svg,
+  .ql-snow.ql-toolbar .ql-picker-item:hover svg,
+  .ql-snow .ql-toolbar .ql-picker-item:hover svg {
+    filter: brightness(0) invert(0.4) !important;
+  }
+
+  .ql-snow.ql-toolbar button:focus svg,
+  .ql-snow .ql-toolbar button:focus svg,
+  .ql-snow.ql-toolbar button.ql-active svg,
+  .ql-snow.ql-toolbar .ql-picker-label.ql-active svg,
+  .ql-snow .ql-toolbar .ql-picker-label.ql-active svg,
+  .ql-snow.ql-toolbar .ql-picker-item.ql-selected svg,
+  .ql-snow .ql-toolbar .ql-picker-item.ql-selected svg {
+    filter: brightness(0) invert(0) !important;
+  }
+
+  .ql-snow .ql-tooltip {
+    left: auto !important;
+    top: 0 !important;
+    right: 10%;
+  }
+
+  .ql-image {
+    display: none !important;
+  }
+
+  .ql-video {
+    display: none !important;
+  }
+}
+
+.disabled-input {
+  opacity: 0.4;
+}
+
+:host ::ng-deep {
+  .btn-cover {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end !important;
+
+    button {
+      min-width: 100px;
+      margin-right: 0 !important;
+      box-shadow: none !important;
+    }
+  }
+
+  .loader_wrap {
+    .data_loader {
+      height: 420px;
+      margin-top: -20px;
+    }
+  }
+
+  .popup-inner {
+    margin: 15px 0;
+    max-height: 55vh;
+    overflow-y: auto;
+
+    .editor_wrap {
+      .ql-editor {
+        min-height: auto;
+      }
+    }
+  }
+}

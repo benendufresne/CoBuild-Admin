@@ -1,0 +1,161 @@
+@import "../../../../../scss/mix";
+
+
+.chat_wrap {
+  .chat_body_header {
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.18);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    h1 {
+      margin-bottom: 6px;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 24.38px;
+
+      @media screen and (max-width:1600px) {
+        font-size: 16px;
+        line-height: 20px;
+      }
+
+      p {
+        @media screen and (max-width:1600px) {
+          font-size: 14px;
+        }
+      }
+    }
+
+    .request_cate {
+      margin-left: auto;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      // gap: 10px;
+
+      p {
+        max-width: 150px;
+      }
+    }
+  }
+
+  .msg_body {
+    // height: calc(100vh - 272px);
+    height: calc(100vh - 316px);
+    overflow: auto;
+    padding-right: 26px;
+
+
+
+    p.date-header {
+      text-align: center;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 18px;
+    }
+  }
+
+  .message {
+    width: fit-content;
+    max-width: 500px;
+    padding: 10px;
+    border-radius: 16px 0 16px 16px;
+    font-weight: 400;
+    font-size: 15px;
+    text-align: left;
+    color: #000;
+    background: rgba(241, 237, 238, 1);
+  }
+
+  .msg_area {
+    margin: 30px 0;
+
+    .sendMessage {
+      margin-left: auto;
+      background: rgba(241, 237, 238, 1);
+    }
+
+    .receiveMessage {
+      background-color: rgba(0, 0, 0, 0.25);
+    }
+
+    .time_wrap {
+      align-items: center;
+      display: flex;
+      gap: 2px;
+
+      span.message-time {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 18px;
+      }
+
+      &.sendTime {
+        justify-content: flex-end;
+      }
+
+      &.receiveTime {
+        justify-content: flex-start;
+      }
+    }
+  }
+}
+
+.chat-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.loader {
+  text-align: center;
+  font-size: 12px;
+  color: #777;
+}
+
+.end-of-chat {
+  text-align: center;
+  font-size: 12px;
+  color: #aaa;
+}
+
+.message_box {
+  margin-right: 23px;
+  @include flex(center, center);
+  gap: 20px;
+
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+  }
+}
+
+.class1 {
+  // height: calc(100vh - 388px) !important;
+
+}
+
+.loader_overlay {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  p {
+    font-weight: 500;
+  }
+}
+.disabled{
+  pointer-events: none;
+  ::ng-deep .mat-mdc-text-field-wrapper {
+      background-color: #F1EDEE;
+  }
+}

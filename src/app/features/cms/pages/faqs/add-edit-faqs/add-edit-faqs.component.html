@@ -1,0 +1,51 @@
+<div class="faq-modal popup-ui">
+  @if(!isApiCallInProgress){
+  }
+  <div class="popup-header">
+    <h4>{{ edit ? "Update" : "Add New" }} FAQ</h4>
+    <div class="close-icon">
+      <span class="material-icons" matTooltip="Close" (click)="closePopup()">close</span>
+    </div>
+  </div>
+  <div class="popup-section">
+    @if(isApiCallInProgress){
+    <div class="loader_wrap">
+      <app-data-loader></app-data-loader>
+    </div>
+    } @else{
+    <form [formGroup]="faqForm">
+      <div class="popup-inner">
+        <div class="editor_wrap">
+          <label class="form-label">Question*</label>
+          <quill-editor [ngClass]="{ 'disabled-input': !showBtn }" [formControlName]="stringConst.QUESTION"
+            [readOnly]="!showBtn" (onEditorChanged)="getQuillEditorLength('question')" #quillEditor1 [modules]="modules"
+            placeholder="Write the question..">
+          </quill-editor>
+          @if(!f['question'].valid && faqForm?.dirty){
+          <mat-error class="mat-error">{{ faqForm | errorMessage : stringConst.QUESTION : "question"}}</mat-error>
+          }
+        </div>
+        <div class="editor_wrap">
+          <label class="form-label">Answer*</label>
+          <quill-editor [ngClass]="{ 'disabled-input': !showBtn }" [formControlName]="stringConst.ANSWER"
+            [readOnly]="!showBtn" [maxlength]="limit.MAX_ANSWER_LENGTH" #quillEditor [modules]="modules"
+            (onEditorChanged)="getQuillEditorLength('answer')" placeholder="Write the answer..">
+          </quill-editor>
+          @if(!f['answer'].valid && faqForm?.dirty && f['answer']?.touched){
+          <mat-error class="mat-error">{{ faqForm | errorMessage : stringConst.ANSWER : "answer"}}</mat-error>
+          }
+        </div>
+      </div>
+      @if(showBtn){
+      <div class="footer-wrap">
+        <div class="btn-cover p0">
+          <app-button [btnLabel]="edit ? 'Update FAQ' : 'Add FAQ'" [buttonHeight]="'48px'" [buttonWidth]="'180px'"
+            [buttonRadius]="'2px'" [cssClasses]="'active'" [isDisabled]=" faqForm.invalid || !faqForm.dirty"
+            (buttonClickEvent)="updateContentHandler()"></app-button>
+        </div>
+      </div>
+      }
+    </form>
+    }
+  </div>
+</div>

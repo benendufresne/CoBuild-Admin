@@ -1,0 +1,187 @@
+@import "../../../scss/mix";
+@import "../../../scss/var";
+
+.page-header {
+    height: 64px;
+    padding: 0px 20px;
+    @include fpos(center, space-between);
+    background: $white;
+    user-select: none;
+    background-color: #fff;
+    box-shadow: 0px 4px 4px 0px #dadada40;
+
+    @media screen and (max-width: 992px) {
+        left: 0px;
+        width: 100%;
+    }
+
+    .left-portion {
+        @include fpos(center, flex-start);
+
+        .hamburger-icon {
+            color: $primaryLight;
+            font-size: 28px;
+            width: 30px;
+            height: 64px;
+            @include fpos(center, center);
+            cursor: pointer;
+
+            @media screen and (max-width: 576px) {
+                font-size: 20px;
+                display: none;
+            }
+        }
+
+        .close-icon {
+            display: none;
+
+            @media screen and (max-width: 576px) {
+                display: block;
+            }
+        }
+
+        .logo-cover {
+            align-items: center;
+            color: $seaGreen;
+            padding: 0 10px;
+            width: 120px;
+            transition: 0.3s;
+            cursor: pointer;
+
+            img {
+                width: 100%;
+                display: table-cell;
+            }
+        }
+    }
+    .portion {
+        @include falign(center);
+        .notification-icon {
+            margin: 0 15px;
+            position: relative;
+
+            .n-red-dot {
+                position: absolute;
+                top: -3px;
+                right: 0;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: #d90429;
+            }
+        }
+    }
+    .btn-group {
+        @include falign(center);
+        @include radius(50px);
+        padding: 10px;
+        gap: 10px;
+        cursor: pointer;
+
+        .profile-name-wrap {
+            padding-right: 20px;
+            @include falign(center);
+            position: relative;
+
+            &::before {
+                width: 10px;
+                height: 5px;
+                background: url(".././../../assets/images/svg/arrow-dropdown.svg") no-repeat;
+                position: absolute;
+                content: "";
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                margin-top: 2px;
+            }
+
+            .profile-name {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                display: inline-block;
+                max-width: 110px;
+                color: #000000de;
+                opacity: 0.87;
+                font-family: "Montserrat", sans-serif;
+                font-weight: 600;
+                font-size: 15px;
+                margin-left: 10px;
+            }
+
+            &:hover {
+                .profile-name {
+                    font-family: "Montserrat", sans-serif;
+                    font-weight: 700;
+                }
+            }
+        }
+
+        .user-img-cover {
+            height: 35px;
+            width: 35px;
+            @include radius(50%);
+            cursor: pointer;
+            margin: 0px 15px;
+            transition: 0.2s;
+            box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.5);
+
+            &:hover {
+                box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.5);
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                @include radius(50%);
+            }
+        }
+
+        .mat-icon-button {
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            @include radius(50%);
+            color: $primaryLight !important;
+            padding: 0px !important;
+
+            .mat-icon {
+                width: auto;
+                color: $black;
+            }
+        }
+    }
+}
+
+::ng-deep {
+    .profile-img {
+        width: 34px;
+        height: 34px;
+        position: relative;
+        app-lazy-image {
+            app-data-loader {
+                .data_loader {
+                    &.loader {
+                        padding: 0;
+                    }
+                }
+            }
+        }
+        &::before {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            position: absolute;
+            content: "";
+            top: -3px;
+            left: -3px;
+            // border: solid 1.5px #00796B80;
+        }
+
+        .img-wrapper {
+            img {
+                @include radius(50%);
+            }
+        }
+    }
+}

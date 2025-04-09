@@ -1,0 +1,46 @@
+@import "../../../../../scss/mix";
+@import "../../../../../scss/var";
+@import "../../../user-management/pages/add-edit/add-edit.component.scss";
+
+.sub-admin-page {
+    padding: 25px;
+
+    .status-wrap {
+        ul {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            li {
+                font-weight: 600;
+                margin-left: 15px;
+                color: #000;
+
+                &:first-child {
+                    position: relative;
+                    top: -3px;
+                }
+
+                a {
+                    &.delete {
+                        color: #eb3026;
+                    }
+                }
+            }
+        }
+    }
+
+    .sub-admin-form {
+        margin-bottom: 15px;
+    }
+
+    .error {
+        margin-top: -12px;
+        font-size: 13px;
+    }
+}
+
+.btn-cover {
+    padding: 20px;
+    justify-content: center;
+}

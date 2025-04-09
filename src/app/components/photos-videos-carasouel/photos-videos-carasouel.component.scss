@@ -1,0 +1,152 @@
+.media-scroll-wrapper {
+    width: 100%;
+
+    .collage-img {
+        width: 358px;
+        height: 190px;
+        margin-right: 20px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 21px;
+        }
+    }
+
+    .video-wraper {
+        position: relative;
+
+        .collage-video {
+            width: 230px;
+            height: 190px;
+            margin-right: 20px;
+            object-fit: cover;
+            border-radius: 21px;
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-73%, -50%);
+        }
+    }
+}
+
+.bottom-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fafaff;
+    margin: 0 -20px -20px;
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 0 0 8px 8px;
+
+    @media (max-width: 767px) {
+        margin: 0;
+    }
+
+    .more {
+        display: flex;
+        font-weight: 500;
+        font-size: 16px;
+        color: #655cf3;
+        cursor: pointer;
+
+        @media (max-width: 767px) {
+            font-size: 14px;
+        }
+
+        img {
+            margin-left: 10px;
+        }
+    }
+}
+
+
+:host ::ng-deep {
+
+    .ng-image-slider .ng-image-slider-container .main .main-inner .img-div img,
+    .ng-image-slider .ng-image-slider-container .main .main-inner .img-div video {
+        object-fit: cover;
+    }
+
+    .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .next {
+        transform: translateY(-50%);
+        padding-left: 2px;
+        font-size: 34px;
+        z-index: 12;
+        line-height: 32px;
+    }
+
+    .ng-image-fullscreen-view .lightbox-wrapper .lightbox-div .prev {
+        transform: translateY(-50%);
+        left: 10px;
+        top: 50%;
+        padding-right: 2px;
+        font-size: 34px;
+        z-index: 12;
+        line-height: 32px;
+    }
+}
+
+:host ::ng-deep {
+    .media-scroll-wrapper {
+        .ng-image-slider .ng-image-slider-container .main .main-inner .img-div .caption {
+            font-size: 13px;
+        }
+
+        .ng-image-slider {
+            height: auto !important;
+        }
+
+        .ng-image-slider-container {
+            height: auto !important;
+
+            .main {
+                height: auto !important;
+                position: relative !important;
+            }
+        }
+    }
+
+    .image {
+        cursor: pointer;
+    }
+
+    .youtube-icon {
+        cursor: pointer;
+    }
+
+    .ng-image-slider {
+        .ng-image-slider-container {
+            .main {
+                .main-inner {
+                    width: 100% !important;
+                    margin-left: 0 !important;
+
+                    .img-div {
+                        width: 115px !important;
+                        height: 115px;
+                        margin: 0 5px 10px !important;
+                        border-radius: 15px;
+                        overflow: hidden;
+
+                        custom-img {
+                            width: 115px !important;
+                            height: 115px !important;
+                            border-radius: 15px;
+                            overflow: hidden;
+
+                            .custom-image-main {
+                                height: 115px !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

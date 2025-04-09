@@ -1,0 +1,13 @@
+<div class="btn-add">
+  @if (isAddEditAccess) {
+    <app-button [cssClasses]="'active'" [buttonWidth]="'200px'" [buttonHeight]="'48px'" [buttonRadius]="'6px'"
+      [btnLabel]="customButtonConst.ADD_CATEGORY" (buttonClickEvent)="onView('add')"></app-button>
+  }
+  </div>
+<div class="table-outer">
+    <mat-table-render class="mat_table" notFound="No Categories Available" [heading]="heading" [showSearch]="true" [prefillSearch]="this.searchkey"
+      [showFilter]="false" [exportButton]="false" [placeholder]="placeholderText" [listType]="'Category'"
+     [filterRedDot]="filterRedDot" [getFilterValue]="checkFormValue" (detailInPopup)="onView({element:$event,action:'view'})"
+       (find)="paginationWithSearch($event, 0)" (page)="paginationWithSearch($event, 1)" (status)="changeStatus($event)" (edit_route)="onView($event)" >
+          </mat-table-render>
+  </div>

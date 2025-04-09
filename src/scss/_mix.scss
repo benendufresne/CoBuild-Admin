@@ -1,0 +1,396 @@
+@import "../scss/var";
+
+// Single-Axis Scroller
+@mixin custom-scroller($axis, $brodness: 8px, $bgcolor: $primary) {
+    @if ($axis== "x") {
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+
+    @if ($axis== "y") {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    &::-webkit-scrollbar {
+        width: $brodness;
+        height: $brodness;
+    }
+
+    &::-webkit-scrollbar-track {
+        width: $brodness;
+        height: $brodness;
+        border-radius: 20px 20px;
+        background: $silver;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 20px 20px;
+        background-color: $primary;
+        opacity: 0.5;
+        width: $brodness;
+        height: $brodness;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+//   Two-Axis Scroller
+@mixin scroller($brodness: 8px, $bgcolor: $primary) {
+    overflow-y: auto;
+    overflow-x: auto;
+
+    &::-webkit-scrollbar {
+        width: $brodness;
+        height: $brodness;
+    }
+
+    &::-webkit-scrollbar-track {
+        width: $brodness;
+        height: $brodness;
+        border-radius: 20px 20px;
+        background: $silver;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 20px 20px;
+        background-color: $primary;
+        opacity: 0.5;
+        width: $brodness;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+@mixin box-shadow {
+    box-shadow: 0px 1px 4px 2px rgba(0, 0, 0, 0.15);
+}
+
+@mixin fpos($a-item, $j-align) {
+    @include flexbox;
+    align-items: $a-item;
+    justify-content: $j-align;
+}
+
+@mixin flexCenter($horizontal: true, $vertical: true) {
+    display: flex;
+
+    @if ($horizontal and $vertical) {
+        align-items: center;
+        justify-content: center;
+    } @else if ($horizontal) {
+        justify-content: center;
+    } @else if ($vertical) {
+        align-items: center;
+    }
+}
+
+@mixin radius($radius) {
+    border-radius: $radius;
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+}
+
+@mixin transform($property) {
+    transform: $property;
+    -webkit-transform: $property;
+    -moz-transform: $property;
+    -ms-transform: $property;
+    -o-transform: $property;
+}
+
+@mixin circle($size) {
+    width: $size + px;
+    height: $size + px;
+    @include radius(50%);
+}
+
+@mixin flexbox {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+@mixin falign($value) {
+    @include flexbox;
+    -webkit-box-align: $value;
+    align-items: $value;
+}
+
+@mixin fpos($a-item, $j-align) {
+    @include flexbox;
+    align-items: $a-item;
+    justify-content: $j-align;
+}
+
+@mixin text-truncate($line, $height: "") {
+    display: block !important;
+    display: -webkit-box !important;
+    @include line-clamp($line);
+    @include box-orient();
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    height: $height;
+    min-height: $height;
+}
+
+@mixin line-clamp($line) {
+    -webkit-line-clamp: $line;
+    -moz-line-clamp: $line;
+    -ms-line-clamp: $line;
+    -o-line-clamp: $line;
+    line-clamp: $line;
+}
+
+@mixin box-orient($value: vertical) {
+    -webkit-box-orient: $value;
+    -moz-box-orient: $value;
+    -ms-box-orient: $value;
+    -o-box-orient: $value;
+    box-orient: $value;
+}
+
+@mixin scroller($brodness: 6px, $bg: $darkGray, $bgcolor: $primaryLight) {
+    overflow-y: auto;
+    overflow-x: auto;
+
+    &::-webkit-scrollbar {
+        width: $brodness;
+        height: $brodness;
+    }
+
+    &::-webkit-scrollbar-track {
+        width: $brodness;
+        height: $brodness;
+        background: $bg;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 0;
+        background-color: $primaryLight;
+        opacity: 0.5;
+        width: $brodness;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+@mixin flexbox {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+@mixin inline-flexbox {
+    display: -webkit-inline-box;
+    display: -moz-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+}
+
+@mixin flex($align, $justify) {
+    @include flexbox;
+    align-items: $align;
+    justify-content: $justify;
+}
+
+@mixin textTruncate($line, $height: "") {
+    display: block !important;
+    display: -webkit-box !important;
+    @include line-clamp($line);
+    @include box-orient();
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    height: $height;
+    min-height: $height;
+}
+
+@mixin line-clamp($line) {
+    -webkit-line-clamp: $line;
+    -moz-line-clamp: $line;
+    -ms-line-clamp: $line;
+    -o-line-clamp: $line;
+    line-clamp: $line;
+}
+
+@mixin box-orient($value: vertical) {
+    -webkit-box-orient: $value;
+    -moz-box-orient: $value;
+    -ms-box-orient: $value;
+    -o-box-orient: $value;
+    box-orient: $value;
+}
+
+@mixin box-shadow($params...) {
+    -webkit-box-shadow: $params;
+    -moz-box-shadow: $params;
+    box-shadow: $params;
+}
+
+// transform
+@mixin transform($property) {
+    transform: $property;
+    -webkit-transform: $property;
+    -moz-transform: $property;
+    -ms-transform: $property;
+    -o-transform: $property;
+}
+
+// origin
+@mixin origin($property) {
+    transform-origin: $property;
+    -webkit-transform-origin: $property;
+    -moz-transform-origin: $property;
+    -ms-transform-origin: $property;
+    -o-transform-origin: $property;
+}
+
+// transition
+@mixin transt($property) {
+    transition: $property;
+    -webkit-transition: $property;
+    -moz-transition: $property;
+    -ms-transition: $property;
+    -o-transition: $property;
+}
+
+// rotate
+@mixin rotate($deg) {
+    @include transform(rotate(#{$deg}deg));
+}
+
+// scale
+@mixin scale($scale) {
+    @include transform(scale($scale));
+}
+
+// translate
+@mixin translateX($x) {
+    @include transform(translateX($x));
+}
+
+@mixin translateY($y) {
+    @include transform(translateY($y));
+}
+
+@mixin translate($x, $y) {
+    @include transform(translate($x, $y));
+}
+
+@mixin radius($radius) {
+    border-radius: $radius;
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -o-border-radius: $radius;
+}
+
+@mixin imgCover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@mixin placeholder {
+    ::-webkit-input-placeholder {
+        @content;
+    }
+
+    :-moz-placeholder {
+        @content;
+    }
+
+    ::-moz-placeholder {
+        @content;
+    }
+
+    :-ms-input-placeholder {
+        @content;
+    }
+}
+
+// Media Queries
+@mixin desktop-lg {
+    @media screen and (max-width: 1560px) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media screen and (max-width: 1440px) {
+        @content;
+    }
+}
+
+@mixin desktop-sm {
+    @media screen and (max-width: 1366px) {
+        @content;
+    }
+}
+
+@mixin desktop-xs {
+    @media screen and (max-width: 1280px) {
+        @content;
+    }
+}
+
+@mixin desktop-breakpoint {
+    @media screen and (max-width: 1200px) {
+        @content;
+    }
+}
+
+@mixin tab {
+    @media screen and (max-width: 1024px) {
+        @content;
+    }
+}
+
+@mixin tab-sm {
+    @media screen and (max-width: 992px) {
+        @content;
+    }
+}
+
+@mixin tab-xs {
+    @media screen and (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin tab-breakpoint {
+    @media screen and (max-width: 767px) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media screen and (max-width: 576px) {
+        @content;
+    }
+}
+
+@mixin mobile-sm {
+    @media screen and (max-width: 450px) {
+        @content;
+    }
+}
+
+@mixin mobile-xs {
+    @media screen and (max-width: 360px) {
+        @content;
+    }
+}

@@ -1,0 +1,225 @@
+@import "../../../../../scss/mix";
+@import "../../../../../scss/var";
+@import "../../../../../scss/grid";
+
+.row {
+  margin: 0 -15px;
+  display: flex;
+  flex-wrap: wrap;
+
+  .col-md-12 {
+    width: 100%;
+    flex: 0 100%;
+    padding: 0 15px;
+    margin-bottom: 5px;
+  }
+
+  .col-md-6 {
+    width: 50%;
+    flex: 0 50%;
+    padding: 0 15px;
+    margin-bottom: 5px;
+  }
+
+
+  .mat-mdc-form-field {
+    width: 100%;
+  }
+
+  .form-label {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+}
+
+.btn-wrap {
+  display: flex;
+  align-items: center;
+
+  button {
+    width: 90px;
+    height: 44px;
+  }
+}
+
+:host ::ng-deep {
+
+  .add-notification {
+    padding: 20px;
+
+    .heading-sec {
+      padding-bottom: 15px;
+      border-bottom: 1px solid $borderLight;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      @include flex(center, space-between);
+
+      h1 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #989898;
+
+      }
+    }
+
+    textarea {
+      &.mat-mdc-input-element {
+        height: 100px !important;
+        resize: none;
+      }
+    }
+
+    .mdc-text-field--outlined .mat-mdc-form-field-infix,
+    .mdc-text-field--no-label .mat-mdc-form-field-infix {
+      padding-top: 12px !important;
+      padding-bottom: 10px !important;
+      min-height: 44px;
+    }
+
+    .mat-mdc-form-field-icon-suffix {
+      margin-right: 10px;
+    }
+
+    .mat-mdc-form-field-error {
+      top: 0px;
+      font-size: 13px;
+    }
+
+    .manual {
+      border-top: 1px solid $borderLight;
+      display: flex;
+      justify-content: center;
+
+      // flex-direction: column;
+      .manual-row {
+        .input-row {
+          position: relative;
+
+          .manual-label {
+            padding: 25px 25px 14px;
+            font-weight: 500;
+            text-align: center;
+
+            .selectedUser {
+              background-color: #E2E2C8;
+              color: $black;
+              padding: 8px 12px;
+              border-radius: 20px;
+              font-size: 13px;
+              font-weight: 500;
+              margin-left: 10px;
+            }
+          }
+
+          .manualInput {
+            width: 600px;
+            max-width: 100%;
+
+            .mat-mdc-text-field-wrapper.mdc-text-field {
+              background: #F1EDEE;
+            }
+          }
+        }
+
+        .search-error {
+          font-size: 13px;
+          font-weight: 500;
+          color: #f44336;
+          position: relative;
+          top: -18px;
+        }
+      }
+
+    }
+
+    .btn-cover {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 20px 0;
+    }
+
+  }
+
+  .my-radio-group {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+
+    mat-radio-group {
+      display: flex;
+      gap: 15px;
+    }
+
+    .mat-mdc-checkbox {
+      margin-bottom: 10px;
+
+      .mdc-label {
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+mat-hint {
+  font-size: 12px;
+  font-weight: 500;
+  color: #5c5b5b;
+  position: relative;
+  right: -15px;
+
+}
+
+::ng-deep {
+  .selection-list {
+    padding: 0 !important;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .mat-mdc-checkbox {
+    .mdc-checkbox__background {
+      border-radius: 100% !important;
+
+    }
+
+    .mdc-checkbox .mdc-checkbox__native-control:enabled:focus:checked~.mdc-checkbox__background,
+    .mdc-checkbox .mdc-checkbox__native-control:enabled:focus:indeterminate~.mdc-checkbox__background {
+      border-color: $primary !important;
+      background-color: $primary !important;
+    }
+
+    .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background,
+    .mdc-checkbox .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background,
+    .mdc-checkbox .mdc-checkbox__native-control[data-indeterminate=true]:enabled~.mdc-checkbox__background {
+      border-color: $primary !important;
+      background-color: $primary !important;
+    }
+
+    .mdc-checkbox .mdc-checkbox__native-control:focus:checked~.mdc-checkbox__ripple {
+      background-color: $primary !important;
+      display: none !important;
+    }
+  }
+}
+
+.notification-autocomplete {
+  position: relative;
+}
+
+.loader-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}

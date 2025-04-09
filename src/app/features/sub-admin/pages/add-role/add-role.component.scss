@@ -1,0 +1,91 @@
+@import "../../../../../scss/var";
+@import "../../../../../scss/grid";
+
+.bg_wrap {
+    .col-4 {
+        margin-bottom: 0;
+    }
+}
+
+.add-role-page {
+    .status-wrap {
+        ul {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            li {
+                font-weight: 600;
+                margin-left: 15px;
+                color: #000;
+
+                &:first-child {
+                    position: relative;
+                    top: -3px;
+                }
+
+                a {
+                    &.delete {
+                        color: #eb3026;
+                    }
+                }
+            }
+        }
+    }
+
+    .info-wrap {
+        margin-bottom: 20px;
+
+        p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0;
+
+            mat-icon {
+                margin-right: 10px;
+            }
+        }
+    }
+
+    h4 {
+        margin-bottom: 20px;
+    }
+
+    .permission-section {
+        border: solid 1px #c3c3c3;
+        padding: 20px;
+        border-radius: 4px;
+
+        .row {
+            align-items: center;
+        }
+    }
+
+    .status-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        strong {
+            font-weight: 600;
+            position: relative;
+            top: 40px;
+        }
+    }
+}
+
+:host ::ng-deep {
+    .permission-section {
+        label {
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 0;
+            color: #565656;
+        }
+    }
+}
+
+.btn-cover {
+    justify-content: center;
+    padding: 20px 0 0 0;
+}

@@ -1,0 +1,34 @@
+<div class="btn-add">
+    <app-button [cssClasses]="'active'" [buttonWidth]="'200px'" [buttonHeight]="'48px'" [buttonRadius]="'6px'"
+      [btnLabel]="customButtonConst.ADD_SERVICE_TYPE" (buttonClickEvent)="onView('add')"></app-button>
+  </div>
+<div class="table-outer">
+    <mat-table-render class="mat_table" notFound="No Service Type Available" [heading]="heading" [showSearch]="true"
+      [showFilter]="true" [exportButton]="false" [placeholder]="placeholderText" [listType]="'Service Type'" [filterRedDot]="filterRedDot" [getFilterValue]="checkFormValue"
+       (find)="paginationWithSearch($event, 0)" (detailInPopup)="onView({element:$event,action:'view'})" [prefillSearch]="this.searchkey"
+      (page)="paginationWithSearch($event, 1)" (status)="changeStatus($event)" (filter)="filterApply($event)" (edit_route)="onView($event)" 
+     >
+      <div role="filter">
+        <form [formGroup]="filterForm" class="filterForm">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <h4 class="date-label">
+                <figure>
+                  <img alt="filter_logo" src="../../../../../assets/images/filter/done.svg" />
+                </figure>
+                <span>Service Category </span>
+              </h4>
+            </mat-expansion-panel-header>
+            <ng-template matExpansionPanelContent>
+              @for (type of category; track type) {
+                <div>
+                    <mat-checkbox [value]="type._id"(change)="onCheckboxChange($event,'categoryId')">{{
+                        type.name }}</mat-checkbox>
+                </div>
+                }
+            </ng-template>
+          </mat-expansion-panel>
+        </form>
+      </div>
+    </mat-table-render>
+  </div>

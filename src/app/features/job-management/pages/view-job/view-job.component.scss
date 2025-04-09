@@ -1,0 +1,11 @@
+@import '../../../../../scss/var';
+@import '../../../../../scss/material-styling';
+@import '../../../../../scss/grid';
+
+::ng-deep .scanner-preview {
+    img._shadowImage.scanner-preview {
+        width: auto;
+        height: auto;
+        object-fit: contain;
+    }
+}

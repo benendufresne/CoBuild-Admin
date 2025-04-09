@@ -1,0 +1,120 @@
+@if (isLoaderShow && this.userId) {
+<app-data-loader [cssClasses]="'h500'"></app-data-loader>
+}@else{
+<div class="create-user">
+  <div class="header">
+    <div class="left">
+      <h1>
+        @if (!viewOnly) {
+        {{ userId ? "Edit" : "Add" }}
+        }@else {
+        {{"View"}}
+        } User
+      </h1>
+    </div>
+    @if (viewOnly && isAddEditAccess) {
+    <div class="right">
+      <app-button [btnLabel]="customButtonConst.edit" [buttonWidth]="'144px'" [buttonHeight]="'48px'"
+        [buttonRadius]="'6px'" [cssClasses]="'active'" (buttonClickEvent)="navigateToEdit()">
+      </app-button>
+
+      <app-button [btnLabel]="userDetails.status === userStatus.BLOCKED ? 'Active' : 'Inactive'" [buttonWidth]="'144px'"
+        [buttonHeight]="'48px'" [buttonRadius]="'6px'" [cssClasses]="'active'"
+        (buttonClickEvent)="confirmationDialog(userDetails.status)"></app-button>
+    </div>
+    }
+  </div>
+
+  <form [formGroup]="userForm">
+    <div class="form-wrap create-admin">
+      <div class="row">
+        <div class="col-6">
+          <label class="form-label">Name*</label>
+          <mat-form-field appearance="outline">
+            <input required matInput appNoLeadingSpace autocomplete="off" placeholder="Enter Name"
+              [maxlength]="limit.MAX_NAME_LENGTH" [formControlName]="stringConst.NAME" />
+            <mat-error>{{
+              userForm | errorMessage : "name" : "Name"
+              }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <label class="form-label">Mobile*</label>
+          <div class="phone-no-wrap">
+            <div class="country-code">
+              <mat-form-field appearance="fill">
+                <mat-select placeholder="Select" class="country-dropdown" [formControlName]="stringConst.COUNTRY_CODE">
+                  <mat-select-trigger>
+                    <div class="country-code-flag" [ngClass]="{'view-user':viewOnly}">
+                      <figure>
+                        <img src="assets/images/icons/country/usa.jpg" alt="Close Icon" />
+                      </figure>
+                      <span>{{ frmCtrl[stringConst.COUNTRY_CODE].value }}</span>
+                    </div>
+                  </mat-select-trigger>
+                  <mat-option value="+1">
+                    <div class="country-code-flag mat-option">
+                      <figure>
+                        <img src="assets/images/icons/country/usa.jpg" alt="Close Icon" />
+                      </figure>
+                      <span>+1</span>
+                    </div>
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="input-wrap">
+              <mat-form-field appearance="fill">
+                <input matInput required type="text" appOnlyNumber appNoLeadingSpace autocomplete="new-number"
+                  placeholder="Enter Mobile" [prevent-keys]="[numberConst.THIRTY_TWO]"
+                  [maxlength]="limit.MAX_MOBILE_LENGTH" [formControlName]="stringConst.MOBILE_NUMBER" />
+                <mat-error>
+                  {{
+                  userForm
+                  | errorMessage : stringConst.MOBILE_NUMBER : "Mobile"
+                  }}
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <label class="form-label">Email*</label>
+          <mat-form-field appearance="outline">
+            <input matInput required type="email" autocomplete="new-email" placeholder="Enter Email"
+              [prevent-keys]="[numberConst.THIRTY_TWO]" [maxlength]="limit.MAX_EMAIL_LENGTH"
+              [formControlName]="stringConst.EMAIL" />
+            <mat-error>
+              {{ userForm | errorMessage : stringConst.EMAIL : "Email" }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <app-address-field [controlName]="frmCtrl['address']" [longitude]="frmCtrl['lng']" [latitude]="frmCtrl['lat']"></app-address-field>
+
+          <!-- <label class="form-label">Address*</label>
+          <mat-form-field appearance="outline">
+            <input #search matInput type="text" [prevent-keys]="[numberConst.THIRTY_TWO]" spellcheck="off"
+              autocorrect="off" appNoLeadingSpace autocapitalize="off" class="form-control"
+              [formControlName]="stringConst.ADDRESS" [placeholder]="'Enter your address'" (blur)="onAddressBlur()"
+              (input)="onInput()" />
+            <mat-error>
+              {{ userForm | errorMessage : stringConst.ADDRESS : "Address" }}
+            </mat-error>
+          </mat-form-field> -->
+        </div>
+      </div>
+    </div>
+    @if (!viewOnly) {
+    <div class="btn-cover">
+      <app-button [btnLabel]="customButtonConst.CANCEL" [buttonWidth]="'190px'" [buttonHeight]="'50px'"
+        (buttonClickEvent)="onCancel()"></app-button>
+      <app-button [cssClasses]="'active'" [buttonWidth]="'190px'" [buttonHeight]="'50px'"
+        [isActionInProgress]="actionInProgress" [btnLabel]="customButtonConst.btnSubmit | titlecase" [isDisabled]="
+              userForm.invalid || !userForm.dirty || actionInProgress
+            " (buttonClickEvent)="onSubmit()"></app-button>
+    </div>
+    }
+  </form>
+</div>
+}

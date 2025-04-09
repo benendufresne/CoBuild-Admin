@@ -1,0 +1,412 @@
+@import "../../../scss/mix";
+@import "../../../scss/var";
+
+.page-sidebar {
+    width: 100%;
+    height: 100%;
+    transition: 0.3s;
+    z-index: 999;
+    border-right: solid 1px #f2f2f2;
+    user-select: none;
+    max-height: calc(100vh - 64px);
+
+    @media screen and (max-width: 992px) {
+        left: 0px;
+    }
+
+    .brand-wrap {
+        padding: 0 25px;
+        height: 64px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.sidebar-list {
+    width: 100%;
+    padding: 15px 10px;
+    max-height: calc(100vh - 65px);
+    z-index: 1;
+    @include custom-scroller("y");
+    transition: 0.3s ease width;
+
+    &::-webkit-scrollbar-thumb {
+        background: $scroller !important;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $white !important;
+    }
+
+    @media screen and (max-width: 992px) {
+        min-height: calc(100vh - 227px);
+    }
+
+    .mat-mdc-list-item {
+        position: relative;
+        padding: 0 4px;
+        cursor: pointer;
+        outline: none;
+        transition: 0.3s ease all;
+        white-space: nowrap;
+        @include radius(5px);
+        color: $white;
+        font-size: 13.5px;
+
+        &.manage-roles-item {
+            transition: none;
+        }
+
+        &.sub-admin {
+            .down-arrow {
+                position: absolute;
+                right: 7px;
+                top: 7px;
+            }
+        }
+
+        .mat-icon {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            margin-right: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s ease-in;
+
+            &.dashboard-ic {
+                background: url("../../../assets/images/icons/dashboard-ic.svg") no-repeat center center;
+            }
+
+            &.users-ic {
+                background: url("../../../assets/images/icons/users-ic.svg") no-repeat center center;
+            }
+
+            &.sub-admin-ic {
+                background: url("../../../assets/images/icons/sub-admin-ic.svg") no-repeat center center;
+            }
+
+            &.notification-ic {
+                background: url("../../../assets/images/icons/notification-ic.svg") no-repeat center center;
+            }
+
+            &.cms-ic {
+                background: url("../../../assets/images/icons/cms-ic.svg") no-repeat center center;
+            }
+
+            &.job-ic {
+                background: url("../../../assets/images/icons/job-ic.svg") no-repeat center center;
+            }
+
+            &.rm-ic {
+                background: url("../../../assets/images/icons/rm_ic.svg") no-repeat center center;
+            }
+            &.rc-ic {
+                background: url("../../../assets/images/icons/rc_ic.svg") no-repeat center center;
+            }
+            &.support-ic {
+                background: url("../../../assets/images/icons/support-ic.svg") no-repeat center center;
+            }
+        }
+
+        @media screen and (max-width: 1600px) {
+            height: 49px;
+        }
+
+        &:hover {
+            background-color: $primaryLightGray;
+            color: #00796B;
+
+            .mdc-list-item__primary-text {
+                color: #00796B !important;
+                font-size: 14px !important;
+                font-family: "Montserrat", sans-serif;
+                display: flex;
+                align-items: center;
+            }
+
+            .mat-icon {
+                width: 28px;
+                height: 28px;
+                min-width: 28px;
+                margin-right: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: 0.3s ease-in;
+
+                &.dashboard-ic {
+                    background: url("../../../assets/images/icons/dashboard-ic-active.svg") no-repeat center center;
+                }
+
+                &.users-ic {
+                    background: url("../../../assets/images/icons/users-ic-active.svg") no-repeat center center;
+                }
+
+                &.notification-ic {
+                    background: url("../../../assets/images/icons/notification-ic-active.svg") no-repeat center center;
+                }
+
+                &.sub-admin-ic {
+                    background: url("../../../assets/images/icons/sub-admin-ic-active.svg") no-repeat center center;
+                }
+
+                &.cms-ic {
+                    background: url("../../../assets/images/icons/cms-ic-active.svg") no-repeat center center;
+                }
+
+                &.job-ic {
+                    background: url("../../../assets/images/icons/job-ic-active.svg") no-repeat center center;
+                }
+                &.rm-ic {
+                    background: url("../../../assets/images/icons/rm_ic_active.svg") no-repeat center center;
+                }
+                &.rc-ic {
+                    background: url("../../../assets/images/icons/rc_ic_active.svg") no-repeat center center;
+                }
+                &.support-ic {
+                    background: url("../../../assets/images/icons/support-ic-active.svg") no-repeat center center;
+                }
+            }
+        }
+
+        &.active {
+            background-color: #00796B4D;
+            color: #00796B;
+
+            .mdc-list-item__primary-text {
+                color: #00796B !important;
+                font-size: 14px !important;
+                font-family: "Montserrat", sans-serif;
+                display: flex;
+                align-items: center;
+            }
+
+            .mat-icon {
+                width: 28px;
+                height: 28px;
+                min-width: 28px;
+                margin-right: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: 0.3s ease-in;
+
+                &.dashboard-ic {
+                    background: url("../../../assets/images/icons/dashboard-ic-active.svg") no-repeat center center;
+                }
+
+                &.users-ic {
+                    background: url("../../../assets/images/icons/users-ic-active.svg") no-repeat center center;
+                }
+
+                &.sub-admin-ic {
+                    background: url("../../../assets/images/icons/sub-admin-ic-active.svg") no-repeat center center;
+                }
+
+                &.notification-ic {
+                    background: url("../../../assets/images/icons/notification-ic-active.svg") no-repeat center center;
+                }
+
+                &.cms-ic {
+                    background: url("../../../assets/images/icons/cms-ic-active.svg") no-repeat center center;
+                }
+
+                &.job-ic {
+                    background: url("../../../assets/images/icons/job-ic-active.svg") no-repeat center center;
+                }
+                &.rm-ic {
+                    background: url("../../../assets/images/icons/rm_ic_active.svg") no-repeat center center;
+                }
+                &.rc-ic {
+                    background: url("../../../assets/images/icons/rc_ic_active.svg") no-repeat center center;
+                }
+                &.support-ic {
+                    background: url("../../../assets/images/icons/support-ic-active.svg") no-repeat center center;
+                }
+            }
+        }
+
+        .mat-icon {
+            @include flex(center, center);
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            vertical-align: middle;
+            text-align: center;
+            @include radius(50%);
+            margin-right: 5px;
+            line-height: 28px;
+            font-size: 20px;
+
+            @media screen and (max-width: 1600px) {
+                @include flex(center, center);
+                width: 28px;
+                height: 28px;
+                min-width: 28px;
+                vertical-align: middle;
+                text-align: center;
+                @include radius(50%);
+                margin-right: 5px;
+                line-height: 38px;
+                font-size: 20px;
+            }
+        }
+
+        span {
+            font-size: 13.5px;
+            transition: 0.3s ease all;
+
+            @media screen and (max-width: 1600px) {
+                font-size: 13px;
+            }
+        }
+    }
+}
+
+:host ::ng-deep {
+    .page-sidebar {
+        .mat-accordion {
+            width: 100%;
+            border: solid 3px #F1EDEE;
+            border-radius: 6px;
+            display: flex;
+            margin-top: 5px;
+            margin-bottom: 5px;
+
+            .mat-expansion-panel {
+                width: 100%;
+                box-shadow: none;
+            }
+
+            .mat-mdc-list-item {
+                border-radius: 0;
+
+                &:hover {
+                    background: #ffffff !important;
+                }
+
+                .ic {
+                    width: 24px;
+                    height: 24px;
+                    margin-right: 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                &.active {
+                    background: #fff;
+                }
+            }
+
+            .mat-expansion-panel-header {
+                padding: 0 !important;
+                background: #ffffff;
+
+                &.cms-active {
+                    .mdc-list-item__content {
+                                .mdc-list-item__primary-text {
+                            color: #00796B;
+                        }
+                    }
+                }
+
+                .mdc-list-item__content {
+          
+                    .mdc-list-item__primary-text {
+                        color: #000;
+                    }
+                }
+
+                &.mat-expanded {
+                    height: auto;
+                }
+            }
+
+
+            .mat-content.mat-content-hide-toggle {
+                margin-right: 0;
+            }
+
+            .mat-expansion-panel-body {
+                padding: 0;
+            }
+        }
+    }
+
+    .mdc-list-item:focus::before {
+        background-color: $white;
+    }
+
+    .mdc-list-item__content {
+        padding: 0px 12px 0px 10px !important;
+
+        .mdc-list-item__primary-text {
+            color: $black;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: normal;
+            font-family: "Montserrat", sans-serif;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .mdc-list-item {
+
+        &:hover {
+            .mdc-list-item__primary-text {
+                color: $primaryLight;
+            }
+        }
+
+        &.active {
+            .mdc-list-item__primary-text {
+                color: $primaryLight;
+            }
+        }
+    }
+
+    .mat-tooltip {
+        display: none;
+    }
+
+    .mat-mdc-list-item {
+        &.active {
+            .mdc-list-item__content {
+                font-weight: 600;
+            }
+        }
+
+        &:not(:nth-last-of-type(1)) {
+            margin-bottom: 4px;
+        }
+    }
+
+    .mat-expansion-indicator {
+        color: $white;
+    }
+}
+
+.down-arrow {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px !important;
+    color: $gray;
+    background: $white;
+    cursor: pointer;
+
+    .arrow-rotate {
+        font-size: 24px !important;
+        padding: 5px;
+
+        &.rotate {
+            rotate: 180deg;
+        }
+    }
+
+}

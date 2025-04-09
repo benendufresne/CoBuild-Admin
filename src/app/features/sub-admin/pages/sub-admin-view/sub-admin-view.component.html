@@ -1,0 +1,80 @@
+@if(isLoading && subAdminId){
+<app-data-loader [cssClasses]="'h500'"></app-data-loader>
+}@else {
+<form [formGroup]="subAdminForm" #n="ngForm">
+    <div class="sub-admin-page">
+        @if(subAdminId){
+        <div class="form-in md">
+            <div class="status-wrap">
+                <ul>
+                    <li><span>Status: {{this?.status | formatStatus : listType }}</span></li>
+                    <li><a class="delete" (click)="deleteUser()" matTooltip="delete"><span
+                                class="material-symbols-outlined">delete</span></a></li>
+                    @if(status== 'UN_BLOCKED'){
+                    <li matTooltip="Inactive"><a class="edit" (click)="updateStatus()"><span
+                                class="material-symbols-outlined">block</span></a></li>
+                    }
+                    @if (status == 'BLOCKED') {
+
+                    <li matTooltip="active"><a class="edit" (click)="updateStatus()"><span
+                                class="material-symbols-outlined">check</span></a></li>
+                    }
+
+
+                </ul>
+            </div>
+        </div>
+        }
+        <div class="form-wrap create-admin">
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-in md">
+                        <label class="form-label">Name*</label>
+                        <mat-form-field appearance="outline">
+                            <input matInput type="text" formControlName="name" placeholder="Enter Name"
+                                maxlength="75" />
+                            <mat-error>{{
+                                subAdminForm | errorMessage : "name" : "Name"
+                                }}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-in md">
+                        <label class="form-label">Email ID*</label>
+                        <mat-form-field appearance="outline">
+                            <input matInput type="text" formControlName="email" placeholder="Enter Email"
+                                maxlength="50" />
+                            <mat-error>{{
+                                subAdminForm | errorMessage : "email" : "Email"
+                                }}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-in md">
+                        <label class="form-label">Role*</label>
+                        <mat-form-field appearance="outline">
+                            <mat-select placeholder="Enter Role" formControlName="roleId">
+                                @for (item of roleName; track item) {
+                                <mat-option [value]="item">{{item.name}}</mat-option>
+                                }
+                            </mat-select>
+                            <mat-error>{{
+                                subAdminForm | errorMessage : "roleId" : "Role": true
+                                }}</mat-error>
+
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="btn-cover">
+            <app-button [btnLabel]="'Cancel'" (buttonClickEvent)="cancelHandler()"></app-button>
+            <app-button [btnLabel]="subAdminId? 'Update':'Add'"
+                [isDisabled]="!subAdminForm?.valid || !subAdminForm.dirty"
+                (buttonClickEvent)="subAdminHandler()"></app-button>
+        </div>
+    </div>
+</form>
+}

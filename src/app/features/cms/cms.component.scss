@@ -1,0 +1,278 @@
+@import "../../../scss/var";
+@import "../../../scss/mix";
+
+
+:host ::ng-deep {
+
+    // Tab-CSS-Start
+    .tab-section {
+        padding: 25px 0 20px;
+
+        .mat-mdc-tab-group {
+            background-color: $white;
+
+            .mat-mdc-tab-label-container {
+                .mat-mdc-tab-labels {
+                    border-bottom: 1px solid $borderLight;
+                    margin-bottom: 1px;
+                }
+            }
+
+            .mat-mdc-tab-body-content {
+                padding: 2px 0;
+            }
+
+            .mat-mdc-tab-header {
+                align-items: center;
+
+                .mat-mdc-tab-header-pagination-before,
+                .mat-mdc-tab-header-pagination-after {
+                    width: 35px;
+                    height: 35px;
+                    @include flex(center, center);
+                    @include radius(50%);
+                    cursor: pointer;
+                    background-color: $primaryLight;
+
+                    &.mat-mdc-tab-header-pagination-disabled {
+                        cursor: not-allowed;
+                        background: $disableBg;
+                        border: 1px solid $disableBg;
+                        pointer-events: none;
+
+                        .mat-mdc-tab-header-pagination-chevron {
+                            border-color: $disableTextColor;
+                        }
+                    }
+                }
+
+                .mat-mdc-tab .mdc-tab__text-label,
+                .mat-mdc-tab-link .mdc-tab__text-label {
+                    color: $primaryLight;
+                    font-family: "Montserrat", sans-serif;
+                }
+
+                .mat-mdc-tab {
+                    .mdc-tab-indicator__content--underline {
+                        border-color: $secondaryText;
+                    }
+
+                    &:not(.mat-mdc-tab-disabled) {
+                        &.mdc-tab--active {
+                            .mdc-tab__text-label {
+                                color: $primaryLight;
+                                font-family: "Montserrat", sans-serif;
+                                font-weight: 500;
+                            }
+                        }
+                    }
+
+                    &:not(.mat-mdc-tab-disabled) {
+                        .mdc-tab-indicator__content--underline {
+                            border-color: $primaryLight;
+                        }
+                    }
+                }
+            }
+
+            .mat-mdc-tab-header-pagination-chevron {
+                border-color: $white;
+            }
+
+            .mat-mdc-tab-header-pagination-before {
+                margin-right: 5px;
+            }
+
+            .mat-mdc-tab-header-pagination-after {
+                margin-left: 5px;
+            }
+        }
+    }
+
+    .tab-section {
+        padding: 0 0 25px;
+
+        .mat-mdc-tab-nav-bar {
+            margin-bottom: 10px;
+            align-items: center;
+
+            .mat-mdc-tab-label-container {
+                .mat-mdc-tab-labels {
+                    border-bottom: 1px solid $primaryDark;
+                    border-radius: 15px;
+                    margin-bottom: 1px;
+                }
+            }
+
+            .mat-mdc-tab-link.mdc-tab {
+                .mdc-tab__content {
+                    height: auto;
+                }
+
+                margin-right:10px;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+
+                height: 44px;
+                font-size: 14px;
+                background:#fff;
+                border: 2px solid $primaryDark;
+                border-radius:15px;
+                color: $primaryDark;
+                opacity:1;
+                padding: 0 13px;
+
+                &:hover {
+                    background: #fff;
+                    opacity: 1;
+                }
+
+                &.mdc-tab--active {
+                    background: $primaryDark;
+                    border-radius: 15px;
+                    color: $white !important;
+                    border: $primaryDark;
+
+                    .mdc-tab__content {
+                        .mdc-tab__text-label {
+                            color: $white !important;
+                        }
+                    }
+                }
+            }
+
+            .mat-mdc-tab-link-container {
+                flex-grow: 0;
+            }
+
+            .mdc-tab-indicator {
+                opacity: 0;
+            }
+
+            .mat-mdc-tab-body-content {
+                padding: 2px 0;
+            }
+
+            .mat-mdc-tab-list {
+                width: 100%;
+                flex-grow: 0;
+            }
+
+            .mat-mdc-tab-header {
+                align-items: center;
+
+                .mat-mdc-tab-header-pagination-before,
+                .mat-mdc-tab-header-pagination-after {
+                    height: 35px;
+                    @include flex(center, center);
+                    @include radius(50%);
+                    cursor: pointer;
+                    background-color: $primaryLight;
+
+                    &.mat-mdc-tab-header-pagination-disabled {
+                        cursor: not-allowed;
+                        background: $disableBg;
+                        border: 1px solid $disableBg;
+                        pointer-events: none;
+
+                        .mat-mdc-tab-header-pagination-chevron {
+                            border-color: $disableTextColor;
+                        }
+                    }
+                }
+
+                .mat-mdc-tab .mdc-tab__text-label,
+                .mat-mdc-tab-link .mdc-tab__text-label {
+                    color: #282828;
+                    font-family: "Montserrat", sans-serif;
+                }
+
+                .mat-mdc-tab {
+                    .mdc-tab-indicator__content--underline {
+                        border-color: $secondaryText;
+                    }
+
+                    &:not(.mat-mdc-tab-disabled) {
+                        &.mdc-tab--active {
+                            .mdc-tab__text-label {
+                                color: #282828;
+                                font-family: "Montserrat", sans-serif;
+                                font-weight: 500;
+                            }
+                        }
+                    }
+
+                    &:not(.mat-mdc-tab-disabled) {
+                        .mdc-tab-indicator__content--underline {
+                            border-color: $primaryLight;
+                        }
+                    }
+                }
+            }
+
+            .mat-mdc-tab-header-pagination-before,
+            .mat-mdc-tab-header-pagination-after {
+                height: 35px;
+                @include flex(center, center);
+                @include radius(50%);
+                cursor: pointer;
+                background-color: $primaryLight;
+
+                &.mat-mdc-tab-header-pagination-disabled {
+                    cursor: not-allowed;
+                    background: $disableBg;
+                    border: 1px solid $disableBg;
+                    pointer-events: none;
+
+                    .mat-mdc-tab-header-pagination-chevron {
+                        border-color: $disableTextColor;
+                    }
+                }
+            }
+
+            .mat-mdc-tab-nav-bar .mdc-tab__text-label,
+            .mat-mdc-tab-link .mdc-tab__text-label {
+                color: $primaryDark;
+                font-family: "Montserrat", sans-serif;
+                letter-spacing: 0.5px;
+                font-weight: 500;
+            }
+
+            .mdc-tab.mat-mdc-tab-link {
+                .mdc-tab-indicator__content--underline {
+                    border-color: $secondaryText;
+                }
+
+                &:not(.mat-mdc-tab-disabled) {
+                    &.mdc-tab--active {
+                        .mdc-tab__text-label {
+                            color: #0092FF;
+                            font-family: "Montserrat", sans-serif;
+                            font-weight: 500;
+                        }
+                    }
+                }
+
+                &:not(.mat-mdc-tab-disabled) {
+                    .mdc-tab-indicator__content--underline {
+                        border-color: $primaryLight;
+                    }
+                }
+            }
+
+            .mat-mdc-tab-header-pagination-chevron {
+                border-color: $white;
+            }
+
+            .mat-mdc-tab-header-pagination-before {
+                margin-right: 5px;
+            }
+
+            .mat-mdc-tab-header-pagination-after {
+                margin-left: 5px;
+            }
+        }
+    }
+}

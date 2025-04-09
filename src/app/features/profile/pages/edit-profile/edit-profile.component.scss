@@ -1,0 +1,130 @@
+@import "../../../../../scss/popup-ui";
+@import "../../../../../scss/grid";
+@import "../../../../../scss/mix";
+@import "../../../../../scss/var";
+@import "../basic-details/basic-details.component.scss";
+
+.padding-title {
+  padding-bottom: 20px !important;
+  padding-top: 8px !important;
+}
+
+.col-right {
+  margin-top: 110px !important;
+}
+
+.label {
+  text-align: left;
+}
+
+.country-wrap {
+  .mat-form-field {
+    &.has-prefix {
+      &.arabic {
+        .mat-form-field-suffix {
+          padding: 0 0 0 15px;
+        }
+
+        .mat-form-field-flex {
+          flex-direction: row-reverse;
+
+          .mat-input-element {
+            padding: 14px 10px 15px 10px !important;
+            text-align: right;
+          }
+        }
+
+        .mat-form-field-prefix {
+          padding: 0 15px 0 0;
+
+          .read-only-wrap {
+            flex-direction: row-reverse;
+
+            input {
+              margin: 0 10px 0 0 !important;
+            }
+          }
+        }
+
+        .mat-error {
+          width: 100%;
+          display: flex;
+          direction: rtl;
+        }
+      }
+    }
+  }
+
+  .read-only-wrap {
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    padding-bottom: 1px;
+
+    input {
+      width: 35px;
+      margin: 0 0 0 10px;
+      letter-spacing: -0.01em;
+      border: none;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+.btn-cover {
+  justify-content: space-between;
+  width: 420px;
+  padding: 10px 0 0 10px;
+}
+
+:host ::ng-deep {
+
+  .form-in {
+    .mat-mdc-form-field-error {
+      top: -20px;
+    }
+
+    .mat-mdc-form-field-error-wrapper {
+      position: relative;
+    }
+
+    .mat-mdc-form-field {
+      margin-bottom: 0 !important;
+    }
+  }
+
+  .mat-form-field {
+    &.phonenumber {
+      .mat-mdc-form-field {
+        .mat-mdc-form-field-flex {
+          .mat-mdc-form-field-infix {
+            .mat-mdc-input-element {
+              border: none;
+              box-shadow: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .profile_image_wrapper {
+    .profile-img {
+      img {
+        border-radius: 10px;
+        // border: 2px dashed #c3c3c3;
+      }
+    }
+  }
+}
+
+.changepassword {
+  color: $primaryLight;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+// country-code-end

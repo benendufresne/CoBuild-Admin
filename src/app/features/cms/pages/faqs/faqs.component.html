@@ -1,0 +1,60 @@
+@if(isApiCallInProgress){
+<app-data-loader [cssClasses]="'h500'"/>
+} @else{
+<div class="cms_wrap">
+<div class="cms_header" [class.mt-48]="isAddEditAccess">
+    @if (isAddEditAccess) {
+    <app-button [btnLabel]="'Add New FAQ'" [buttonHeight]="'48px'" [buttonWidth]="'145px'" [buttonRadius]="'6px'"
+        [cssClasses]="'active'" (buttonClickEvent)="AddEditFaq()"></app-button>
+    }
+
+</div>
+
+  <div class="cms_body">
+    @if(faqList?.data.length == 0){
+    <div class="no_data_found">
+        <figure>
+            <img src="assets/images/svg/no-data-found.svg" aria-label="No Data Image"/>
+        </figure>
+        <h3>No record found!</h3>
+    </div>
+    }
+    @for (faq of faqList?.data; track faqList?.data) {
+    <div class="faq_content_box">
+        <div class="faq_content_head">
+            <div class="content_left">
+                <h3>
+                    <span class="add_text">Added On </span>
+                    <span class="date_text">{{
+                        faq?.created | date : dateType.MEDIUM_DATE | emptyValue
+                        }}</span>
+                </h3>
+            </div>
+
+            <div class="content_right">
+                @if (isAddEditAccess) {
+                <button type="button" class="cms-icon" matTooltip="Edit" (click)="AddEditFaq(faq)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button type="button" class="cms-icon" matTooltip="Delete" (click)="confirmationDialog(faq)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            }
+            </div>
+        </div>
+        <div class="faq_body">
+            <h3 class="question_text"
+                [innerHTML]="faq?.question">
+            </h3>
+            <div class="ql-container ql-snow" style="border-width: 0">
+                <p class="answer_text ql-editor"
+                    [innerHtml]="faq?.answer">
+                </p>
+            </div>
+        </div>
+    </div>
+    }
+</div>
+</div>
+}
+

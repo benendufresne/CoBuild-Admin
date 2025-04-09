@@ -1,0 +1,202 @@
+@import "../../../../../scss/var";
+@import "../../../../../scss/mix";
+
+.page-editor {
+  width: 100%;
+}
+
+.img {
+  width: 150px;
+  height: 160px;
+  position: relative;
+  margin: 0 auto 40px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  button {
+    position: absolute;
+    bottom: -15px;
+    right: -15px;
+
+    input {
+      position: absolute;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  .mat-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -20px;
+    margin-top: -20px;
+  }
+}
+
+.btn-wrap {
+  padding-top: 25px;
+
+  &.d-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+  }
+}
+
+.arabic-text {
+  font-weight: 600;
+  margin: 15px 0;
+  text-align: center;
+}
+
+.form-btn {
+  margin-top: 32px;
+  padding: 20px 0;
+  text-align: center;
+
+  button {
+    min-width: 120px;
+  }
+}
+
+.label {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.editor_header {
+  @include flexbox;
+}
+
+.editor_header1 {
+  @include flexbox;
+  padding-top: 10px;
+}
+
+.btn-cover {
+  padding: 15px 0;
+
+  button {
+    min-width: 100px;
+    margin-right: 15px;
+  }
+}
+
+.mat-error {
+  color: red;
+  line-height: 18px;
+  font-size: 12px;
+  text-align: left;
+}
+
+:host ::ng-deep {
+  .btn-wrap {
+    button {
+      font-weight: 600;
+      border: 2px solid #00796B;
+
+      &:first-child {
+        color: #00796B;
+      }
+    }
+  }
+
+  .data_loader {
+    border: 1px solid $borderLight;
+    @include radius(8px);
+    height: 56vh !important;
+
+    @media screen and (max-width: 1456px) {
+      height: 55vh !important;
+    }
+
+    @media screen and (max-width: 1280px) {
+      height: 49vh !important;
+    }
+  }
+
+  quill-editor {
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .ql-toolbar.ql-snow {
+    border: 1px solid #ccc !important;
+    border-bottom: 0 !important;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  .ql-container.ql-snow {
+    border: 1px solid #ccc !important;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  .ql-snow.ql-toolbar button:hover,
+  .ql-snow .ql-toolbar button:hover,
+  .ql-snow.ql-toolbar button:focus,
+  .ql-snow .ql-toolbar button:focus,
+  .ql-snow.ql-toolbar button.ql-active,
+  .ql-snow .ql-toolbar button.ql-active,
+  .ql-snow.ql-toolbar .ql-picker-label:hover,
+  .ql-snow .ql-toolbar .ql-picker-label:hover,
+  .ql-snow.ql-toolbar .ql-picker-label.ql-active,
+  .ql-snow .ql-toolbar .ql-picker-label.ql-active,
+  .ql-snow.ql-toolbar .ql-picker-item:hover,
+  .ql-snow .ql-toolbar .ql-picker-item:hover,
+  .ql-snow.ql-toolbar .ql-picker-item.ql-selected,
+  .ql-snow .ql-toolbar .ql-picker-item.ql-selected {
+    color: $primaryLight !important;
+  }
+
+  .ql-snow.ql-toolbar button:hover svg,
+  .ql-snow .ql-toolbar button:hover svg,
+  .ql-snow .ql-toolbar button.ql-active svg,
+  .ql-snow.ql-toolbar .ql-picker-label:hover svg,
+  .ql-snow .ql-toolbar .ql-picker-label:hover svg,
+  .ql-snow.ql-toolbar .ql-picker-item:hover svg,
+  .ql-snow .ql-toolbar .ql-picker-item:hover svg {
+    filter: brightness(0) invert(0.4) !important;
+  }
+
+  .ql-snow.ql-toolbar button:focus svg,
+  .ql-snow .ql-toolbar button:focus svg,
+  .ql-snow.ql-toolbar button.ql-active svg,
+  .ql-snow.ql-toolbar .ql-picker-label.ql-active svg,
+  .ql-snow .ql-toolbar .ql-picker-label.ql-active svg,
+  .ql-snow.ql-toolbar .ql-picker-item.ql-selected svg,
+  .ql-snow .ql-toolbar .ql-picker-item.ql-selected svg {
+    filter: brightness(0) invert(0) !important;
+  }
+
+  .ql-snow .ql-tooltip {
+    left: auto !important;
+    top: 0 !important;
+    right: 10%;
+  }
+
+  .ql-image {
+    display: none !important;
+  }
+
+  .ql-video {
+    display: none !important;
+  }
+}
+
+.disabled-input {
+  opacity: 0.4;
+}

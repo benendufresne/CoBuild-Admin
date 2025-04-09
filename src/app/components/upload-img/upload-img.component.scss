@@ -1,0 +1,21 @@
+.edit-ic {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #00796B;
+    color: #fff;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    text-align: center;
+
+    mat-icon {
+        width: 20px;
+        height: 20px;
+        font-size: 18px;
+    }
+}

@@ -1,0 +1,89 @@
+@import "../../../scss/mix";
+
+.quotation_wrap {
+  max-width: 300px;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(217, 217, 217, 1);
+  border: 2px solid $primary;
+
+
+  // background: $primary;
+  &.sendMessage {
+    margin-left: auto;
+  }
+
+  // &
+
+  .top_header {
+    margin-bottom: 10px;
+    @include flex(start, space-between);
+
+    h3,
+    p {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    span {
+      font-weight: 400;
+    }
+  }
+
+  .img_area {
+    @include flex(center, start);
+    gap: 13px;
+
+    img {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+    }
+
+    .head {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .sub-text {
+      font-size: 12px;
+    }
+  }
+
+  .q-msg {
+    h3 {
+      margin: 6px 0;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    p {
+      padding: 8px;
+      font-size: 13px;
+      // background: rgba(239, 239, 239, 1);
+      background: $primary;
+      color: #fff;
+    }
+  }
+
+  .q_status {
+    margin-top: 5px;
+    color: $primary;
+    text-align: right;
+    font-size: 12px;
+    font-weight: 600;
+
+    &.red {
+      color: $red;
+    }
+
+    &.primary {
+      color: $primary;
+    }
+  }
+
+}
+
+.cursor {
+  cursor: pointer !important;
+}

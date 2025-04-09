@@ -1,0 +1,111 @@
+@if(_userService.userTableType === userTypes.USERS) {
+  <div class="breadcrumb">
+  <span (click)="userTableChanged()">User Management</span>
+  <mat-icon>keyboard_arrow_right</mat-icon>
+  <span class="color"> {{userTypes.USERS }} </span>
+</div>
+<div class="table-outer">
+  @if (actionInprogress) {
+  <app-data-loader [cssClasses]="'vh85'"></app-data-loader>
+  }
+  <mat-table-render class="mat_table" notFound="No User Available" [heading]="heading" [showSearch]="true"
+    [showFilter]="true" [exportButton]="true" [placeholder]="placeholderText" [listType]="'Customer'" [isAddEditAccess]="allowAccess"
+    [isUserManagementList]="false" [filterRedDot]="filterRedDot" [getFilterValue]="checkFormValue" [cls]="permissionClass"
+    [selectedTableType]="_userService.userTableType" (find)="paginationWithSearch($event, 0)"
+    (page)="paginationWithSearch($event, 1)" (status)="changeStatus($event)" (sort)="sortByListing($event)"
+    (filter)="filterApply($event)" (edit_route)="onView($event)" (export)="export()"
+    (userTableTypeChangeEvent)="userTableChanged($event)">
+    <div role="filter">
+      <form [formGroup]="filterForm" class="filterForm">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <h4 class="date-label">
+              <figure>
+                <img alt="filter_logo" src="../../../../../assets/images/filter/calendar.svg" />
+              </figure>
+              <span> Added On </span>
+            </h4>
+          </mat-expansion-panel-header>
+          <ng-template matExpansionPanelContent>
+            <mat-form-field appearance="outline" class="date-field">
+              <mat-date-range-input [rangePicker]="picker" [dateFilter]="unavailableDates">
+                <input matStartDate placeholder="Select From" formControlName="fromDate" readonly
+                  (dateChange)="this.subscribeToFilterFormChanges()" (keydown)="dateInput($event)" autocomplete="off" />
+                <input matEndDate placeholder="To Date" formControlName="toDate" readonly (keydown)="dateInput($event)"
+                  (dateChange)="this.subscribeToFilterFormChanges()" autocomplete="off" />
+              </mat-date-range-input>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+          </ng-template>
+        </mat-expansion-panel>
+      </form>
+    </div>
+  </mat-table-render>
+</div>
+}@else {
+@if(allowAccess){
+<div class="btn-add">
+  <app-button [cssClasses]="'active'" [buttonWidth]="'200px'" [buttonHeight]="'48px'" [buttonRadius]="'6px'"
+    [btnLabel]="customButtonConst.ADD_USER" (buttonClickEvent)="onView('add')"></app-button>
+</div>
+}
+<div class="table-outer">
+  @if (actionInprogress) {
+  <app-data-loader [cssClasses]="'vh85'"></app-data-loader>
+  }
+  <mat-table-render class="mat_table" notFound="No User Available" [heading]="heading" [showSearch]="true"
+    [showFilter]="true" [exportButton]="true" [placeholder]="placeholderText" [listType]="'Customer'" [isAddEditAccess]="allowAccess"
+    [isUserManagementList]="true" [filterRedDot]="filterRedDot" [getFilterValue]="checkFormValue"
+    [selectedTableType]="_userService.userTableType" (find)="paginationWithSearch($event, 0)"
+    (page)="paginationWithSearch($event, 1)" (status)="changeStatus($event)" (sort)="sortByListing($event)"
+    (filter)="filterApply($event)" (edit_route)="onView($event)" (export)="export()"
+    (userTableTypeChangeEvent)="userTableChanged($event)">
+    <div role="filter">
+      <form [formGroup]="filterForm" class="filterForm">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <h4 class="date-label">
+              <figure>
+                <img alt="status" src="../../../../../assets/images/filter/status.svg" />
+              </figure>
+              <span> Status</span>
+            </h4>
+          </mat-expansion-panel-header>
+          <ng-template matExpansionPanelContent>
+            <mat-radio-group formControlName="status" (change)="subscribeToFilterFormChanges()" color="primary"
+              labelPosition="after" class="my-radio-group">
+              <mat-radio-button [value]="'UN_BLOCKED'" class="my-radio-button"><span
+                  class="pointer">Active</span></mat-radio-button>
+              <mat-radio-button [value]="'BLOCKED'" class="my-radio-button"><span
+                  class="pointer">Inactive</span></mat-radio-button>
+            </mat-radio-group>
+          </ng-template>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <h4 class="date-label">
+              <figure>
+                <img alt="filter_logo" src="../../../../../assets/images/filter/calendar.svg" />
+              </figure>
+              <span> Added On </span>
+            </h4>
+          </mat-expansion-panel-header>
+          <ng-template matExpansionPanelContent>
+            <mat-form-field appearance="outline" class="date-field">
+              <mat-date-range-input [rangePicker]="picker" [dateFilter]="unavailableDates">
+                <input matStartDate placeholder="Select From" formControlName="fromDate" readonly
+                  (dateChange)="this.subscribeToFilterFormChanges()" (keydown)="dateInput($event)" autocomplete="off" />
+                <input matEndDate placeholder="To Date" formControlName="toDate" readonly (keydown)="dateInput($event)"
+                  (dateChange)="this.subscribeToFilterFormChanges()" autocomplete="off" />
+              </mat-date-range-input>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+          </ng-template>
+        </mat-expansion-panel>
+      </form>
+    </div>
+  </mat-table-render>
+</div>
+}

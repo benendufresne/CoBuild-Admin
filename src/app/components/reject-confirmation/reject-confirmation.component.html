@@ -1,0 +1,29 @@
+<div class="confirmation-modal popup-ui">
+  <div class="popup-header">
+    <h4>Please specify the reason of rejection</h4>
+    <span class="material-icons close-icon" matTooltip="Close" (click)="onNoClick()">close</span>
+  </div>
+  <div class="popup-body">
+    <form [formGroup]="rejectForm">
+      <mat-form-field appearance="outline" class="w-100">
+        <textarea cdkTextareaAutosize cdkAutosizeMinRows="5" formControlName="message" cdkAutosizeMaxRows="10" matInput
+          formControlName="message" [maxlength]="limit.MAX_DES_LENGTH" required appNoLeadingSpace
+          #description></textarea>
+        <mat-error>{{
+          rejectForm | errorMessage : this.stringConst.MESSAGE : "Reason"
+          }}</mat-error>
+      </mat-form-field>
+      <p class="character-count">{{description.textLength}}/{{this.limit.MAX_DES_LENGTH}}</p>
+    </form>
+  </div>
+  <div class="popup-footer">
+    <div class="btn-cover">
+      <app-button [cssClasses]="'active'" [buttonWidth]="'144px'" [buttonHeight]="'48px'"
+        [btnLabel]="customButtonConst.REJECT | titlecase" [isDisabled]="rejectForm.invalid || !rejectForm.dirty"
+        (buttonClickEvent)="confirm()" [buttonRadius]="'6px'"></app-button>
+      <app-button [btnLabel]="customButtonConst.CANCEL" [buttonWidth]="'144px'" [buttonHeight]="'48px'"
+        (buttonClickEvent)="onNoClick()" [buttonRadius]="'6px'"></app-button>
+    </div>
+  </div>
+
+</div>

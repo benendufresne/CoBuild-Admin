@@ -1,0 +1,14 @@
+<div class="media-scroll-wrapper">
+  <ng-image-slider
+    #nav
+    slideImage="1"
+    [infinite]="false"
+    [showArrow]="false"
+    [videoAutoPlay]="true"
+    [images]="imageObject"
+    [imagePopup]="openPopUp"
+    [imageSize]="{ width: '10%', height: 100 }"
+    (lightboxClose)="changeVal()"
+    (imageClick)="imageClick($event)"
+  ></ng-image-slider>
+</div>

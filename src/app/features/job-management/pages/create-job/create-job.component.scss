@@ -1,0 +1,133 @@
+@import "../../../../../scss/mix";
+@import "../../../../../scss/var";
+@import "../../../../../scss/grid";
+@import '../../../../../scss/material-styling';
+
+.row {
+  margin: 0 -15px;
+  display: flex;
+  flex-wrap: wrap;
+
+  .col-md-12 {
+    width: 100%;
+    flex: 0 100%;
+    padding: 0 15px;
+    margin-bottom: 5px;
+  }
+
+  .col-md-6 {
+    width: 50%;
+    flex: 0 50%;
+    padding: 0 15px;
+    margin-bottom: 5px;
+  }
+
+
+  .mat-mdc-form-field {
+    width: 100%;
+  }
+
+  .form-label {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+}
+
+.btn-wrap {
+  display: flex;
+  align-items: center;
+
+  button {
+    width: 90px;
+    height: 44px;
+  }
+}
+
+
+:host ::ng-deep {
+
+  .add-job {
+    padding: 20px;
+
+    .heading-sec {
+      padding-bottom: 15px;
+      border-bottom: 1px solid $borderLight;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      @include flex(center, space-between);
+
+      h1 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #989898;
+
+      }
+    }
+
+    textarea {
+      &.mat-mdc-input-element {
+        height: 100px !important;
+        resize: none;
+      }
+    }
+
+    .mat-mdc-form-field-icon-suffix {
+      margin-right: 10px;
+    }
+
+    .mat-mdc-form-field-error {
+      top: 0px;
+      font-size: 13px;
+    }
+
+    .btn-cover {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 20px 0;
+    }
+
+  }
+}
+
+mat-hint {
+  font-size: 12px;
+  font-weight: 500;
+  color: #5c5b5b;
+  position: relative;
+  right: -15px;
+
+}
+
+::ng-deep {
+  .center {
+    text-align: center;
+  }
+
+  .mat-mdc-checkbox {
+    .mdc-checkbox__background {
+      border-radius: 100% !important;
+
+    }
+
+    .mdc-checkbox .mdc-checkbox__native-control:enabled:focus:checked~.mdc-checkbox__background,
+    .mdc-checkbox .mdc-checkbox__native-control:enabled:focus:indeterminate~.mdc-checkbox__background {
+      border-color: $primary !important;
+      background-color: $primary !important;
+    }
+
+    .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background,
+    .mdc-checkbox .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background,
+    .mdc-checkbox .mdc-checkbox__native-control[data-indeterminate=true]:enabled~.mdc-checkbox__background {
+      border-color: $primary !important;
+      background-color: $primary !important;
+    }
+
+    .mdc-checkbox .mdc-checkbox__native-control:focus:checked~.mdc-checkbox__ripple {
+      background-color: $primary !important;
+    }
+  }
+}

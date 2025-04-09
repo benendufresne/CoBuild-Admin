@@ -1,0 +1,47 @@
+<div class="cropper-main-wrapper">
+    <div class="heading">
+      <h2>Crop Image</h2>
+    </div>
+  @if (!showCropper) {
+    <div class="no-image-container">
+      <mat-spinner class="no-image-loader"></mat-spinner>
+    </div>
+  }  
+    <div class="inner-container" [style.display]="showCropper? null : 'none'">
+      <ng-container >
+        <image-cropper 
+          [imageChangedEvent]="imageChangedEvent" 
+          [roundCropper]="croperConfig.roundCropper"
+          [aspectRatio]="aspectRatio"
+          format="png"
+          [imageQuality]="50"
+          [cropperMinWidth]="200"
+          (imageCropped)="imageCropped($event)" 
+          (imageLoaded)="imageLoaded($event)"
+          (cropperReady)="cropperReady($event)" 
+          [containWithinAspectRatio]="false"
+          [canvasRotation]="canvasRotation"
+          [transform]="transform"
+          [alignImage]="'center'"
+         >
+        </image-cropper>
+       </ng-container>
+    </div>
+    <div class="bottom-sec">
+      <app-button
+      [btnLabel]="customButtonConst.CANCEL"
+      [buttonWidth]="'150px'"
+      [buttonHeight]="'50px'"
+      (buttonClickEvent)="cancel()"
+    >
+    </app-button>
+      <app-button
+      [btnLabel]="customButtonConst.CROP_AND_SAVE"
+      [buttonWidth]="'150px'"
+      [buttonHeight]="'50px'"
+      [cssClasses]="'active'"
+      (buttonClickEvent)="saveImage()"
+    >
+    </app-button>
+    </div>
+  </div>

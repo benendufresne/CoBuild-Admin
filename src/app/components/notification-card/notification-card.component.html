@@ -1,0 +1,14 @@
+@if (notificationDetails) {
+    <div 
+        class="notification-container" 
+        [class.pointer]="notificationDetails.redirectId"
+        (click)="onRedirectionLink()" 
+    >
+        @if (!notificationDetails.isRead) {
+            <span class="n-red-dot"></span>
+        }
+        <h3 class="n-subject">{{notificationDetails.title}}</h3>
+        <p class="n-desc">{{ notificationDetails.message }}</p>
+        <p class="n-time">{{  timeAgoFun(notificationDetails.created) }}</p>
+    </div>
+}

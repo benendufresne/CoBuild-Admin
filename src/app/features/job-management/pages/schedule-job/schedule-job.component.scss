@@ -1,0 +1,67 @@
+@import "../../../../../scss/var";
+@import "../../../../../scss/popup-ui";
+@import "../../../../../scss/grid";
+
+::ng-deep {
+    .custome-class {
+        .timepicker-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #00796B !important;
+        }
+
+        .mat-mdc-mini-fab.mat-primary {
+            --mdc-fab-small-container-color: #00796B !important;
+        }
+
+        .mat-toolbar {
+            background: #00796B !important;
+        }
+    }
+
+    .search-container {
+        display: flex;
+        border: 1px solid #c9c3c3;
+        border-radius: 8px;
+        margin: 8px;
+        height: 40px;
+
+        input {
+            padding: 10px;
+            height: 100%;
+        }
+
+        .mat-icon {
+            position: relative;
+            top: -1px;
+            font-size: 17px;
+        }
+
+        ::ng-deep span.mat-mdc-button-persistent-ripple {
+            display: none !important;
+        }
+    }
+}
+
+.time_btn {
+    width: 85px;
+    color: #fff;
+    background: #00796B;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 16px;
+    font-size: 13px;
+    font-family: 'Montserrat';
+
+    &.cancel {
+        margin-right: 10px;
+    }
+}
+
+.date-wrap {
+    .mat-mdc-form-field-icon-suffix {
+        position: absolute;
+        right: 0;
+    }
+}
