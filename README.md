@@ -1,93 +1,137 @@
-# Admin
+# Angular Project README
+
+Welcome to our Angular project! This project aims to provide a robust solution for user management, technical support, content management, and other features.
+
+## Table of Contents
+
+- [Modules](#modules)
+  - [Onboarding Module](#onboarding-module)
+  - [User Management Module](#user-management-module)
+  - [CMS Module](#cms-module)
+  - [Sub Admin Module](#sub-admin-module)
+  - [Notification Module](#notification-module)
+  - [Dashboard Module](#dashboard-module)
+  - [Admin Profile](#admin-profile)
+  - [Job Management](#job-management)
+  - [Request Management](#request-management)
+  - [Incident/Report Management](#incident/report-management)
+  - [Support](#support)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Modules
+
+### Onboarding Module
+
+The Onboarding module is responsible for managing user registration, login, forgot password, and resetting passwords.
+
+- **Login**: Users can authenticate using their credentials.
+- **Forgot Password**: Users can reset their password by providing their email address and receiving a reset password link.
+- **Reset Password**: Users can set a new password after following the reset password link.
+
+### User Management Module
+
+The User Management module handles user listing, search, filtering, and actions related to user accounts.
+
+- **Listing**: Display a list of registered users.
+- **Search**: Allow users to search for specific users based on criteria.
+- **Filtering**: Provide options to filter users by various attributes.
+- **Actions**: Admins can perform actions on user accounts, such as deleting, update status .
+- **User Details**: Admins can view detailed information about a specific user, including their preferences.
+- **Add User**: Admins can add any user.
+
+### CMS Module
+
+The CMS (Content Management System) module manages static content such as About Us, Our Vision, Terms of use, Privacy Policy, FAQs, and support pages.
 
 
+- **About Us**: This page contains information about the organization, its mission, and its values.
 
-## Getting started
+- **Terms of Use**: Users can view the terms and conditions governing the use of the platform or services.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+- **Privacy Policy**: This page outlines the policies regarding user privacy and data handling, ensuring transparency and compliance with regulations.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+- **FAQs (Frequently Asked Questions)**: This section provides answers to common queries users may have, helping to address concerns and provide clarity.
 
-## Add your files
+### Dashboard Module
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+The Dashboard module provides an overview of various statistics and counts related to the platform.
 
-```
-cd existing_repo
-git remote add origin http://gitlab.appinvent.in/cobuild-app/frontend/admin.git
-git branch -M main
-git push -uf origin main
-```
+- **Counts**: Display counts for Users, Jobs, and other relevant metrics.
+- **Date Filter**: Include a date filter to allow users to filter data based on a specific date range.
 
-## Integrate with your tools
+### Admin Profile
 
-- [ ] [Set up project integrations](http://gitlab.appinvent.in/cobuild-app/frontend/admin/-/settings/integrations)
+The Admin Profile module allows administrators to manage their profile settings.
 
-## Collaborate with your team
+- **Change Picture**: Admins can upload or change their profile picture.
+- **Change Name**: Admins can update their display name.
+- **Change Password**: Admins can update their login password.
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+### Notification Module
 
-## Test and Deploy
+The Notification module handles the management of notifications for users.
 
-Use the built-in continuous integration in GitLab.
+- **Listing**: Display a list of notifications.
+- **Search**: Allow users to search for specific notifications based on criteria.
+- **Filtering**: Provide options to filter notifications by various attributes.
+- **Add Notification**: Admins can create and send notifications to selected users.
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+### Sub Admin Module
 
-***
+The SubAdmin module manages the listing, searching, and filtering of SubAdmins, as well as the addition of new SubAdmins.
 
-# Editing this README
+- **Listing**: Display a list of registered SubAdmins.
+- **Search**: Allow users to search for specific SubAdmins based on criteria.
+- **Filtering**: Provide options to filter SubAdmins by various attributes.
+- **Add Button**: Admins can add new SubAdmins using the add button.
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+### Job Management
 
-## Suggestions for a good README
+The job module manages the listing, searching, and filtering of job, as well as the addition of new job.
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+- **Listing**: Display a list of registered job.
+- **Search**: Allow users to search for specific job title.
+- **Filtering**: Provide options to filter job by various attributes.
+- **Add Button**: Admins can add new job using the add button.
+- **Schedule Button**: Admin can schedule any job.
 
-## Name
-Choose a self-explaining name for your project.
+### Incident/Report Management
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+The incident/report module manages the listing, searching, and filtering of report.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+- **Listing**: Display a list of registered report.
+- **Search**: Allow users to search for specific description and reported by user.
+- **Filtering**: Provide options to filter job by various attributes.
+- **Details**: Admins can view detailed information about a specific report.
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+### Request Management
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+The request module manages the listing, searching, and filtering of request.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+- **Listing**: Display a list of registered request.
+- **Search**: Allow users to search for name.
+- **Filtering**: Provide options to filter request by various attributes.
+- **Details**: Admins can view detailed information about a specific request.
 
-## Support
+### Support
 Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+## Usage
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+To use this project, follow these steps:
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+1. Clone the repository.
+2. Install dependencies using npm or yarn.
+3. Start the development server.
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+```bash
+git clone https://github.com/benendufresne/CoBuild-Admin.git
+cd your-angular-project
+npm install --force
+ng serve
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
 
-## License
-For open source projects, say how it is licensed.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+
